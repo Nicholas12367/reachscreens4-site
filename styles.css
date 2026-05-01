@@ -239,17 +239,19 @@ section {
   top: 0; left: 0; right: 0;
   z-index: 100;
   padding: 14px 0;
-  background: transparent;
-  transition: all 0.4s var(--ease);
+  padding-top: calc(14px + env(safe-area-inset-top, 0px));
+  background: rgba(10, 22, 40, 0.85);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  transition: background 0.4s var(--ease), padding 0.4s var(--ease), border-color 0.4s var(--ease);
   border-bottom: 1px solid transparent;
 }
 
 .nav.scrolled {
-  background: rgba(10, 22, 40, 0.75);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: rgba(10, 22, 40, 0.92);
   border-bottom-color: var(--color-border);
   padding: 10px 0;
+  padding-top: calc(10px + env(safe-area-inset-top, 0px));
 }
 
 .nav-inner {
@@ -328,25 +330,46 @@ section {
 
 @media (max-width: 900px) {
   .nav-toggle { display: flex; }
+  .nav-mobile-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    margin-left: auto;
+    margin-right: 8px;
+    background: linear-gradient(135deg, var(--color-primary), var(--grad-lightblue));
+    color: #051018;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 6px 20px rgba(92,224,210,0.3);
+  }
   .nav-links {
+    display: none;
     position: fixed;
-    top: 68px; left: 0; right: 0;
+    top: 0; left: 0; right: 0;
+    padding-top: calc(80px + env(safe-area-inset-top, 0px));
     background: rgba(10, 22, 40, 0.96);
     backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     flex-direction: column;
     align-items: stretch;
-    padding: var(--space-3);
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+    padding-bottom: var(--space-3);
     gap: 4px;
-    transform: translateY(-120%);
-    transition: transform 0.4s var(--ease);
     border-bottom: 1px solid var(--color-border);
-    max-height: calc(100vh - 68px);
+    max-height: 100vh;
     overflow-y: auto;
   }
-  .nav-links.open { transform: translateY(0); }
+  .nav-links.open {
+    display: flex;
+  }
   .nav-links a { padding: 14px 18px; border-radius: var(--radius-md); }
   .nav-links a::after { display: none; }
   .nav-links a.nav-cta { margin: 8px 0 0; text-align: center; justify-content: center; }
+}
+@media (min-width: 901px) {
+  .nav-mobile-cta { display: none; }
 }
 
 /* ============================================
