@@ -279,17 +279,11 @@
       btn.addEventListener('click', () => applyMode(btn.dataset.inquiry));
     });
 
-    // Read URL params: ?type=host|advertise and ?pkg= (or legacy ?package=)
+    // Read URL params: ?type=host|advertise
     const params = new URLSearchParams(location.search);
     const typeParam = (params.get('type') || '').toLowerCase();
     const initialMode = typeParam === 'host' ? 'host' : 'advertise';
     applyMode(initialMode);
-
-    const pkgParam = (params.get('pkg') || params.get('package') || '').toLowerCase();
-    if (pkgParam && packageSelect) {
-      const opt = packageSelect.querySelector(`option[value="${pkgParam}"]`);
-      if (opt) packageSelect.value = pkgParam;
-    }
 
     // Locations picker
     const locToggle = form.querySelector('.form-locations-toggle');
