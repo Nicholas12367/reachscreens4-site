@@ -3,8 +3,8 @@ window.screenLocations = [
     "id": 1,
     "name": "Katchai Cafe",
     "address": "C-5730 44 Street, Lloydminster, AB T9V 0B6",
-    "lng": -110.02717,
-    "lat": 53.27855
+    "lng": -110.029295,
+    "lat": 53.2785304
   },
   {
     "id": 2,
@@ -101,8 +101,8 @@ window.screenLocations = [
     "id": 15,
     "name": "Nouveau Lasers",
     "address": "1429B 50 Avenue, Lloydminster, SK S9V 2K1",
-    "lng": -110.0044171,
-    "lat": 53.2499598
+    "lng": -110.005488,
+    "lat": 53.2552228
   },
   {
     "id": 16,
@@ -129,8 +129,8 @@ window.screenLocations = [
     "id": 19,
     "name": "Diamond Auto",
     "address": "4634 44 Street, Lloydminster, SK S9V 0G4",
-    "lng": -109.995381,
-    "lat": 53.2780436
+    "lng": -109.9971602,
+    "lat": 53.2783075
   },
   {
     "id": 20,
@@ -143,15 +143,15 @@ window.screenLocations = [
     "id": 21,
     "name": "Sage and Soul",
     "address": "1-2801 50 Avenue, Lloydminster, SK S9V 2A8",
-    "lng": -110.0055032,
-    "lat": 53.2609406
+    "lng": -110.0039764,
+    "lat": 53.2628901
   },
   {
     "id": 22,
     "name": "The Sticks",
     "address": "5704 44 Street, Lloydminster, AB T9V 0B6",
-    "lng": -110.0267438,
-    "lat": 53.2781171
+    "lng": -110.0248362,
+    "lat": 53.2788003
   },
   {
     "id": 23,
@@ -164,8 +164,8 @@ window.screenLocations = [
     "id": 24,
     "name": "Superior Water (Coin-Op)",
     "address": "3245 50 Avenue, Lloydminster, SK S9V 0N8",
-    "lng": -110.0044171,
-    "lat": 53.2499598
+    "lng": -110.0054804,
+    "lat": 53.2507699
   },
   {
     "id": 25,
@@ -192,8 +192,8 @@ window.screenLocations = [
     "id": 28,
     "name": "Cheers Live",
     "address": "5501 44 Street, Lloydminster, AB T9V 2H4",
-    "lng": -110.0508764,
-    "lat": 53.2766044,
+    "lng": -110.0179997,
+    "lat": 53.2770657,
     "screens": 2
   },
   {
@@ -207,8 +207,8 @@ window.screenLocations = [
     "id": 30,
     "name": "Astec Safety",
     "address": "6206 44 Street, Lloydminster, AB T9V 1V9",
-    "lng": -110.0508764,
-    "lat": 53.2766044,
+    "lng": -110.034931,
+    "lat": 53.2789847,
     "screens": 2
   },
   {

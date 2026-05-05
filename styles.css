@@ -1135,6 +1135,77 @@ section {
   to { transform: translateX(-50%); }
 }
 
+/* Logo marquee (social proof) */
+.logo-marquee-section {
+  padding: var(--space-5) 0;
+  background: var(--color-dark);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.logo-marquee-section .container { overflow: hidden; }
+.logo-marquee-head {
+  text-align: center;
+  margin-bottom: var(--space-4);
+}
+.logo-marquee-head .section-label { display: inline-block; }
+.logo-marquee-head h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-top: 12px;
+  letter-spacing: 0.01em;
+}
+.logo-marquee {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.logo-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  width: max-content;
+  animation: marqueeScroll 60s linear infinite;
+  padding: 8px 0;
+}
+.logo-marquee:hover .logo-marquee-track { animation-play-state: paused; }
+.logo-marquee-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  flex-shrink: 0;
+  filter: grayscale(100%) brightness(1.6) contrast(0.85);
+  opacity: 0.72;
+  transition: filter 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.logo-marquee-item:hover {
+  filter: grayscale(0%) brightness(1) contrast(1);
+  opacity: 1;
+}
+.logo-marquee-item img {
+  max-height: 56px;
+  max-width: 200px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.logo-marquee-item.text-logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  white-space: nowrap;
+  padding: 0 8px;
+}
+@media (max-width: 700px) {
+  .logo-marquee-item { height: 44px; }
+  .logo-marquee-item img { max-height: 44px; max-width: 140px; }
+  .logo-marquee-item.text-logo { font-size: 18px; }
+  .logo-marquee-track { gap: var(--space-5); }
+}
+
 /* ============================================
    FAQ
    ============================================ */
