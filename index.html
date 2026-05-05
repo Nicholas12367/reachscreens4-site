@@ -3,12 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reach Screens, Local Digital Advertising That Actually Works</title>
+  <title>Reach Screens — Local Digital Advertising in Lloydminster</title>
   <meta name="description" content="Tell us your idea. We put your ad inside the local Lloydminster businesses your customers already visit, and recommend the rollout that fits.">
-  <link rel="stylesheet" href="styles.css?v=13">
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="canonical" href="https://reachscreens.ca/">
+  <meta property="og:title" content="Reach Screens — Local Digital Advertising in Lloydminster">
+  <meta property="og:description" content="Indoor digital screens inside the businesses your customers visit every day. Tell us your idea and we'll build the rollout.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://reachscreens.ca/">
+  <meta property="og:image" content="https://reachscreens.ca/assets/photo-1.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0A1628">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
+  <link rel="preload" as="image" href="assets/logo-white.webp">
+  <link rel="stylesheet" href="styles.css?v=15">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" media="print" onload="this.media='all'">
   <link rel="icon" href="assets/favicon.ico">
-  <script src="assets/analytics.js?v=2"></script>
+  <script src="assets/analytics.js?v=2" defer></script>
 </head>
 <body>
 
@@ -16,7 +28,7 @@
 <nav class="nav" aria-label="Main">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="Reach Screens home">
-      <img src="assets/logo-white.png" alt="Reach Screens" class="nav-logo-img">
+      <img src="assets/logo-white.webp" alt="Reach Screens" class="nav-logo-img" width="160" height="44">
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -95,18 +107,18 @@
     </div>
     <div class="logo-marquee reveal">
       <div class="logo-marquee-track">
-        <div class="logo-marquee-item"><img src="assets/logos/lloydminster-honda.png" alt="Lloydminster Honda" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/fountain-tire.png" alt="Fountain Tire" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/lloydminster-honda.webp" alt="Lloydminster Honda" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/fountain-tire.webp" alt="Fountain Tire" loading="lazy"></div>
         <div class="logo-marquee-item"><img src="assets/logos/supplement-king.svg" alt="Supplement King" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/astec-safety.png" alt="Astec Safety" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/aveiro-sleep.png" alt="Aveiro Sleep" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/wilson-registries.png" alt="Wilson Registries" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/astec-safety.webp" alt="Astec Safety" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/aveiro-sleep.webp" alt="Aveiro Sleep" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/wilson-registries.webp" alt="Wilson Registries" loading="lazy"></div>
         <div class="logo-marquee-item"><img src="assets/logos/harris-electric.svg" alt="Harris Electric" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/in2golf.png" alt="IN2GOLF" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/viking-strength.jpg" alt="Viking Strength" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/marc-d-up.png" alt="Marc'd Up Tattoos" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/imagine-laser.png" alt="Imagine Laserworks" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/truck-zone.png" alt="Truck Zone" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/in2golf.webp" alt="IN2GOLF" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/viking-strength.webp" alt="Viking Strength" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/marc-d-up.webp" alt="Marc'd Up Tattoos" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/imagine-laser.webp" alt="Imagine Laserworks" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/truck-zone.webp" alt="Truck Zone" loading="lazy"></div>
         <div class="logo-marquee-item text-logo">Cheers Live</div>
         <div class="logo-marquee-item text-logo">Border City Dental</div>
         <div class="logo-marquee-item text-logo">Sunrise Pharmacy</div>
@@ -120,18 +132,18 @@
         <div class="logo-marquee-item text-logo">World Class Training</div>
         <div class="logo-marquee-item text-logo">Mr. Sparkle Car Wash</div>
         <!-- Duplicate set for seamless loop -->
-        <div class="logo-marquee-item"><img src="assets/logos/lloydminster-honda.png" alt="" aria-hidden="true" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/fountain-tire.png" alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/lloydminster-honda.webp" alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/fountain-tire.webp" alt="" aria-hidden="true" loading="lazy"></div>
         <div class="logo-marquee-item"><img src="assets/logos/supplement-king.svg" alt="" aria-hidden="true" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/astec-safety.png" alt="" aria-hidden="true" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/aveiro-sleep.png" alt="" aria-hidden="true" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/wilson-registries.png" alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/astec-safety.webp" alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/aveiro-sleep.webp" alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/wilson-registries.webp" alt="" aria-hidden="true" loading="lazy"></div>
         <div class="logo-marquee-item"><img src="assets/logos/harris-electric.svg" alt="" aria-hidden="true" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/in2golf.png" alt="" aria-hidden="true" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/viking-strength.jpg" alt="" aria-hidden="true" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/marc-d-up.png" alt="" aria-hidden="true" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/imagine-laser.png" alt="" aria-hidden="true" loading="lazy"></div>
-        <div class="logo-marquee-item"><img src="assets/logos/truck-zone.png" alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/in2golf.webp" alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/viking-strength.webp" alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/marc-d-up.webp" alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/imagine-laser.webp" alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="logo-marquee-item"><img src="assets/logos/truck-zone.webp" alt="" aria-hidden="true" loading="lazy"></div>
         <div class="logo-marquee-item text-logo" aria-hidden="true">Cheers Live</div>
         <div class="logo-marquee-item text-logo" aria-hidden="true">Border City Dental</div>
         <div class="logo-marquee-item text-logo" aria-hidden="true">Sunrise Pharmacy</div>
@@ -550,7 +562,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="assets/logo-white.png" alt="Reach Screens" class="footer-logo-img">
+        <img src="assets/logo-white.webp" alt="Reach Screens" class="footer-logo-img" width="160" height="44" loading="lazy">
         <p class="footer-tagline">Local digital advertising that puts your business where your customers already look, inside the businesses Lloydminster relies on every day.</p>
       </div>
       <div>
@@ -584,9 +596,9 @@
   </div>
 </footer>
 
-<script src="main.js?v=13"></script>
+<script src="main.js?v=16" defer></script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="assets/screen-locations.js?v=4"></script>
-<script src="map.js?v=8"></script>
+<script src="map.js?v=9"></script>
 </body>
 </html>

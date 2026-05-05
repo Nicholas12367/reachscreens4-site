@@ -7,7 +7,12 @@
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  document.addEventListener('DOMContentLoaded', init);
+  // With deferred scripts, DOMContentLoaded may have already fired by the time this runs
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
   function init() {
     initScrollProgress();
@@ -17,10 +22,8 @@
     initCardTilt();
     initFaq();
     initTabs();
-    initTestimonials();
     initContactForm();
     initTimeline();
-    initParallax();
   }
 
   /* ---------- Scroll progress bar ---------- */
@@ -83,7 +86,7 @@
 
   /* ---------- Scroll reveal via Intersection Observer ---------- */
   function initReveal() {
-    const selectors = ['.reveal', '.reveal-left', '.reveal-right', '.reveal-scale', '.stagger', '.table-row', '.timeline-item', '.price-card'];
+    const selectors = ['.reveal', '.reveal-left', '.reveal-right', '.reveal-scale', '.stagger', '.table-row', '.timeline-item'];
     const els = document.querySelectorAll(selectors.join(','));
     if (!('IntersectionObserver' in window)) {
       els.forEach(el => el.classList.add('visible'));
@@ -218,33 +221,6 @@
         });
       });
     });
-  }
-
-  /* ---------- Testimonials carousel ---------- */
-  function initTestimonials() {
-    const root = document.querySelector('[data-testimonials]');
-    if (!root) return;
-    const slides = root.querySelectorAll('.testimonial-slide');
-    const dots = root.querySelectorAll('.testimonial-dot');
-    if (!slides.length) return;
-
-    let idx = 0;
-    let timer;
-
-    function show(i) {
-      idx = (i + slides.length) % slides.length;
-      slides.forEach((s, n) => s.classList.toggle('active', n === idx));
-      dots.forEach((d, n) => d.classList.toggle('active', n === idx));
-    }
-    function next() { show(idx + 1); }
-    function start() { timer = setInterval(next, 6000); }
-    function stop() { clearInterval(timer); }
-
-    dots.forEach((d, i) => d.addEventListener('click', () => { show(i); stop(); start(); }));
-    root.addEventListener('mouseenter', stop);
-    root.addEventListener('mouseleave', start);
-    show(0);
-    start();
   }
 
   /* ---------- Contact form ---------- */
@@ -416,45 +392,64 @@
     });
   }
 
-  /* ---------- Timeline line draw ---------- */
+  /* ---------- Timeline line draw (supports multiple timelines / tab panels) ---------- */
   function initTimeline() {
-    const line = document.querySelector('.timeline-line');
-    const timeline = document.querySelector('.timeline');
-    if (!line || !timeline) return;
+    const timelines = document.querySelectorAll('.timeline');
+    if (!timelines.length) return;
 
-    function update() {
+    function updateOne(timeline) {
+      const line = timeline.querySelector('.timeline-line');
+      if (!line) return;
       const rect = timeline.getBoundingClientRect();
       const vh = window.innerHeight;
-      const start = rect.top;
-      const end = rect.bottom;
-      const total = rect.height;
-
-      // Progress: 0 when timeline top hits 75% of viewport, 1 when bottom hits 25%
+      // Don't update timelines that are hidden (display:none in inactive tab panels) — getBoundingClientRect returns 0s anyway, but skip explicitly
+      if (rect.height === 0) {
+        line.style.height = '0%';
+        return;
+      }
       const startAt = vh * 0.75;
-      const endAt = vh * 0.25;
-      const triggered = Math.max(0, Math.min(1, (startAt - start) / (total - (endAt - startAt) * -1)));
-      const clamped = Math.max(0, Math.min(1, triggered));
+      const top = rect.top;
+      const total = rect.height;
+      // Progress: 0 when timeline top hits 75% of viewport, 1 when bottom passes 25%
+      const progressed = (startAt - top) / total;
+      const clamped = Math.max(0, Math.min(1, progressed));
       line.style.height = (clamped * 100) + '%';
     }
-    window.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
-    window.addEventListener('resize', update);
-    update();
+
+    let scheduled = false;
+    function scheduleUpdate() {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => {
+        scheduled = false;
+        timelines.forEach(updateOne);
+      });
+    }
+    function updateAll() {
+      timelines.forEach(updateOne);
+    }
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+
+    // When tabs switch, recompute lines so the newly visible panel's line draws correctly.
+    // Reveal items inside the now-visible panel and update twice (immediately + next frame)
+    // so the line snaps to the correct progress without the user having to scroll.
+    document.querySelectorAll('[data-tabs] .tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const panel = document.querySelector('.tab-panel.active');
+        if (panel) {
+          panel.querySelectorAll('.timeline-item').forEach(it => it.classList.add('visible'));
+        }
+        // Two update passes: one now (in case layout already done) and one after the next paint
+        updateAll();
+        requestAnimationFrame(() => {
+          updateAll();
+          requestAnimationFrame(updateAll);
+        });
+      });
+    });
+
+    updateAll();
   }
 
-  /* ---------- Parallax (hero screen, subtle) ---------- */
-  function initParallax() {
-    if (prefersReduced) return;
-    const el = document.querySelector('[data-parallax]');
-    if (!el) return;
-    const speed = parseFloat(el.dataset.parallax) || 0.15;
-    let ticking = false;
-    function update() {
-      const y = window.scrollY;
-      el.style.transform = `translateY(${-y * speed}px)`;
-      ticking = false;
-    }
-    window.addEventListener('scroll', () => {
-      if (!ticking) { requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
-  }
 })();
