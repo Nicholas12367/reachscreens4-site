@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reach Screens, Local Digital Advertising That Actually Works</title>
   <meta name="description" content="Tell us your idea. We put your ad inside the local Lloydminster businesses your customers already visit, and recommend the rollout that fits.">
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=13">
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
   <link rel="icon" href="assets/favicon.ico">
 </head>
@@ -66,20 +66,20 @@
   <div class="container">
     <div class="stats-grid">
       <div class="stat-item reveal">
-        <h3>Local</h3>
-        <p>Inside the businesses your customers visit</p>
+        <h3><span data-count="35" data-suffix="+">0</span></h3>
+        <p>Screen Locations</p>
       </div>
       <div class="stat-item reveal">
-        <h3>Captive</h3>
-        <p>Where attention already lives</p>
+        <h3><span data-count="1800000" data-suffix="+">0</span></h3>
+        <p>Monthly Ad Plays</p>
       </div>
       <div class="stat-item reveal">
-        <h3>Free</h3>
-        <p>Professional ad design included</p>
+        <h3><span data-count="15" data-suffix="+ min">0</span></h3>
+        <p>Avg. Viewer Dwell Time</p>
       </div>
       <div class="stat-item reveal">
-        <h3>Built</h3>
-        <p>Locally managed in Lloydminster</p>
+        <h3>$<span data-count="0.21">0</span></h3>
+        <p>Cost Per Ad Run</p>
       </div>
     </div>
   </div>
@@ -254,41 +254,102 @@
   </div>
 </section>
 
-<!-- Attention Comparison -->
+<!-- Comparison Table -->
 <section>
   <div class="container">
     <div class="section-head reveal">
-      <span class="section-label">Why It Works</span>
-      <h2 class="section-title">Attention That Actually <span class="text-gradient">Stops</span></h2>
-      <p class="section-sub">Most advertising fights for a glance. Reach Screens runs in the rooms where your customers already stop, sit, and pay attention.</p>
+      <span class="section-label">Compare &amp; Save</span>
+      <h2 class="section-title">A Fraction of the Cost.<br><span class="text-gradient">Multiples</span> of the Impact.</h2>
+      <p class="section-sub">Cost per 1,000 views, side-by-side. Reach Screens beats every other channel on price, and it isn't close.</p>
     </div>
 
-    <div class="grid-3 stagger">
-      <div class="card" data-tilt="5">
-        <div class="card-icon icon-bounce">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h2l3-9 4 18 3-12 2 6h4"/></svg>
-        </div>
-        <h4 class="card-title">Highway Billboards</h4>
-        <p class="card-text">A glance at highway speed. No room to think, no chance to act before they're past it.</p>
-      </div>
-      <div class="card" data-tilt="5">
-        <div class="card-icon icon-bounce">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        </div>
-        <h4 class="card-title">Radio, TV, Social, Print</h4>
-        <p class="card-text">Background noise. Scrolled past, paid past, or muted within seconds — fighting for attention they'll never get.</p>
-      </div>
-      <div class="card" data-tilt="5">
-        <div class="card-icon icon-bounce">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-        </div>
-        <h4 class="card-title">Reach Screens</h4>
-        <p class="card-text">Eyes already up, customers already inside the businesses where they spend their day. Your ad plays again and again while they're there.</p>
-      </div>
+    <div class="reveal">
+      <table class="compare-table compare-table-bars">
+        <thead>
+          <tr>
+            <th>Advertising Channel</th>
+            <th>Cost Per 1,000 Views</th>
+            <th>Avg. Attention</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-row highlight">
+            <td><span class="compare-name">Reach Screens</span><span class="compare-badge">Best Value</span></td>
+            <td>
+              <div class="cost-cell">
+                <span class="cost-bar cost-bar-rs" style="--w: 1%;"></span>
+                <span class="cost-value">$1 to $5</span>
+              </div>
+            </td>
+            <td>15+ minutes (captive)</td>
+          </tr>
+          <tr class="table-row">
+            <td>Google Ads</td>
+            <td>
+              <div class="cost-cell">
+                <span class="cost-bar" style="--w: 5%;"></span>
+                <span class="cost-value">$35+</span>
+              </div>
+            </td>
+            <td>Seconds (click away)</td>
+          </tr>
+          <tr class="table-row">
+            <td>Social Media Ads</td>
+            <td>
+              <div class="cost-cell">
+                <span class="cost-bar" style="--w: 6%;"></span>
+                <span class="cost-value">$40+</span>
+              </div>
+            </td>
+            <td>1 to 3 seconds (scroll past)</td>
+          </tr>
+          <tr class="table-row">
+            <td>Radio</td>
+            <td>
+              <div class="cost-cell">
+                <span class="cost-bar" style="--w: 24%;"></span>
+                <span class="cost-value">$175+</span>
+              </div>
+            </td>
+            <td>15 to 30 seconds</td>
+          </tr>
+          <tr class="table-row">
+            <td>Highway Billboard</td>
+            <td>
+              <div class="cost-cell">
+                <span class="cost-bar" style="--w: 28%;"></span>
+                <span class="cost-value">$200+</span>
+              </div>
+            </td>
+            <td>3 seconds</td>
+          </tr>
+          <tr class="table-row">
+            <td>Newspaper</td>
+            <td>
+              <div class="cost-cell">
+                <span class="cost-bar" style="--w: 33%;"></span>
+                <span class="cost-value">$240+</span>
+              </div>
+            </td>
+            <td>2 to 5 seconds</td>
+          </tr>
+          <tr class="table-row">
+            <td>Local TV</td>
+            <td>
+              <div class="cost-cell">
+                <span class="cost-bar" style="--w: 100%;"></span>
+                <span class="cost-value">$720+</span>
+              </div>
+            </td>
+            <td>15 to 30 seconds</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="text-center mt-5 reveal">
-      <a href="contact.html#idea" class="btn btn-primary">
+      <p class="compare-callout">Up to <span class="text-gradient compare-callout-num">144× cheaper</span> than local TV, with the captive attention every other channel can't match.</p>
+      <a href="contact.html#idea" class="btn btn-primary mt-3">
         Submit Your Idea
         <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
       </a>
@@ -459,7 +520,7 @@
   </div>
 </footer>
 
-<script src="main.js?v=12"></script>
+<script src="main.js?v=13"></script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="assets/screen-locations.js?v=3"></script>
 <script src="map.js?v=8"></script>
