@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reach Screens — Local Digital Advertising in Lloydminster</title>
-  <meta name="description" content="Tell us your idea. We put your ad inside the local Lloydminster businesses your customers already visit, and recommend the rollout that fits.">
+  <title>Reach Screens — Local Digital Advertising in Lloydminster, AB</title>
+  <meta name="description" content="Indoor digital screens inside the restaurants, salons, gyms, and waiting rooms across Lloydminster. Tell us your idea and we'll build the rollout — free ad design included.">
   <link rel="canonical" href="https://reachscreens.ca/">
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Reach Screens — Local Digital Advertising in Lloydminster">
   <meta property="og:description" content="Indoor digital screens inside the businesses your customers visit every day. Tell us your idea and we'll build the rollout.">
   <meta property="og:type" content="website">
@@ -13,40 +15,151 @@
   <meta property="og:image" content="https://reachscreens.ca/assets/photo-1.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0A1628">
+
+  <!-- GSC verification placeholder — replace REPLACE_ME with your Search Console verification code once Phase 0 is done -->
+  <!-- <meta name="google-site-verification" content="REPLACE_ME"> -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=15">
+  <link rel="stylesheet" href="styles.css?v=16">
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" media="print" onload="this.media='all'">
   <link rel="icon" href="assets/favicon.ico">
   <script src="assets/analytics.js?v=2" defer></script>
+
+  <!-- ============ JSON-LD STRUCTURED DATA ============ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://reachscreens.ca/#organization",
+        "name": "Reach Screens",
+        "url": "https://reachscreens.ca/",
+        "logo": "https://reachscreens.ca/assets/logo-white.webp",
+        "email": "info@reachscreens.ca",
+        "telephone": "+1-306-514-3752",
+        "address": {
+          "@type": "PostalAddress",
+          "postOfficeBoxNumber": "P.O. Box 11238",
+          "addressLocality": "Lloydminster",
+          "addressRegion": "AB",
+          "postalCode": "T9V 3B5",
+          "addressCountry": "CA"
+        }
+      },
+      {
+        "@type": "LocalBusiness",
+        "additionalType": "https://schema.org/AdvertisingAgency",
+        "@id": "https://reachscreens.ca/#business",
+        "name": "Reach Screens",
+        "image": "https://reachscreens.ca/assets/photo-1.webp",
+        "url": "https://reachscreens.ca/",
+        "telephone": "+1-306-514-3752",
+        "email": "info@reachscreens.ca",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lloydminster",
+          "addressRegion": "AB",
+          "postalCode": "T9V 3B5",
+          "addressCountry": "CA"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Lloydminster", "containedInPlace": "Alberta" },
+          { "@type": "City", "name": "Lloydminster", "containedInPlace": "Saskatchewan" },
+          { "@type": "City", "name": "Vermilion", "containedInPlace": "Alberta" },
+          { "@type": "City", "name": "Bonnyville", "containedInPlace": "Alberta" },
+          { "@type": "City", "name": "Cold Lake", "containedInPlace": "Alberta" },
+          { "@type": "City", "name": "St. Paul", "containedInPlace": "Alberta" }
+        ]
+      },
+      {
+        "@type": "Service",
+        "name": "Local Digital Signage Advertising",
+        "provider": { "@id": "https://reachscreens.ca/#business" },
+        "areaServed": "Lloydminster, AB and surrounding Alberta and Saskatchewan communities",
+        "description": "Indoor digital screen advertising across local restaurants, salons, gyms, waiting rooms, and service businesses in Lloydminster. Free ad design and creative included.",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "CAD",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "description": "From $1–$5 per 1,000 ad views. Custom rollout built around your idea, audience, and timing."
+          }
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How long does it take to go live?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Most ads go live within days. Once we land on your idea and what you want to promote, we design the ad, send it for approval, and push it live across the network." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you really design the ad for free?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Ad design is included in every package. No production fees, no hidden costs. You tell us what you want, we create it." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I update my ad during the month?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Depending on your package, yes. Higher tiers include multiple ad updates per year, and our top tier includes unlimited updates." }
+          },
+          {
+            "@type": "Question",
+            "name": "Where are the screens located?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Inside the local Lloydminster businesses your customers already visit — restaurants, bars, retail shops, barbershops, coffee shops, waiting rooms, and service businesses." }
+          },
+          {
+            "@type": "Question",
+            "name": "How does pricing work?",
+            "acceptedAnswer": { "@type": "Answer", "text": "We build a recommendation around your idea, your timing, and your audience, then quote the rollout that fits. Tell us what you want to promote and we'll come back with a plan and a price within 48 hours." }
+          },
+          {
+            "@type": "Question",
+            "name": "Will it fit my budget?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Local campaigns on Reach Screens typically cost between $1 and $5 per 1,000 views — a fraction of social media, radio, billboard, or local TV. Tell us your budget and we'll build a plan that fits." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
-<!-- Navigation -->
+<!-- Navigation (always-visible, anchors into the single page) -->
 <nav class="nav" aria-label="Main">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="Reach Screens home">
+    <a href="#top" class="nav-logo" aria-label="Reach Screens home">
       <img src="assets/logo-white.webp" alt="Reach Screens" class="nav-logo-img" width="160" height="44">
     </a>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="how-it-works.html">How It Works</a></li>
-      <li><a href="pricing.html">Get a Recommendation</a></li>
-      <li><a href="host.html">Host a Screen</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html#idea" class="nav-cta">Submit Your Idea</a></li>
+      <li><a href="#why">Why It Works</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#locations">Locations</a></li>
+      <li><a href="#compare">Pricing</a></li>
+      <li><a href="#host" data-host-trigger>Host a Screen</a></li>
+      <li><a href="#idea" class="nav-cta">Submit Your Idea</a></li>
     </ul>
-    <a href="contact.html#idea" class="nav-mobile-cta">Submit Your Idea</a>
+    <a href="#idea" class="nav-mobile-cta">Submit Your Idea</a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
+<a id="top"></a>
+
+<!-- ============================================================
+     STEP 1 — OPEN (Attention)
+     Goal: stop the scroll. Outcome-led headline. Soft CTA only.
+     ============================================================ -->
+<section class="hero" aria-labelledby="hero-headline">
   <div class="hero-bg">
     <div class="hero-mesh"></div>
     <div class="hero-grid"></div>
@@ -59,46 +172,104 @@
       <span class="hero-badge-dot"></span>
       Now Live Across Lloydminster
     </div>
-    <h1>
+    <h1 id="hero-headline">
       <span class="line">Your Ad. Everywhere</span>
       <span class="line">They Already <span class="text-gradient">Look.</span></span>
     </h1>
-    <p>Indoor digital screens in the restaurants, waiting rooms, shops, and service businesses your customers visit every single day. High-frequency, low-cost advertising that builds real local recognition.</p>
+    <p>Indoor digital screens in the restaurants, waiting rooms, shops, and service businesses your customers visit every single day across Lloydminster, Vermilion, and the Lakeland.</p>
     <div class="hero-buttons">
-      <a href="contact.html#idea" class="btn btn-primary btn-lg btn-pulse">
-        Submit Your Idea
-        <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+      <a href="#problem" class="btn btn-primary btn-lg">
+        See how it works
+        <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75v10.638l3.96-4.158a.75.75 0 111.08 1.04l-5.25 5.5a.75.75 0 01-1.08 0l-5.25-5.5a.75.75 0 111.08-1.04l3.96 4.158V3.75A.75.75 0 0110 3z"/></svg>
       </a>
-      <a href="pricing.html" class="btn btn-secondary btn-lg">Get a Recommendation</a>
+      <a href="#idea" class="btn btn-secondary btn-lg">Submit Your Idea</a>
     </div>
   </div>
 </section>
 
-<!-- Stats Bar -->
-<div class="stats-bar">
+<!-- ============================================================
+     STEP 2 — DISCOVER THE NEED (Interest / Rapport)
+     Goal: name their pain before pitching. Empathy, not features.
+     ============================================================ -->
+<section id="problem" aria-labelledby="problem-headline">
   <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item reveal">
-        <h3><span data-count="35" data-suffix="+">0</span></h3>
-        <p>Screen Locations</p>
+    <div class="section-head reveal">
+      <span class="section-label">The Problem</span>
+      <h2 id="problem-headline" class="section-title">You've Already Tried<br>the <span class="text-gradient">Obvious</span> Channels.</h2>
+      <p class="section-sub">Most local business owners we talk to have already spent on the usual suspects — and felt the budget disappear without much to show for it. Here's why.</p>
+    </div>
+
+    <div class="grid-3 stagger">
+      <div class="card" data-tilt="5">
+        <div class="card-icon icon-bounce">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+        </div>
+        <h4 class="card-title">Social ads reach everyone — and no one.</h4>
+        <p class="card-text">A Facebook or Instagram ad gets 1–3 seconds of attention as the user scrolls past. You're paying for thumb-flicks, not customers, and your ad disappears into a feed competing with friends and family.</p>
       </div>
-      <div class="stat-item reveal">
-        <h3><span data-count="1800000" data-suffix="+">0</span></h3>
-        <p>Monthly Ad Plays</p>
+      <div class="card" data-tilt="5">
+        <div class="card-icon icon-bounce">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 10h16"/><path d="M10 4v16"/></svg>
+        </div>
+        <h4 class="card-title">Print and flyers feel local but can't be measured.</h4>
+        <p class="card-text">Newspaper and direct-mail feel like the right channel for a local business. But you can't tell who saw it, the design fee eats the budget, and most copies end up in the recycling bin.</p>
       </div>
-      <div class="stat-item reveal">
-        <h3><span data-count="15" data-suffix="+ min">0</span></h3>
-        <p>Avg. Viewer Dwell Time</p>
+      <div class="card" data-tilt="5">
+        <div class="card-icon icon-bounce">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="1"/><path d="M12 18v3"/><path d="M8 21h8"/></svg>
+        </div>
+        <h4 class="card-title">Billboards are built for highways, not neighbourhoods.</h4>
+        <p class="card-text">A big roadside billboard costs more than most local budgets allow, and it's built to be glanced at by drivers at 100 km/h — not seen by the customer who's about to make a buying decision in your part of town.</p>
       </div>
-      <div class="stat-item reveal">
-        <h3>$<span data-count="0.21">0</span></h3>
-        <p>Cost Per Ad Run</p>
+    </div>
+
+    <div class="text-center mt-5 reveal" style="max-width: 720px; margin-left: auto; margin-right: auto;">
+      <p style="font-size: 18px; color: var(--color-text-muted); line-height: 1.6;">
+        None of those are bad channels. They're just not built for a <strong style="color: var(--color-text);">local business advertising to local people</strong>. What you actually need is your ad in front of customers <em>where they already are</em>, while they're already paying attention.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STEP 3 — PRESENT THE SOLUTION (Desire)
+     Goal: introduce Reach Screens against the pain Step 2 named.
+     ============================================================ -->
+<section id="how" aria-labelledby="how-headline">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">The Solution</span>
+      <h2 id="how-headline" class="section-title">Reach Screens Puts Your Ad<br>Where People Are <span class="text-gradient">Already Looking.</span></h2>
+      <p class="section-sub">We've placed indoor digital screens inside the businesses Lloydminster locals visit every day — restaurants, salons, gyms, coffee shops, waiting rooms, retail floors. Your ad plays where attention is already paid.</p>
+    </div>
+
+    <div class="grid-3 stagger">
+      <div class="card" data-tilt="5">
+        <div class="card-icon icon-bounce">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h4 class="card-title">Captive Audience</h4>
+        <p class="card-text">Unlike billboards you drive past at highway speed, indoor screens reach people who are stationary, with their phones down or eyes up. They actually see your ad.</p>
+      </div>
+      <div class="card" data-tilt="5">
+        <div class="card-icon icon-bounce">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h4 class="card-title">Repeated Exposure</h4>
+        <p class="card-text">Your ad plays on rotation throughout the day. The same customer sees it again and again across a single visit, building familiarity and trust that drives action.</p>
+      </div>
+      <div class="card" data-tilt="5">
+        <div class="card-icon icon-bounce">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h4 class="card-title">City-Wide Presence</h4>
+        <p class="card-text">Show up in restaurants, bars, retail shops, gyms, and offices across Lloydminster. Locals start recognizing your brand everywhere they go.</p>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- Logo Marquee (Social Proof) -->
+<!-- Logo Marquee — local brands already on the network (proof point inside Step 3) -->
 <section class="logo-marquee-section">
   <div class="container">
     <div class="logo-marquee-head reveal">
@@ -161,13 +332,13 @@
   </div>
 </section>
 
-<!-- Location Gallery -->
+<!-- Where your ads appear — gallery (continued Step 3) -->
 <section>
   <div class="container">
     <div class="section-head reveal">
-      <span class="section-label">Real Locations</span>
-      <h2 class="section-title">Our Screens Across <span class="text-gradient">Lloydminster</span></h2>
-      <p class="section-sub">We're inside the venues locals already love, restaurants, bars, barbershops, coffee shops, retail floors, and waiting areas.</p>
+      <span class="section-label">Where Your Ad Appears</span>
+      <h2 class="section-title">Real Screens. <span class="text-gradient">Real Lloydminster</span> Businesses.</h2>
+      <p class="section-sub">We're inside the venues locals already love — restaurants, bars, barbershops, coffee shops, retail floors, and waiting areas. Pubs, salons, auto shops, pharmacies. The places your customers stop, sit, and pay attention.</p>
     </div>
 
     <div class="gallery-grid reveal">
@@ -228,23 +399,56 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="text-center mt-5 reveal">
-      <a href="locations.html" class="btn btn-secondary">
-        View all locations
-        <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-      </a>
+<!-- ============================================================
+     STEP 4 — BUILD CONVICTION (Proof + Objection Handling)
+     Goal: pre-empt every doubt the prospect has.
+     Contains: stats, live map, comparison, FAQ.
+     ============================================================ -->
+
+<!-- 4.A — Stats bar (the proof numbers) -->
+<section id="why" aria-labelledby="why-headline" style="padding-bottom: 0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">The Proof</span>
+      <h2 id="why-headline" class="section-title">It's Already Working.<br>Here's the <span class="text-gradient">Math.</span></h2>
+      <p class="section-sub">Real numbers from the network running today across Lloydminster.</p>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <h3><span data-count="35" data-suffix="+">0</span></h3>
+          <p>Screen Locations</p>
+        </div>
+        <div class="stat-item reveal">
+          <h3><span data-count="1800000" data-suffix="+">0</span></h3>
+          <p>Monthly Ad Plays</p>
+        </div>
+        <div class="stat-item reveal">
+          <h3><span data-count="15" data-suffix="+ min">0</span></h3>
+          <p>Avg. Viewer Dwell Time</p>
+        </div>
+        <div class="stat-item reveal">
+          <h3>$<span data-count="0.21">0</span></h3>
+          <p>Cost Per Ad Run</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Lloydminster Screen Map -->
-<section class="map-section">
+<!-- 4.B — Live map (proof of presence) -->
+<section id="locations" class="map-section" aria-labelledby="locations-headline">
   <div class="container">
     <div class="section-head reveal">
       <span class="section-label">Live Map</span>
-      <h2 class="section-title">Our Screens, <span class="text-gradient">Mapped</span></h2>
-      <p class="section-sub">Every location in our network. Pan, zoom, and tap a pin to see where your ad will play.</p>
+      <h2 id="locations-headline" class="section-title">Every Screen, <span class="text-gradient">Mapped.</span></h2>
+      <p class="section-sub">Every location in our Lloydminster network — pan, zoom, and tap a pin to see where your ad will play.</p>
     </div>
 
     <div class="map-wrap">
@@ -257,86 +461,54 @@
   </div>
 </section>
 
-<!-- Why It Works -->
-<section>
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="section-label">Why It Works</span>
-      <h2 class="section-title">Advertising Where Attention<br>Already <span class="text-gradient">Exists</span></h2>
-      <p class="section-sub">Customers spend real time inside the restaurants, waiting rooms, and shops they visit. Your ad plays directly in front of them, again and again.</p>
-    </div>
-
-    <div class="grid-3 stagger">
-      <div class="card" data-tilt="5">
-        <div class="card-icon icon-bounce">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <h4 class="card-title">Captive Audience</h4>
-        <p class="card-text">Unlike billboards you drive past at highway speed, indoor screens reach people who are stationary, with their phones down or eyes up. They actually see your ad.</p>
-      </div>
-      <div class="card" data-tilt="5">
-        <div class="card-icon icon-bounce">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-        </div>
-        <h4 class="card-title">Repeated Exposure</h4>
-        <p class="card-text">Your ad plays on rotation throughout the day. The same customer sees it again and again across a single visit, building familiarity and trust that drives action.</p>
-      </div>
-      <div class="card" data-tilt="5">
-        <div class="card-icon icon-bounce">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <h4 class="card-title">City-Wide Presence</h4>
-        <p class="card-text">Show up in restaurants, bars, retail shops, and offices across Lloydminster. Locals start recognizing you everywhere they go.</p>
-      </div>
+<!-- Category marquee — flavour break between map and comparison -->
+<div class="marquee-section">
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Restaurants</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Barbershops</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Waiting Rooms</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Coffee Shops</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Retail Stores</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Auto Shops</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Bars &amp; Pubs</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Service Businesses</div>
+      <!-- Repeat for seamless loop -->
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Restaurants</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Barbershops</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Waiting Rooms</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Coffee Shops</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Retail Stores</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Auto Shops</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Bars &amp; Pubs</div>
+      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Service Businesses</div>
     </div>
   </div>
-</section>
-
-<!-- Feature split -->
-<section style="background: linear-gradient(180deg, transparent, rgba(255,255,255,0.02) 20%, rgba(255,255,255,0.02) 80%, transparent);">
-  <div class="container">
-    <div class="feature-split">
-      <div class="reveal-left">
-        <span class="section-label">Simple Process</span>
-        <h2 class="section-title mt-3">You Focus on Business.<br>We Handle the <span class="text-gradient">Screens.</span></h2>
-        <p class="mt-3">Tell us your idea, we design the ad for free, and it goes live across the city within days. No production costs, no hassle.</p>
-        <ul class="feature-list">
-          <li>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#5CE0D2" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-            Tell us your idea and what you want to promote
-          </li>
-          <li>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#5CE0D2" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-            We design your ad (included free)
-          </li>
-          <li>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#5CE0D2" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-            Your ad goes live across the city
-          </li>
-          <li>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#5CE0D2" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-            Update your ad anytime, instantly
-          </li>
-        </ul>
-        <a href="contact.html#idea" class="btn btn-primary mt-3">
-          Submit Your Idea
-          <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-      </div>
-      <div class="feature-visual reveal-right">
-        <img src="assets/photo-3.webp" alt="Reach Screens display in a local business" style="object-position: center 40%;">
-      </div>
+  <div class="marquee" style="margin-top: 16px;">
+    <div class="marquee-track reverse">
+      <div class="marquee-item" style="color: var(--color-text-muted);">High-Frequency Exposure</div>
+      <div class="marquee-item" style="color: var(--color-text-muted);">Hyper-Local Targeting</div>
+      <div class="marquee-item" style="color: var(--color-text-muted);">No Production Costs</div>
+      <div class="marquee-item" style="color: var(--color-text-muted);">Update Anytime</div>
+      <div class="marquee-item" style="color: var(--color-text-muted);">Free Ad Design Included</div>
+      <div class="marquee-item" style="color: var(--color-text-muted);">Across Lloydminster</div>
+      <div class="marquee-item" style="color: var(--color-text-muted);">High-Frequency Exposure</div>
+      <div class="marquee-item" style="color: var(--color-text-muted);">Hyper-Local Targeting</div>
+      <div class="marquee-item" style="color: var(--color-text-muted);">No Production Costs</div>
+      <div class="marquee-item" style="color: var(--color-text-muted);">Update Anytime</div>
+      <div class="marquee-item" style="color: var(--color-text-muted);">Free Ad Design Included</div>
+      <div class="marquee-item" style="color: var(--color-text-muted);">Across Lloydminster</div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- Comparison Table -->
-<section>
+<!-- 4.C — Comparison table (answering "is this worth it?") -->
+<section id="compare" aria-labelledby="compare-headline">
   <div class="container">
     <div class="section-head reveal">
       <span class="section-label">Compare &amp; Save</span>
-      <h2 class="section-title">A Fraction of the Cost.<br><span class="text-gradient">Multiples</span> of the Impact.</h2>
-      <p class="section-sub">Cost per 1,000 views, side-by-side. Reach Screens beats every other channel on price, and it isn't close.</p>
+      <h2 id="compare-headline" class="section-title">A Fraction of the Cost.<br><span class="text-gradient">Multiples</span> of the Impact.</h2>
+      <p class="section-sub">Cost per 1,000 views, side-by-side. Reach Screens beats every other channel on price — and it isn't close.</p>
     </div>
 
     <div class="reveal">
@@ -425,98 +597,233 @@
 
     <div class="text-center mt-5 reveal">
       <p class="compare-callout">Up to <span class="text-gradient compare-callout-num">144× cheaper</span> than local TV, with the captive attention every other channel can't match.</p>
-      <a href="contact.html#idea" class="btn btn-primary mt-3">
-        Submit Your Idea
-        <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-      </a>
-      <div class="mt-3" style="font-size: 14px;">
-        <a href="pricing.html" style="color: var(--color-text-muted);">Or get a recommendation →</a>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- Marquee -->
-<div class="marquee-section">
-  <div class="marquee">
-    <div class="marquee-track">
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Restaurants</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Barbershops</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Waiting Rooms</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Coffee Shops</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Retail Stores</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Auto Shops</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Bars &amp; Pubs</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Service Businesses</div>
-      <!-- Repeat for seamless loop -->
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Restaurants</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Barbershops</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Waiting Rooms</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Coffee Shops</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Retail Stores</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Auto Shops</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Bars &amp; Pubs</div>
-      <div class="marquee-item"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Service Businesses</div>
-    </div>
-  </div>
-  <div class="marquee" style="margin-top: 16px;">
-    <div class="marquee-track reverse">
-      <div class="marquee-item" style="color: var(--color-text-muted);">High-Frequency Exposure</div>
-      <div class="marquee-item" style="color: var(--color-text-muted);">Hyper-Local Targeting</div>
-      <div class="marquee-item" style="color: var(--color-text-muted);">No Production Costs</div>
-      <div class="marquee-item" style="color: var(--color-text-muted);">Update Anytime</div>
-      <div class="marquee-item" style="color: var(--color-text-muted);">Free Ad Design Included</div>
-      <div class="marquee-item" style="color: var(--color-text-muted);">Across Lloydminster</div>
-      <div class="marquee-item" style="color: var(--color-text-muted);">High-Frequency Exposure</div>
-      <div class="marquee-item" style="color: var(--color-text-muted);">Hyper-Local Targeting</div>
-      <div class="marquee-item" style="color: var(--color-text-muted);">No Production Costs</div>
-      <div class="marquee-item" style="color: var(--color-text-muted);">Update Anytime</div>
-      <div class="marquee-item" style="color: var(--color-text-muted);">Free Ad Design Included</div>
-      <div class="marquee-item" style="color: var(--color-text-muted);">Across Lloydminster</div>
-    </div>
-  </div>
-</div>
-
-<!-- FAQ -->
-<section>
+<!-- 4.D — FAQ (objection handling, marked up as FAQPage in JSON-LD) -->
+<section id="faq" aria-labelledby="faq-headline">
   <div class="container">
     <div class="section-head reveal">
-      <span class="section-label">Questions</span>
-      <h2 class="section-title">Frequently Asked</h2>
-      <p class="section-sub">Everything you need to know before you start advertising on Reach Screens.</p>
+      <span class="section-label">You're Probably Wondering...</span>
+      <h2 id="faq-headline" class="section-title">The Honest Answers.</h2>
+      <p class="section-sub">Every question we hear from local business owners before they get started. If yours isn't here, ask us — info@reachscreens.ca.</p>
     </div>
 
     <div class="faq reveal">
+      <div class="faq-item">
+        <button class="faq-q">Will it actually fit my budget?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Local campaigns on Reach Screens typically cost between $1 and $5 per 1,000 views — a fraction of what social media, radio, billboards, or local TV cost. Tell us your budget and what you want to promote, and we'll come back with a plan that fits inside it.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I don't have an ad designed yet?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">We design the ad for you, free, included in every package. You tell us what you want to promote, we handle the rest. No production fees, no hidden costs, no need to hire a designer.</div></div>
+      </div>
       <div class="faq-item">
         <button class="faq-q">How long does it take to go live?<span class="faq-icon" aria-hidden="true"></span></button>
         <div class="faq-a"><div class="faq-a-inner">Most ads go live within days. Once we land on your idea and what you want to promote, we design the ad, send it for approval, and push it live across the network.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Do you really design the ad for free?<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Yes. Ad design is included in every package. No production fees, no hidden costs. You tell us what you want, we create it.</div></div>
+        <button class="faq-q">How do I know it's working?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">We share monthly reports showing impressions per location and total network plays. You'll always know where your ad ran, how often, and the level of attention it earned.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Can I update my ad during the month?<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Depending on your package, yes. Higher tiers include multiple ad updates per year, and our top tier includes unlimited updates.</div></div>
+        <button class="faq-q">Can I change my ad during the campaign?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Depending on your package, yes. Higher tiers include multiple ad updates per year, and our top tier includes unlimited updates — so when your special, your hours, or your offer changes, your ad changes with it.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Where are the screens located?<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Our screens live inside the local businesses your customers already visit, restaurants, bars, retail shops, barbershops, coffee shops, waiting rooms, and service businesses throughout Lloydminster.</div></div>
+        <button class="faq-q">Where exactly are the screens?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Inside local Lloydminster businesses your customers already visit — restaurants, bars, retail shops, barbershops, coffee shops, waiting rooms, gyms, and service businesses. Scroll up to the live map to see every screen and where your ad will play.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">How does the agreement work?<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">We'll walk you through the agreement details when you reach out, including term, billing, and what's included. Everything is transparent before you sign anything.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">How does pricing work?<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">We build a recommendation around your idea, your timing, and your audience, then quote the rollout that fits. Tell us what you want to promote and we'll come back with a plan and a price within 48 hours.</div></div>
+        <button class="faq-q">What if it's not for me?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">No pressure, no commitment. Tell us your idea, we'll build a recommendation for free within 48 hours. If it's not the right fit, you've lost nothing — and we'll point you in a direction that might be better suited.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA Banner -->
-<section>
+<!-- ============================================================
+     STEP 5 — CLOSE (Action)
+     Locked: tagline, headline, and form structure must not change.
+     The single low-friction ask. Tagline lives here.
+     ============================================================ -->
+<!-- STEP-5-CLOSE: do not edit headline or tagline -->
+<section id="idea" class="step-close" aria-labelledby="close-headline" style="padding-top: var(--space-7);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">Let's Go</span>
+      <h2 id="close-headline" class="section-title">Let's Make Your <span class="text-gradient">Idea Happen.</span></h2>
+      <p class="section-sub" style="font-size: 22px; color: var(--color-text); font-weight: 500;">What's your idea?</p>
+      <p class="section-sub">Tell us in a sentence — what do you want to promote, who are you trying to reach, and when? We'll come back with a tailored plan within 48 hours. No commitment. No pressure.</p>
+    </div>
+<!-- /STEP-5-CLOSE -->
+
+    <div class="contact-grid">
+      <!-- Form -->
+      <div class="reveal-left">
+        <form data-contact-form data-endpoint="https://forms-api.reachscreens.ca/submit">
+          <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+          <div class="form-toggle" role="tablist" aria-label="Inquiry type">
+            <button type="button" class="form-toggle-btn active" data-inquiry="advertise" role="tab" aria-selected="true">I have an idea to promote</button>
+            <button type="button" class="form-toggle-btn" data-inquiry="host" role="tab" aria-selected="false">I want to host a screen</button>
+          </div>
+          <input type="hidden" id="inquiryType" value="advertise">
+
+          <div class="form-group">
+            <textarea id="message" class="form-textarea" placeholder="e.g., Promote our grand opening on June 14, drive in-store traffic, run for 4 weeks" required></textarea>
+            <label for="message" class="form-label form-label-static" data-message-label>What's your idea?</label>
+          </div>
+
+          <div class="form-group">
+            <input type="text" id="name" class="form-input" placeholder=" " required>
+            <label for="name" class="form-label">Your Name</label>
+          </div>
+          <div class="form-group">
+            <input type="text" id="business" class="form-input" placeholder=" " required>
+            <label for="business" class="form-label">Business Name</label>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" class="form-input" placeholder=" " required>
+            <label for="email" class="form-label">Email</label>
+          </div>
+          <div class="form-group">
+            <input type="tel" id="phone" class="form-input" placeholder=" " required>
+            <label for="phone" class="form-label">Phone</label>
+          </div>
+
+          <div class="form-group" data-host-only style="display:none;">
+            <input type="text" id="venue" class="form-input" placeholder=" ">
+            <label for="venue" class="form-label">Type of business / venue</label>
+          </div>
+          <div class="form-group" data-host-only style="display:none;">
+            <input type="text" id="address" class="form-input" placeholder=" ">
+            <label for="address" class="form-label">Business address</label>
+          </div>
+
+          <div class="form-group" data-advertise-only>
+            <select id="package" class="form-input form-select">
+              <option value="">Not sure yet — recommend one for me</option>
+              <option value="event">Promote a one-time event or launch</option>
+              <option value="awareness">Build steady local awareness</option>
+              <option value="everywhere">Be everywhere your customers go</option>
+              <option value="exploring">Just exploring</option>
+            </select>
+            <label for="package" class="form-label form-label-static">What kind of presence are you after?</label>
+          </div>
+
+          <div class="form-group" data-advertise-only>
+            <button type="button" class="form-locations-toggle" aria-expanded="false">
+              <span>Select your locations <span class="form-locations-counter">(optional)</span></span>
+              <svg class="form-locations-chev" width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.4a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>
+            </button>
+            <div class="form-locations-panel" hidden>
+              <input type="search" class="form-locations-search" placeholder="Search locations…" aria-label="Search locations">
+              <div class="form-locations-list" role="group" aria-label="Locations"></div>
+            </div>
+            <input type="hidden" id="locations" value="">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-pulse" style="width:100%; justify-content:center;">
+            Send My Idea
+            <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+          </button>
+          <div data-form-error class="form-error" style="display:none;"></div>
+        </form>
+
+        <div class="form-success">
+          <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="26" cy="26" r="24"/>
+            <polyline class="check-path" points="14 27 23 36 38 18"/>
+          </svg>
+          <h3 class="mt-3">Got your idea!</h3>
+          <p class="mt-3">One of us will reach out within 48 hours with a plan. In the meantime, scroll back up — there's a live map showing every screen your ad could appear on.</p>
+        </div>
+      </div>
+
+      <!-- Info column -->
+      <div class="reveal-right">
+        <div class="contact-info">
+          <h3>Reach Us Directly</h3>
+
+          <div class="contact-info-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            <div>
+              <div class="label">Phone</div>
+              <div class="value"><a href="tel:3065143752" style="color: inherit;">306-514-3752</a></div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <div class="label">Email</div>
+              <div class="value"><a href="mailto:info@reachscreens.ca" style="color: inherit;">info@reachscreens.ca</a></div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <div class="label">Mailing Address</div>
+              <div class="value">P.O. Box 11238<br>Lloydminster, AB T9V 3B5</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div>
+              <div class="label">Response Time</div>
+              <div class="value">Within 48 hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STEP 6 — REASSURANCE (After-the-Close)
+     Goal: de-risk the click. Show what happens next.
+     Includes the host-a-screen secondary path.
+     ============================================================ -->
+<section id="next" aria-labelledby="next-headline" style="background: var(--color-dark-2); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">What Happens Next</span>
+      <h2 id="next-headline" class="section-title">After You Hit <span class="text-gradient">Send.</span></h2>
+      <p class="section-sub">No black box. Here's exactly how the next 48 hours play out.</p>
+    </div>
+
+    <div class="grid-3 stagger">
+      <div class="card" data-tilt="4">
+        <div class="card-icon icon-bounce">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h4 class="card-title">1. We reply within 48 hours.</h4>
+        <p class="card-text">A real person — not a sales bot — reads your idea and replies with a tailored rollout: which locations fit your audience, how long the campaign should run, and what it costs.</p>
+      </div>
+      <div class="card" data-tilt="4">
+        <div class="card-icon icon-bounce">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h4 class="card-title">2. You see exactly what you're getting.</h4>
+        <p class="card-text">Where your ad will run, how often, and what it costs — laid out clearly before you commit to anything. No fine print. No surprises.</p>
+      </div>
+      <div class="card" data-tilt="4">
+        <div class="card-icon icon-bounce">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h4 class="card-title">3. We design the ad and go live.</h4>
+        <p class="card-text">If you don't have an ad yet, we design it for free. If you do, we'll spec it for the screen format. Most campaigns are live across the city within the week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6.B — Host a screen secondary path -->
+<section id="host" class="step-host" aria-labelledby="host-headline">
   <div class="container">
     <div class="cta-banner cta-banner-rich reveal">
       <div class="cta-grid-pattern"></div>
@@ -527,30 +834,29 @@
       <div class="cta-screen cta-screen-1">
         <div class="cta-screen-frame">
           <div class="cta-screen-bezel"></div>
-          <div class="cta-mock-ad mock-1"><span class="mock-eyebrow">Local Restaurant</span><span class="mock-title">Tonight's Special</span></div>
-          <div class="cta-mock-ad mock-2"><span class="mock-eyebrow">Auto Repair</span><span class="mock-title">Free Inspection</span></div>
-          <div class="cta-mock-ad mock-3"><span class="mock-eyebrow">Coffee Shop</span><span class="mock-title">Open Until 9</span></div>
+          <div class="cta-mock-ad mock-1"><span class="mock-eyebrow">Free</span><span class="mock-title">Installation</span></div>
+          <div class="cta-mock-ad mock-2"><span class="mock-eyebrow">$0</span><span class="mock-title">Monthly Fee</span></div>
+          <div class="cta-mock-ad mock-3"><span class="mock-eyebrow">Free</span><span class="mock-title">Ad Rotation</span></div>
         </div>
       </div>
       <div class="cta-screen cta-screen-2">
         <div class="cta-screen-frame">
           <div class="cta-screen-bezel"></div>
-          <div class="cta-mock-ad mock-1"><span class="mock-eyebrow">Pharmacy</span><span class="mock-title">Now Booking</span></div>
-          <div class="cta-mock-ad mock-2"><span class="mock-eyebrow">Pub &amp; Lounge</span><span class="mock-title">Live Music Sat</span></div>
-          <div class="cta-mock-ad mock-3"><span class="mock-eyebrow">Retail Store</span><span class="mock-title">New Arrivals</span></div>
+          <div class="cta-mock-ad mock-1"><span class="mock-eyebrow">Your Wall</span><span class="mock-title">Free Ads</span></div>
+          <div class="cta-mock-ad mock-2"><span class="mock-eyebrow">No Work</span><span class="mock-title">For You</span></div>
+          <div class="cta-mock-ad mock-3"><span class="mock-eyebrow">Vetted</span><span class="mock-title">Local Brands</span></div>
         </div>
       </div>
 
       <div class="cta-banner-content">
-        <span class="section-label">Let's Go</span>
-        <h2 class="mt-3">Got an Idea? <span class="text-gradient">Let's Get It on Screens.</span></h2>
-        <p>Tell us what you want to promote, when you want it to run, and we'll build the rollout around it. Live across Lloydminster within the week.</p>
+        <span class="section-label">Have a Venue Instead?</span>
+        <h2 id="host-headline" class="mt-3">Turn Your Wall Into <span class="text-gradient">Free Advertising.</span></h2>
+        <p>Does your business have foot traffic and a good wall? Host a Reach Screens display at zero cost — free installation, no monthly fee, and your own business gets free ad rotation across the entire network.</p>
         <div class="hero-buttons" style="justify-content: center;">
-          <a href="contact.html#idea" class="btn btn-primary btn-lg btn-pulse">
-            Submit Your Idea
+          <a href="#idea" class="btn btn-primary btn-lg btn-pulse" data-host-trigger>
+            Apply to Host
             <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
           </a>
-          <a href="pricing.html" class="btn btn-secondary btn-lg">Get a Recommendation</a>
         </div>
       </div>
     </div>
@@ -563,21 +869,24 @@
     <div class="footer-grid">
       <div>
         <img src="assets/logo-white.webp" alt="Reach Screens" class="footer-logo-img" width="160" height="44" loading="lazy">
-        <p class="footer-tagline">Local digital advertising that puts your business where your customers already look, inside the businesses Lloydminster relies on every day.</p>
+        <p class="footer-tagline">Local digital advertising that puts your business where your customers already look — inside the businesses Lloydminster relies on every day. Serving Lloydminster, Vermilion, Bonnyville, Cold Lake, and St. Paul.</p>
       </div>
       <div>
-        <h5>Product</h5>
+        <h5>On This Page</h5>
         <ul>
-          <li><a href="how-it-works.html">How It Works</a></li>
-          <li><a href="pricing.html">Get a Recommendation</a></li>
-          <li><a href="host.html">Host a Screen</a></li>
+          <li><a href="#problem">The Problem</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#why">The Proof</a></li>
+          <li><a href="#locations">Live Map</a></li>
+          <li><a href="#compare">Pricing Comparison</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
       <div>
-        <h5>Company</h5>
+        <h5>Get Started</h5>
         <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#idea">Submit Your Idea</a></li>
+          <li><a href="#host" data-host-trigger>Host a Screen</a></li>
         </ul>
       </div>
       <div>
@@ -596,7 +905,24 @@
   </div>
 </footer>
 
-<script src="main.js?v=16" defer></script>
+<!-- Host-mode trigger: links with [data-host-trigger] switch the form to host mode then scroll to it. -->
+<script>
+(function () {
+  function triggerHostMode() {
+    var hostBtn = document.querySelector('[data-contact-form] [data-inquiry="host"]');
+    if (hostBtn) hostBtn.click();
+  }
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-host-trigger]');
+    if (!trigger) return;
+    // Let the anchor navigate (#idea / #host); just flip the form mode.
+    // Small timeout so any default scroll happens first, then we toggle.
+    setTimeout(triggerHostMode, 50);
+  });
+})();
+</script>
+
+<script src="main.js?v=17" defer></script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="assets/screen-locations.js?v=4"></script>
 <script src="map.js?v=9"></script>
