@@ -1,455 +1,325 @@
-/* ============================================
-   REACH SCREENS — Interactions
-   ============================================ */
+/* ============================================================
+   REACH SCREENS — main.js (v4)
+   Parallax · scroll-hide nav · count-up · reveals · form · modal
+   ============================================================ */
 
 (function () {
   'use strict';
 
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const prefersReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // With deferred scripts, DOMContentLoaded may have already fired by the time this runs
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-
-  function init() {
-    initScrollProgress();
-    initNav();
-    initReveal();
-    initCounters();
-    initCardTilt();
-    initFaq();
-    initTabs();
-    initContactForm();
-    initTimeline();
-  }
-
-  /* ---------- Scroll progress bar ---------- */
-  function initScrollProgress() {
-    const bar = document.createElement('div');
-    bar.className = 'scroll-progress';
-    document.body.appendChild(bar);
-    let ticking = false;
-    function update() {
-      const h = document.documentElement;
-      const scrolled = h.scrollTop;
-      const height = h.scrollHeight - h.clientHeight;
-      const pct = height > 0 ? (scrolled / height) * 100 : 0;
-      bar.style.width = pct + '%';
-      ticking = false;
-    }
-    window.addEventListener('scroll', () => {
-      if (!ticking) { requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
-    update();
-  }
-
-  /* ---------- Nav (scroll effect + mobile toggle + active link) ---------- */
+  /* ---------- Nav: scroll-hide + scrolled state + mobile menu ---------- */
   function initNav() {
-    const nav = document.querySelector('.nav');
-    const toggle = document.querySelector('.nav-toggle');
-    const links = document.querySelector('.nav-links');
+    const nav = $('.nav');
+    if (!nav) return;
+    let lastY = 0;
+    let raf = null;
 
-    if (nav) {
-      const onScroll = () => {
-        nav.classList.toggle('scrolled', window.scrollY > 24);
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    }
-
-    if (toggle && links) {
-      toggle.addEventListener('click', () => {
-        toggle.classList.toggle('active');
-        links.classList.toggle('open');
-      });
-      // Close on link click (mobile)
-      links.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          toggle.classList.remove('active');
-          links.classList.remove('open');
-        });
-      });
-    }
-
-    // Highlight current page
-    const here = location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-links a').forEach(a => {
-      const href = (a.getAttribute('href') || '').split('/').pop();
-      if (href === here || (here === '' && href === 'index.html')) {
-        a.classList.add('active');
+    const onScroll = () => {
+      const y = window.scrollY;
+      // Scrolled state (background)
+      nav.classList.toggle('scrolled', y > 24);
+      // Hide on scroll-down (only past hero ~ 120px), show on scroll-up
+      const goingDown = y > lastY && y > 140;
+      nav.classList.toggle('nav-hidden', goingDown && !nav.classList.contains('menu-open'));
+      // Hero parallax (px-based, drives translateY directly)
+      const hero = $('.hero-bg');
+      if (hero && y < window.innerHeight) {
+        document.documentElement.style.setProperty('--scroll-y', String(y));
       }
-    });
+      lastY = y;
+      raf = null;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!raf) raf = requestAnimationFrame(onScroll);
+    }, { passive: true });
+
+    // Initial state
+    onScroll();
+
+    // Mobile menu toggle
+    const toggle = $('.nav-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('menu-open');
+        toggle.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+      // Close menu on any link click
+      $$('.nav-links a').forEach(a => a.addEventListener('click', () => {
+        nav.classList.remove('menu-open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }));
+    }
   }
 
-  /* ---------- Scroll reveal via Intersection Observer ---------- */
-  function initReveal() {
-    const selectors = ['.reveal', '.reveal-left', '.reveal-right', '.reveal-scale', '.stagger', '.table-row', '.timeline-item'];
-    const els = document.querySelectorAll(selectors.join(','));
-    if (!('IntersectionObserver' in window)) {
-      els.forEach(el => el.classList.add('visible'));
+  /* ---------- Scroll reveals ---------- */
+  function initReveals() {
+    if (prefersReduce) {
+      $$('.reveal, .reveal-stagger').forEach(el => el.classList.add('in'));
       return;
     }
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-    els.forEach(el => io.observe(el));
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    $$('.reveal, .reveal-stagger').forEach(el => io.observe(el));
   }
 
-  /* ---------- Counter animation ---------- */
-  function initCounters() {
-    const nodes = document.querySelectorAll('[data-count]');
-    if (!nodes.length) return;
+  /* ---------- Count-up stats ---------- */
+  function initCountUps() {
+    const els = $$('[data-count]');
+    if (!els.length) return;
 
     const animate = (el) => {
       const target = parseFloat(el.dataset.count);
       const suffix = el.dataset.suffix || '';
-      const duration = 1800;
+      const prefix = el.dataset.prefix || '';
+      const decimals = (String(target).split('.')[1] || '').length;
+      const duration = 1400;
       const start = performance.now();
-      const startVal = 0;
       const easeOut = t => 1 - Math.pow(1 - t, 3);
 
-      function fmt(n) {
-        if (target >= 1000) return Math.floor(n).toLocaleString();
-        if (Number.isInteger(target)) return Math.floor(n).toString();
-        const decimals = (el.dataset.count.split('.')[1] || '').length || 1;
-        return n.toFixed(decimals);
+      const render = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        const v = target * easeOut(t);
+        let display;
+        if (target >= 1000000) display = (v / 1000000).toFixed(t === 1 ? 1 : 1) + 'M';
+        else if (target >= 1000) display = Math.round(v).toLocaleString();
+        else display = decimals ? v.toFixed(decimals) : Math.round(v).toString();
+        // Special: if target itself has M in it (handled by data-suffix containing M), don't double-add
+        el.textContent = prefix + display + suffix;
+        if (t < 1) requestAnimationFrame(render);
+      };
+      if (prefersReduce) {
+        let display;
+        if (target >= 1000000) display = (target / 1000000).toFixed(1) + 'M';
+        else if (target >= 1000) display = Math.round(target).toLocaleString();
+        else display = decimals ? target.toFixed(decimals) : Math.round(target).toString();
+        el.textContent = prefix + display + suffix;
+      } else {
+        requestAnimationFrame(render);
       }
-
-      function step(now) {
-        const t = Math.min((now - start) / duration, 1);
-        const val = startVal + (target - startVal) * easeOut(t);
-        el.textContent = fmt(val) + suffix;
-        if (t < 1) requestAnimationFrame(step);
-        else el.textContent = fmt(target) + suffix;
-      }
-      requestAnimationFrame(step);
     };
 
-    if (!('IntersectionObserver' in window)) {
-      nodes.forEach(animate);
-      return;
-    }
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animate(entry.target);
-          io.unobserve(entry.target);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animate(e.target);
+          io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.4 });
-    nodes.forEach(n => io.observe(n));
+    }, { threshold: 0.5 });
+    els.forEach(el => io.observe(el));
   }
 
-  /* ---------- 3D card tilt on hover (desktop only) ---------- */
-  function initCardTilt() {
-    if (prefersReduced) return;
-    if (matchMedia('(hover: none)').matches) return;
-    document.querySelectorAll('[data-tilt]').forEach(card => {
-      const strength = parseFloat(card.dataset.tilt) || 8;
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width;
-        const y = (e.clientY - rect.top) / rect.height;
-        const rx = (0.5 - y) * strength;
-        const ry = (x - 0.5) * strength;
-        card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
-        card.style.setProperty('--mx', (x * 100) + '%');
-        card.style.setProperty('--my', (y * 100) + '%');
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-
-    // Mouse-follow glow for .card
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--mx', x + '%');
-        card.style.setProperty('--my', y + '%');
-      });
-    });
-  }
-
-  /* ---------- FAQ accordion ---------- */
-  function initFaq() {
-    document.querySelectorAll('.faq-item').forEach(item => {
-      const q = item.querySelector('.faq-q');
-      const a = item.querySelector('.faq-a');
-      if (!q || !a) return;
-      q.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        // Close siblings in same parent (optional)
-        item.parentElement.querySelectorAll('.faq-item.open').forEach(other => {
-          if (other !== item) {
-            other.classList.remove('open');
-            const oa = other.querySelector('.faq-a');
-            if (oa) oa.style.maxHeight = '0px';
-          }
-        });
-        if (isOpen) {
-          item.classList.remove('open');
-          a.style.maxHeight = '0px';
-        } else {
-          item.classList.add('open');
-          a.style.maxHeight = a.scrollHeight + 'px';
-        }
-      });
-    });
-  }
-
-  /* ---------- Tabs ---------- */
-  function initTabs() {
-    document.querySelectorAll('[data-tabs]').forEach(group => {
-      const btns = group.querySelectorAll('.tab-btn');
-      const panels = document.querySelectorAll('[data-tab-target]');
-      btns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const target = btn.dataset.tab;
-          btns.forEach(b => b.classList.toggle('active', b === btn));
-          panels.forEach(p => p.classList.toggle('active', p.dataset.tabTarget === target));
-        });
-      });
-    });
-  }
-
-  /* ---------- Contact form ---------- */
-  function initContactForm() {
-    const form = document.querySelector('[data-contact-form]');
+  /* ---------- Form submission ---------- */
+  function initForm() {
+    const form = $('#idea-form');
     if (!form) return;
-
-    const inquiryHidden = form.querySelector('#inquiryType');
-    const toggleBtns = form.querySelectorAll('.form-toggle-btn');
-    const advertiseOnly = form.querySelectorAll('[data-advertise-only]');
-    const hostOnly = form.querySelectorAll('[data-host-only]');
-    const messageLabel = form.querySelector('[data-message-label]');
-    const packageSelect = form.querySelector('#package');
-
-    function applyMode(mode) {
-      if (inquiryHidden) inquiryHidden.value = mode;
-      toggleBtns.forEach(b => {
-        const isActive = b.dataset.inquiry === mode;
-        b.classList.toggle('active', isActive);
-        b.setAttribute('aria-selected', String(isActive));
-      });
-      advertiseOnly.forEach(el => { el.style.display = mode === 'advertise' ? '' : 'none'; });
-      hostOnly.forEach(el => { el.style.display = mode === 'host' ? '' : 'none'; });
-      if (messageLabel) {
-        messageLabel.textContent = mode === 'host'
-          ? 'Tell us about your space and customer foot traffic'
-          : "What's your idea?";
-      }
-    }
-
-    toggleBtns.forEach(btn => {
-      btn.addEventListener('click', () => applyMode(btn.dataset.inquiry));
-    });
-
-    // Read URL params: ?type=host|advertise
-    const params = new URLSearchParams(location.search);
-    const typeParam = (params.get('type') || '').toLowerCase();
-    const initialMode = typeParam === 'host' ? 'host' : 'advertise';
-    applyMode(initialMode);
-
-    // Locations picker
-    const locToggle = form.querySelector('.form-locations-toggle');
-    const locPanel = form.querySelector('.form-locations-panel');
-    const locList = form.querySelector('.form-locations-list');
-    const locSearch = form.querySelector('.form-locations-search');
-    const locCounter = form.querySelector('.form-locations-counter');
-    const locHidden = form.querySelector('#locations');
-
-    if (locToggle && locPanel && locList && locHidden && Array.isArray(window.screenLocations)) {
-      const selected = new Set();
-
-      const initialLocs = (params.get('locations') || '').split(',').filter(Boolean);
-      initialLocs.forEach(id => selected.add(String(id)));
-
-      function updateCounter() {
-        if (!locCounter) return;
-        locCounter.textContent = selected.size > 0
-          ? `(${selected.size} selected)`
-          : '(optional)';
-      }
-
-      function updateHidden() {
-        locHidden.value = Array.from(selected).join(',');
-      }
-
-      function renderList(filter) {
-        const f = (filter || '').toLowerCase().trim();
-        const rows = window.screenLocations
-          .filter(loc => !f || loc.name.toLowerCase().includes(f) || (loc.address || '').toLowerCase().includes(f))
-          .map(loc => {
-            const id = String(loc.id);
-            const checked = selected.has(id) ? 'checked' : '';
-            const screensBadge = (loc.screens && loc.screens > 1)
-              ? `<span class="form-locations-row-screens">${loc.screens} screens</span>` : '';
-            return `<label class="form-locations-row">
-              <input type="checkbox" value="${id}" ${checked}>
-              <span class="form-locations-row-body">
-                <span class="form-locations-row-name">${loc.name}${screensBadge}</span>
-                <span class="form-locations-row-addr">${loc.address || ''}</span>
-              </span>
-            </label>`;
-          }).join('');
-        locList.innerHTML = rows || '<div class="form-locations-empty">No matches.</div>';
-      }
-
-      locToggle.addEventListener('click', () => {
-        const expanded = locToggle.getAttribute('aria-expanded') === 'true';
-        locToggle.setAttribute('aria-expanded', String(!expanded));
-        if (expanded) {
-          locPanel.setAttribute('hidden', '');
-        } else {
-          locPanel.removeAttribute('hidden');
-          if (locSearch) locSearch.focus();
-        }
-      });
-
-      locList.addEventListener('change', (e) => {
-        const cb = e.target;
-        if (!(cb instanceof HTMLInputElement) || cb.type !== 'checkbox') return;
-        if (cb.checked) selected.add(cb.value);
-        else selected.delete(cb.value);
-        updateHidden();
-        updateCounter();
-      });
-
-      if (locSearch) {
-        locSearch.addEventListener('input', () => renderList(locSearch.value));
-      }
-
-      renderList('');
-      updateHidden();
-      updateCounter();
-    }
+    const endpoint = form.dataset.endpoint;
+    const feedback = $('[data-form-feedback]', form);
+    const submitBtn = $('.form-submit', form);
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      const originalLabel = btn ? btn.innerHTML : '';
-      if (btn) {
-        btn.disabled = true;
-        btn.innerHTML = '<span>Sending...</span>';
-      }
+      // Honeypot
+      if (form._hp && form._hp.value) return;
 
-      const payload = {
-        _hp: form.querySelector('input[name="_hp"]')?.value || '',
-        type: inquiryHidden?.value || 'advertise',
-        name: form.querySelector('#name')?.value || '',
-        business: form.querySelector('#business')?.value || '',
-        email: form.querySelector('#email')?.value || '',
-        phone: form.querySelector('#phone')?.value || '',
-        package: packageSelect?.value || '',
-        locations: locHidden?.value || '',
-        venue: form.querySelector('#venue')?.value || '',
-        address: form.querySelector('#address')?.value || '',
-        message: form.querySelector('#message')?.value || '',
+      const data = {
+        inquiryType: 'advertise',
+        message: form.message.value.trim(),
+        name: form.name.value.trim(),
+        business: form.business.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        source: 'reachscreens.ca / home',
+        page: location.href,
       };
 
-      const endpoint = form.dataset.endpoint || '/submit';
-      let ok = false;
+      submitBtn.disabled = true;
+      const originalText = submitBtn.textContent.trim();
+      submitBtn.textContent = 'Sending…';
+      feedback.classList.remove('show', 'success', 'error');
+
       try {
         const res = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+          body: JSON.stringify(data),
         });
-        const data = await res.json().catch(() => ({}));
-        ok = res.ok && data.ok === true;
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        feedback.textContent = "Got it. We'll be in touch within 48 hours.";
+        feedback.classList.add('show', 'success');
+        form.reset();
       } catch (err) {
-        ok = false;
-      }
-
-      if (ok) {
-        form.style.display = 'none';
-        const success = document.querySelector('.form-success');
-        if (success) success.classList.add('show');
-      } else {
-        if (btn) {
-          btn.disabled = false;
-          btn.innerHTML = originalLabel;
-        }
-        const errBox = form.querySelector('[data-form-error]');
-        if (errBox) {
-          errBox.textContent = "Couldn't send your message. Please try again or email info@reachscreens.ca directly.";
-          errBox.style.display = 'block';
-        } else {
-          alert("Couldn't send your message. Please try again or email info@reachscreens.ca directly.");
-        }
+        feedback.textContent = "Couldn't send — try emailing info@reachscreens.ca instead.";
+        feedback.classList.add('show', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText + ' <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>';
       }
     });
   }
 
-  /* ---------- Timeline line draw (supports multiple timelines / tab panels) ---------- */
-  function initTimeline() {
-    const timelines = document.querySelectorAll('.timeline');
-    if (!timelines.length) return;
+  /* ---------- Location modal (shared across pages) ---------- */
+  const Modal = (function () {
+    const overlay = $('#location-modal');
+    if (!overlay) return { open: () => {}, close: () => {} };
+    const nameEl = $('[data-modal-name]', overlay);
+    const addrEl = $('[data-modal-addr]', overlay);
+    const metaEl = $('[data-modal-meta]', overlay);
+    const imgWrap = $('[data-modal-image]', overlay);
+    const closeBtn = $('[data-modal-close]', overlay);
+    const dirBtn = $('[data-modal-directions]', overlay);
+    const ctaBtn = $('[data-modal-close-then]', overlay);
 
-    function updateOne(timeline) {
-      const line = timeline.querySelector('.timeline-line');
-      if (!line) return;
-      const rect = timeline.getBoundingClientRect();
-      const vh = window.innerHeight;
-      // Don't update timelines that are hidden (display:none in inactive tab panels) — getBoundingClientRect returns 0s anyway, but skip explicitly
-      if (rect.height === 0) {
-        line.style.height = '0%';
-        return;
-      }
-      const startAt = vh * 0.75;
-      const top = rect.top;
-      const total = rect.height;
-      // Progress: 0 when timeline top hits 75% of viewport, 1 when bottom passes 25%
-      const progressed = (startAt - top) / total;
-      const clamped = Math.max(0, Math.min(1, progressed));
-      line.style.height = (clamped * 100) + '%';
-    }
+    function open(loc) {
+      if (!loc) return;
+      nameEl.textContent = loc.name;
+      addrEl.textContent = loc.address;
 
-    let scheduled = false;
-    function scheduleUpdate() {
-      if (scheduled) return;
-      scheduled = true;
-      requestAnimationFrame(() => {
-        scheduled = false;
-        timelines.forEach(updateOne);
+      // Build meta tags
+      metaEl.innerHTML = '';
+      const tags = [];
+      const screens = loc.screens && loc.screens > 1 ? loc.screens + ' screens' : '1 screen';
+      tags.push({ icon: '◉', label: screens });
+      if (loc.address.includes(' AB ')) tags.push({ icon: '⛰', label: 'Alberta side' });
+      else if (loc.address.includes(' SK ')) tags.push({ icon: '🌾', label: 'Saskatchewan side' });
+      tags.forEach(t => {
+        const el = document.createElement('span');
+        el.className = 'modal-tag';
+        el.textContent = (t.icon ? t.icon + ' ' : '') + t.label;
+        metaEl.appendChild(el);
       });
-    }
-    function updateAll() {
-      timelines.forEach(updateOne);
-    }
-    window.addEventListener('scroll', scheduleUpdate, { passive: true });
-    window.addEventListener('resize', scheduleUpdate);
 
-    // When tabs switch, recompute lines so the newly visible panel's line draws correctly.
-    // Reveal items inside the now-visible panel and update twice (immediately + next frame)
-    // so the line snaps to the correct progress without the user having to scroll.
-    document.querySelectorAll('[data-tabs] .tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const panel = document.querySelector('.tab-panel.active');
-        if (panel) {
-          panel.querySelectorAll('.timeline-item').forEach(it => it.classList.add('visible'));
-        }
-        // Two update passes: one now (in case layout already done) and one after the next paint
-        updateAll();
-        requestAnimationFrame(() => {
-          updateAll();
-          requestAnimationFrame(updateAll);
+      // Embed OpenStreetMap — no API key required, no iframe restrictions
+      const q = encodeURIComponent(loc.lat + ',' + loc.lng);
+      const dLat = 0.0030, dLng = 0.0060; // ~300m view box
+      const bbox = [loc.lng - dLng, loc.lat - dLat, loc.lng + dLng, loc.lat + dLat]
+        .map(v => v.toFixed(6)).join(',');
+      const osmUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${loc.lat},${loc.lng}`;
+      imgWrap.innerHTML = `
+        <iframe src="${osmUrl}" title="Map of ${loc.name}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="modal-image-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>${escapeHtml(loc.address)}</span>
+        </div>
+      `;
+
+      // Directions link
+      if (dirBtn) dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${q}`;
+
+      overlay.hidden = false;
+      requestAnimationFrame(() => overlay.classList.add('open'));
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        overlay.hidden = true;
+        imgWrap.innerHTML = `<div class="modal-image-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c2.5 3 4 6.5 4 10s-1.5 7-4 10c-2.5-3-4-6.5-4-10s1.5-7 4-10z"/></svg>
+          <span>Map view</span>
+        </div>`;
+      }, 280);
+    }
+
+    closeBtn && closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    if (ctaBtn) ctaBtn.addEventListener('click', () => close());
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !overlay.hidden) close();
+    });
+
+    return { open, close };
+  })();
+  window.__rsModal = Modal;
+
+  /* ---------- Locations page list (only present on locations.html) ---------- */
+  function initLocationsList() {
+    const list = $('[data-locations-list]');
+    if (!list || !window.screenLocations) return;
+    const filterInput = $('[data-locations-filter]');
+    const totalEl = $('[data-locations-total]');
+
+    function render(items) {
+      list.innerHTML = '';
+      items.forEach((loc, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'location-item';
+        btn.dataset.locId = loc.id;
+        btn.innerHTML = `
+          <span class="location-num">${idx + 1}</span>
+          <span class="location-info">
+            <span class="location-name">${escapeHtml(loc.name)}</span>
+            <span class="location-addr">${escapeHtml(loc.address)}</span>
+            ${loc.screens && loc.screens > 1 ? `<span class="location-screens-badge">${loc.screens} screens</span>` : ''}
+          </span>
+          <span class="location-arrow">→</span>
+        `;
+        btn.addEventListener('click', () => {
+          Modal.open(loc);
+          // Also fly the map to the location if available
+          if (window.__rsMap) {
+            try {
+              window.__rsMap.flyTo({
+                center: [loc.lng, loc.lat],
+                zoom: 16.5,
+                pitch: 60,
+                bearing: -10,
+                duration: 1400,
+                essential: true,
+              });
+            } catch (_) {}
+          }
         });
+        list.appendChild(btn);
       });
-    });
+      if (totalEl) totalEl.textContent = items.length;
+    }
 
-    updateAll();
+    render(window.screenLocations);
+
+    if (filterInput) {
+      filterInput.addEventListener('input', () => {
+        const q = filterInput.value.trim().toLowerCase();
+        if (!q) return render(window.screenLocations);
+        const filtered = window.screenLocations.filter(l =>
+          l.name.toLowerCase().includes(q) || l.address.toLowerCase().includes(q)
+        );
+        render(filtered);
+      });
+    }
   }
 
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  /* ---------- Boot ---------- */
+  function boot() {
+    initNav();
+    initReveals();
+    initCountUps();
+    initForm();
+    initLocationsList();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
 })();

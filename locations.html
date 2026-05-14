@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Locations — Reach Screens · Lloydminster</title>
+  <meta name="description" content="Every Reach Screens location across Lloydminster, AB and SK. Click any pin or list item to see address, screen count, and map view.">
+  <link rel="canonical" href="https://reachscreens.ca/locations.html">
+  <meta name="theme-color" content="#051018">
+
+  <meta property="og:title" content="Reach Screens Locations — Lloydminster">
+  <meta property="og:description" content="Every screen across Lloydminster, mapped.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://reachscreens.ca/locations.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
+  <link rel="preload" as="image" href="assets/logo-white.webp">
+  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="icon" href="assets/favicon.ico">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Reach Screens home">
+      <img src="assets/logo-white.webp" alt="Reach Screens" width="160" height="36">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="locations.html" class="active">Locations</a></li>
+      <li><a href="index.html#idea" class="nav-cta">Submit Your Idea</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ HEADER ============ -->
+<header class="locations-page-header">
+  <div class="container">
+    <span class="eyebrow">The Network</span>
+    <h1>Every Screen<br>In <span style="color:var(--rs-mint);">Lloydminster</span>.</h1>
+    <p class="hero-sub" style="margin-top:1rem; max-width:60ch;">
+      <span data-locations-total>—</span> locations across Alberta and Saskatchewan. Click any pin or list item to see the address and a map view.
+    </p>
+  </div>
+</header>
+
+<!-- ============ LOCATIONS SECTION ============ -->
+<section class="locations-section">
+  <div class="container">
+    <div class="locations-split">
+      <div class="locations-list-wrap">
+        <div style="padding:1rem 1.5rem; border-bottom:1px solid var(--rs-line); position:sticky; top:0; background:var(--rs-navy-2); z-index:2;">
+          <input type="search" class="form-field" placeholder="Search by name or street…" data-locations-filter
+                 style="width:100%; padding:0.65rem 0.9rem; background:rgba(255,255,255,0.04); border:1px solid var(--rs-line); border-radius:8px; color:var(--rs-text); font-family:inherit; font-size:0.95rem;">
+        </div>
+        <ul class="locations-list" data-locations-list></ul>
+      </div>
+
+      <div class="map-block">
+        <div id="map" class="map-canvas" aria-label="Map of all Reach Screens locations"></div>
+        <div class="map-caption"><span class="map-caption-dot"></span>Click a pin for details</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo-white.webp" alt="Reach Screens">
+        <p>Indoor digital advertising across Lloydminster. We put your ad where attention already lives.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Site</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="locations.html">Locations</a></li>
+          <li><a href="index.html#idea">Submit Your Idea</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:info@reachscreens.ca">info@reachscreens.ca</a></li>
+          <li><a href="tel:+13065143752">(306) 514-3752</a></li>
+          <li><span style="color:var(--rs-text-mid);">Lloydminster, AB</span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Coverage</h5>
+        <ul>
+          <li><span style="color:var(--rs-text-mid);">Lloydminster, AB</span></li>
+          <li><span style="color:var(--rs-text-mid);">Lloydminster, SK</span></li>
+          <li><span style="color:var(--rs-text-mid);">Lakeland region</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> Reach Screens. All rights reserved.</p>
+      <div class="footer-social" aria-label="Social links">
+        <a href="https://www.facebook.com/reachscreens" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.5-4.5-10-10-10S2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7c4.7-.8 8.4-4.9 8.4-9.9z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/reachscreens" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1.2" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MODAL (shared) ============ -->
+<div class="modal-overlay" id="location-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal">
+    <div class="modal-image-wrap" data-modal-image>
+      <div class="modal-image-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c2.5 3 4 6.5 4 10s-1.5 7-4 10c-2.5-3-4-6.5-4-10s1.5-7 4-10z"/></svg>
+        <span>Map view</span>
+      </div>
+    </div>
+    <div class="modal-header">
+      <div>
+        <span class="modal-eyebrow">Reach Screen</span>
+        <h3 class="modal-title" id="modal-title" data-modal-name>—</h3>
+        <p class="modal-addr" data-modal-addr>—</p>
+      </div>
+      <button class="modal-close" data-modal-close aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta" data-modal-meta></div>
+      <div class="modal-actions">
+        <a href="index.html#idea" class="btn btn-primary" data-modal-close-then>Advertise here
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+        </a>
+        <a href="#" class="btn btn-outline" data-modal-directions target="_blank" rel="noopener">Get directions</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCRIPTS ============ -->
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="assets/screen-locations.js"></script>
+<script src="map.js?v=6"></script>
+<script src="main.js?v=6"></script>
+</body>
+</html>
