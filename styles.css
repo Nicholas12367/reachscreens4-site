@@ -1176,137 +1176,122 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
 }
 
 /* ============================================================
-   PREMIUM POLISH PASS v9 — depth, weight, restraint
+   v10 — PINNED HERO, NO THEATRICS, SHARPER PREMIUM
    ============================================================ */
 
-/* ---- Hero: dramatic mint glow + decoration ---- */
-.hero { padding-top: calc(var(--nav-h) + var(--space-7)); }
-.hero h1 {
-  letter-spacing: -0.02em;
-  font-weight: 200;
+/* ---- Hero: PINNED background (stays fixed as content scrolls over) ---- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding-top: calc(var(--nav-h) + var(--space-6));
+  z-index: 0;
+  background: transparent;
+  overflow: visible;
 }
+.hero-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  background: url('assets/website-header.png') var(--hero-img-pos, center)/cover no-repeat;
+  transform: none !important;
+}
+/* Pinned overlay layer in fixed viewport (dimming) */
+.hero::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -9;
+  background:
+    radial-gradient(46% 38% at 32% 52%, rgba(80, 193, 203, 0.22) 0%, transparent 65%),
+    linear-gradient(95deg, rgba(0, 22, 55, 0.65) 0%, rgba(0, 22, 55, 0.35) 50%, rgba(0, 22, 55, 0.05) 100%),
+    linear-gradient(180deg, rgba(0, 22, 55, 0.2) 0%, rgba(0, 22, 55, 0.6) 100%);
+  pointer-events: none;
+}
+.hero::after { display: none; }
+.hero h1 { letter-spacing: -0.02em; font-weight: 200; }
 .hero h1 .accent {
   background: linear-gradient(110deg, var(--rs-mint) 0%, #93F0E3 50%, var(--rs-mint) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-/* Stronger Pattison-style mint+navy glow on top of base */
-.hero::before {
-  background:
-    radial-gradient(40% 30% at 35% 50%, rgba(80, 193, 203, 0.32) 0%, transparent 65%),
-    radial-gradient(60% 55% at 50% 45%, var(--rs-glow-navy) 0%, rgba(0, 40, 94, 0) 70%) !important;
-}
-/* Tiny pill badge above eyebrow */
+
+/* Subtle "Live" pill (no animation) */
 .hero-status {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.9rem 0.4rem 0.65rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  gap: 0.55rem;
+  padding: 0.4rem 0.95rem 0.4rem 0.7rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-pill);
   font-size: 0.78rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--rs-text);
   font-weight: 500;
-  margin-bottom: 1.25rem;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .hero-status-dot {
-  width: 7px; height: 7px;
+  width: 6px; height: 6px;
   background: var(--rs-mint);
   border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(80, 193, 203, 0.25);
-  animation: live-pulse 2s ease-in-out infinite;
 }
-@keyframes live-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(80, 193, 203, 0.5); }
-  50% { box-shadow: 0 0 0 6px rgba(80, 193, 203, 0); }
-}
-/* Eyebrow with thin mint accent line */
-.hero .eyebrow {
-  position: relative;
-  padding-left: 2.25rem;
-  display: inline-flex;
-  align-items: center;
-}
-.hero .eyebrow::before {
-  content: '';
+
+/* ---- Pattison wavy decorative line (parallax) ---- */
+.wavy-decor {
   position: absolute;
-  left: 0; top: 50%;
-  width: 1.75rem;
-  height: 1px;
-  background: var(--rs-mint);
-  transform: translateY(-50%);
-}
-/* Scroll-down indicator at hero bottom */
-.hero-scroll {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
   pointer-events: none;
+  z-index: -5;
+  width: 130%;
+  left: -15%;
+}
+.wavy-decor svg { width: 100%; height: auto; display: block; }
+.wavy-decor path {
+  stroke: rgba(80, 193, 203, 0.32);
+  stroke-width: 1.25;
+  fill: none;
+}
+.wavy-decor.hero-wave {
+  top: 65%;
+  height: 280px;
+  transform: translateY(calc(var(--scroll-y, 0) * -0.12px));
+  will-change: transform;
+}
+.wavy-decor.mid-wave {
+  position: relative;
+  width: 100%;
+  left: 0;
+  margin: 0 auto;
+  height: 200px;
   z-index: 1;
 }
-.hero-scroll svg {
-  width: 16px;
-  height: 22px;
-  animation: scroll-bob 2.2s ease-in-out infinite;
-}
-@keyframes scroll-bob {
-  0%, 100% { transform: translateY(0); opacity: 0.7; }
-  50% { transform: translateY(6px); opacity: 1; }
-}
-@media (max-width: 900px) {
-  .hero-scroll { display: none; }
-}
+.wavy-decor.mid-wave path { stroke: rgba(80, 193, 203, 0.4); }
 
-/* ---- Section heading: thin mint accent on every section eyebrow ---- */
-.section-head .eyebrow,
-.logo-collage-section .eyebrow,
-.split-section .eyebrow,
-.form-section .eyebrow,
-.locations-page-header .eyebrow {
+/* ---- Solid backgrounds on sections so they cover the pinned hero ---- */
+.logo-collage-section,
+.split-section,
+.form-section,
+.footer {
   position: relative;
-  padding-left: 2.25rem;
-  display: inline-flex;
-  align-items: center;
+  z-index: 1;
 }
-.section-head .eyebrow::before,
-.logo-collage-section .eyebrow::before,
-.split-section .eyebrow::before,
-.form-section .eyebrow::before,
-.locations-page-header .eyebrow::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 50%;
-  width: 1.75rem;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.6;
-  transform: translateY(-50%);
-}
+.logo-collage-section,
+.form-section { background: var(--rs-light); }
+.split-section { background: var(--rs-navy); }
 
-/* ---- Logo collage refinement ---- */
-.logo-collage-section { background: linear-gradient(180deg, #FAFBFC 0%, #F4F6FA 100%); }
+/* Logo collage refinement */
 .logo-tile {
   border-radius: 12px;
   transition: filter 350ms var(--ease-pat), opacity 350ms var(--ease-pat), transform 350ms var(--ease-pat);
 }
-.logo-tile:hover {
-  transform: translateY(-2px);
-}
+.logo-tile:hover { transform: translateY(-2px); }
 .logo-tile.text {
   font-weight: 500;
   font-size: 0.95rem;
@@ -1318,26 +1303,15 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   color: var(--rs-primary);
 }
 
-/* ---- Stats: high-impact, premium grid ---- */
+/* ---- Stats: no accent lines, bigger numbers, real weight ---- */
 .stats {
   border-top: 1px solid var(--rs-line);
   padding-top: var(--space-6);
   margin-top: var(--space-6);
   gap: var(--space-5);
 }
-.stat {
-  position: relative;
-  padding-top: 1.25rem;
-}
-.stat::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 32px;
-  height: 2px;
-  background: var(--rs-mint);
-  border-radius: 1px;
-}
+.stat { position: relative; padding-top: 0; }
+.stat::before { display: none !important; }
 .stat-num {
   font-size: clamp(2.25rem, 4.5vw, 3.75rem);
   font-weight: 200;
@@ -1354,23 +1328,19 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   text-transform: uppercase;
 }
 
-/* ---- FORM REDESIGN — premium card with structure ---- */
-.form-section {
-  background: linear-gradient(180deg, #FAFBFC 0%, #F4F6FA 100%);
-  position: relative;
-  overflow: hidden;
-}
+/* ---- FORM — clean premium card, no shimmer, no pulse ---- */
+.form-section { overflow: hidden; }
 .form-section::before {
   content: '';
   position: absolute;
-  top: -200px;
-  right: -200px;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(80, 193, 203, 0.12) 0%, transparent 60%);
+  top: -250px;
+  right: -250px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(80, 193, 203, 0.10) 0%, transparent 60%);
   pointer-events: none;
 }
-.form-section > .container { position: relative; }
+.form-section > .container { position: relative; z-index: 1; }
 
 .form-side h2 {
   font-size: clamp(2.25rem, 4vw, 3.5rem);
@@ -1390,9 +1360,9 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   border-radius: 20px;
   padding: clamp(1.75rem, 3.5vw, 2.75rem);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.8) inset,
-    0 24px 60px -24px rgba(0, 26, 65, 0.25),
-    0 8px 20px -12px rgba(0, 26, 65, 0.1);
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 30px 70px -30px rgba(0, 26, 65, 0.28),
+    0 10px 30px -15px rgba(0, 26, 65, 0.14);
   border: 1px solid rgba(0, 26, 65, 0.06);
   position: relative;
   overflow: hidden;
@@ -1401,53 +1371,28 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--rs-primary) 0%, var(--rs-mint) 100%);
+  height: 2px;
+  background: var(--rs-primary);
 }
 
-/* Card header strip */
+/* Card head: removed status pill (per "less animated"). Title + sub only. */
 .form-card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
   border-bottom: 1px solid rgba(0, 26, 65, 0.08);
 }
 .form-card-head-title {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--rs-text-dark);
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
 }
 .form-card-head-sub {
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   color: var(--rs-text-muted);
-  margin-top: 0.15rem;
-  letter-spacing: 0.02em;
+  margin-top: 0.25rem;
 }
-.form-card-head-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.3rem 0.7rem;
-  background: rgba(80, 193, 203, 0.12);
-  color: var(--rs-primary);
-  border-radius: var(--radius-pill);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.form-card-head-status::before {
-  content: '';
-  width: 6px; height: 6px;
-  background: var(--rs-mint);
-  border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(80, 193, 203, 0.2);
-  animation: live-pulse 2s ease-in-out infinite;
-}
+.form-card-head-status { display: none !important; }
 
 .form-field label {
   font-size: 0.72rem;
@@ -1460,6 +1405,7 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   align-items: center;
   gap: 0.4rem;
 }
+.form-field label svg { display: none; }
 .form-field input,
 .form-field textarea,
 .form-field select {
@@ -1470,12 +1416,12 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   border: 1.5px solid rgba(0, 26, 65, 0.1);
   border-radius: 10px;
   font-weight: 400;
-  transition: all 200ms var(--ease-std);
+  transition: border-color 180ms var(--ease-std), background 180ms var(--ease-std), box-shadow 180ms var(--ease-std);
 }
 .form-field input::placeholder,
 .form-field textarea::placeholder { color: rgba(0, 26, 65, 0.35); }
 .form-field input:hover,
-.form-field textarea:hover { border-color: rgba(0, 26, 65, 0.2); }
+.form-field textarea:hover { border-color: rgba(0, 26, 65, 0.18); }
 .form-field input:focus,
 .form-field textarea:focus,
 .form-field select:focus {
@@ -1489,42 +1435,28 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
 .form-submit {
   margin-top: 1.5rem;
   padding: 1.1rem 1.5rem;
-  background: linear-gradient(135deg, var(--rs-primary) 0%, #0095E8 100%);
+  background: var(--rs-primary);
   color: var(--rs-text);
   border-radius: var(--radius-pill);
   font-weight: 600;
   font-size: 1.05rem;
   letter-spacing: 0.005em;
-  box-shadow:
-    0 4px 12px rgba(0, 121, 193, 0.25),
-    0 1px 0 rgba(255, 255, 255, 0.2) inset;
-  position: relative;
-  overflow: hidden;
-  transition: transform 250ms var(--ease-std), box-shadow 250ms var(--ease-std);
+  box-shadow: 0 8px 24px -8px rgba(0, 121, 193, 0.5);
+  transition: background 180ms var(--ease-std), transform 180ms var(--ease-std), box-shadow 180ms var(--ease-std);
 }
+.form-submit::after { display: none !important; }
 .form-submit:hover {
-  transform: translateY(-2px);
-  transition-duration: 75ms;
-  box-shadow:
-    0 14px 32px rgba(0, 121, 193, 0.4),
-    0 1px 0 rgba(255, 255, 255, 0.25) inset;
+  background: var(--rs-primary-2);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px -10px rgba(0, 121, 193, 0.6);
 }
 .form-submit:active { transform: translateY(0); }
-.form-submit::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
-  transform: translateX(-100%);
-  transition: transform 600ms var(--ease-pat);
-}
-.form-submit:hover::after { transform: translateX(100%); }
 
-/* Trust signals row below form */
+/* Trust signals row */
 .form-trust {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.75rem 1.25rem;
   margin-top: 1.25rem;
   padding-top: 1.25rem;
   border-top: 1px solid rgba(0, 26, 65, 0.06);
@@ -1543,31 +1475,32 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   flex-shrink: 0;
 }
 
-/* ---- Buttons: refined ---- */
+/* ---- Buttons ---- */
 .btn-primary {
-  background: linear-gradient(135deg, var(--rs-primary) 0%, #0095E8 100%);
-  box-shadow:
-    0 4px 12px rgba(0, 121, 193, 0.3),
-    0 1px 0 rgba(255, 255, 255, 0.15) inset;
+  background: var(--rs-primary);
+  box-shadow: 0 8px 24px -8px rgba(0, 121, 193, 0.5);
 }
 .btn-primary:hover {
-  background: linear-gradient(135deg, #0085D2 0%, #00A3F5 100%);
-  box-shadow:
-    0 14px 32px rgba(0, 121, 193, 0.45),
-    0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  background: var(--rs-primary-2);
+  box-shadow: 0 14px 30px -10px rgba(0, 121, 193, 0.6);
 }
 
-/* ---- Footer: decorative concave shape + refined typography ---- */
-.footer {
-  position: relative;
-  padding-top: var(--space-7);
+/* ---- Nav CTA — fits properly ---- */
+.nav-cta {
+  padding: 0.55rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
+.nav-inner { gap: 1.5rem; }
+
+/* ---- Footer ---- */
+.footer { position: relative; padding-top: var(--space-7); z-index: 1; }
 .footer::before {
   content: '';
   position: absolute;
-  top: -1px;
-  left: 0;
-  right: 0;
+  top: -1px; left: 0; right: 0;
   height: 80px;
   background: var(--rs-light);
   border-radius: 0 0 50% 50% / 0 0 100% 100%;
@@ -1593,21 +1526,57 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
 }
 .footer-bottom { padding-top: var(--space-5); }
 
-/* ---- Premium micro-details: section dividers via thin gradient lines ---- */
-.split-section { position: relative; }
-.split-section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  max-width: 600px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(80, 193, 203, 0.3) 50%, transparent 100%);
+/* ---- Subtle card depth on screen cards ---- */
+.screen-card {
+  box-shadow:
+    0 12px 28px -12px rgba(0, 0, 0, 0.5),
+    0 4px 10px -4px rgba(0, 0, 0, 0.3);
+}
+.screen-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 20px 50px -16px rgba(0, 0, 0, 0.55),
+    0 8px 18px -8px rgba(0, 0, 0, 0.35);
 }
 
-/* Mobile form polish */
+/* Map block depth */
+.map-block {
+  box-shadow:
+    0 20px 50px -20px rgba(0, 0, 0, 0.5),
+    0 8px 16px -6px rgba(0, 0, 0, 0.3);
+}
+
+/* ---- Hide hero scroll indicator (felt cheesy) ---- */
+.hero-scroll { display: none !important; }
+
+/* ---- Remove eyebrow accent lines added in v9 (too busy) ---- */
+.section-head .eyebrow::before,
+.logo-collage-section .eyebrow::before,
+.split-section .eyebrow::before,
+.form-section .eyebrow::before,
+.locations-page-header .eyebrow::before,
+.hero .eyebrow::before { display: none !important; }
+.section-head .eyebrow,
+.logo-collage-section .eyebrow,
+.split-section .eyebrow,
+.form-section .eyebrow,
+.locations-page-header .eyebrow,
+.hero .eyebrow { padding-left: 0; }
+
+/* ---- Map popup label colour fix (was mint, more visible as light blue) ---- */
+.map-popup-label { color: var(--rs-mint); }
+
+/* ---- Mobile-specific ---- */
 @media (max-width: 900px) {
-  .form-card-head { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
   .form-trust { gap: 0.5rem 1rem; }
+  .wavy-decor.hero-wave { display: none; }
+}
+@media (max-width: 480px) {
+  .nav-cta { padding: 0.5rem 0.9rem; font-size: 0.85rem; }
+  .nav-inner { gap: 0.75rem; padding: 0 1rem; }
+}
+
+/* ---- Reduced-motion respect ---- */
+@media (prefers-reduced-motion: reduce) {
+  .wavy-decor.hero-wave { transform: none !important; }
 }

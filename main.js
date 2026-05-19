@@ -98,9 +98,11 @@
         const v = target * easeOut(t);
         el.textContent = prefix + fmt(v) + suffix;
         if (t < 1) requestAnimationFrame(render);
+        else el.__animating = false;
       };
       if (prefersReduce) {
         el.textContent = prefix + fmt(target) + suffix;
+        el.__animating = false;
       } else {
         requestAnimationFrame(render);
       }
@@ -109,11 +111,21 @@
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          animate(e.target);
-          io.unobserve(e.target);
+          if (!e.target.__animating) {
+            e.target.__animating = true;
+            animate(e.target);
+          }
+        } else {
+          // Reset when out of view so it re-counts on next entry
+          e.target.__animating = false;
+          const target = parseFloat(e.target.dataset.count);
+          const prefix = e.target.dataset.prefix || '';
+          const decimals = (String(target).split('.')[1] || '').length;
+          let zero = decimals ? (0).toFixed(decimals) : '0';
+          e.target.textContent = prefix + zero;
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.4 });
     els.forEach(el => io.observe(el));
   }
 
