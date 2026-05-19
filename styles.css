@@ -230,12 +230,19 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
 }
 /* Layer 1 — background image (the venue photo) */
 .hero-bg {
+  --hero-img-pos: center;
   position: absolute;
   inset: 0;
   z-index: -3;
-  background: url('assets/website-header.png') center/cover no-repeat;
+  background: url('assets/website-header.png') var(--hero-img-pos)/cover no-repeat;
   transform: translate3d(0, calc(var(--scroll-y, 0) * 0.18px), 0);
   will-change: transform;
+}
+@media (max-width: 900px) {
+  .hero-bg { --hero-img-pos: 16% 28%; }
+}
+@media (max-width: 480px) {
+  .hero-bg { --hero-img-pos: 12% 25%; }
 }
 /* Layer 2 — navy radial glow (Pattison signature) */
 .hero::before {
