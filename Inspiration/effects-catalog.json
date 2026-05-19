@@ -1,0 +1,56 @@
+{
+  "_meta": {
+    "source": "https://www.pattisonoutdoor.com/en",
+    "extracted_at": "2026-05-14",
+    "tech_stack": "Next.js + Tailwind CSS + Storyblok CMS",
+    "total_css_rules": 1453,
+    "stylesheets": [
+      "9cf806e064830d8d.css (font-face declarations, 24 rules)",
+      "6f3758f37a81c7cb.css (main Tailwind, 1015 rules)",
+      "5c45ade305272763.css (react-multi-carousel + revicons, 21 rules)"
+    ]
+  },
+  "breakpoints_tailwind_style": {
+    "sm": "(min-width: 640px)",
+    "md": "(min-width: 768px)",
+    "lg": "(min-width: 1024px)",
+    "xl": "(min-width: 1280px)",
+    "2xl": "(min-width: 1536px)",
+    "custom_small": "(min-width: 480px)",
+    "custom_3xl": "(min-width: 1920px)",
+    "custom_4xl": "(min-width: 2560px)",
+    "a11y": ["(prefers-reduced-motion: reduce)", "(forced-colors: active)"]
+  },
+  "signature_easing": "cubic-bezier(0.62, 0.16, 0.13, 1.01)",
+  "notes_on_easing": "Pattison's signature easing is cubic-bezier(0.62, 0.16, 0.13, 1.01) — a sharp-start, soft-finish curve giving content a confident, kinetic snap. Used across all enter/exit/scale/fade animations. Also uses standard cubic-bezier(0.4, 0, 0.2, 1) (Material standard) and cubic-bezier(0, 0, 0.2, 1) (decelerate).",
+  "keyframes": {
+    "spin": "100% { transform: rotate(1turn); }",
+    "enter": "0% { opacity: var(--tw-enter-opacity,1); transform: translate3d(...) scale3d(...) rotate(...); }",
+    "exit": "100% { opacity: var(--tw-exit-opacity,1); transform: translate3d(...) scale3d(...) rotate(...); }",
+    "enterFromRight": "0% { opacity:0; transform: translateX(64px); } 100% { opacity:1; transform: translateX(0); }",
+    "enterFromLeft": "0% { opacity:0; transform: translateX(-64px); } 100% { opacity:1; transform: translateX(0); }",
+    "exitToRight": "0% { opacity:1; transform: translateX(0); } 100% { opacity:0; transform: translateX(64px); }",
+    "exitToLeft": "0% { opacity:1; transform: translateX(0); } 100% { opacity:0; transform: translateX(-64px); }",
+    "scaleOut": "0% { opacity:1; transform: rotateX(0) scale(1); } 100% { opacity:0; transform: rotateX(-10deg) scale(0.95); }",
+    "scaleIn": "0% { opacity:0; transform: rotateX(-10deg) scale(0.9); } 100% { opacity:1; transform: rotateX(0) scale(1); }",
+    "fadeIn": "0% { opacity:0; } 100% { opacity:1; }",
+    "fadeOut": "0% { opacity:1; } 100% { opacity:0; }",
+    "contentShow": "0% { opacity:0; transform: translate(-50%,-48%) scale(0.96); } 100% { opacity:1; transform: translate(-50%,-50%) scale(1); }"
+  },
+  "animation_durations_used": ["0.1s", "0.15s", "0.2s", "0.25s", "0.3s", "0.5s", "0.7s", "1s", "1.5s", "75ms"],
+  "transition_examples": [
+    "opacity 0.3s ease-out",
+    "background 0.5s",
+    "0.15s (snappy interaction)",
+    "0.2s with custom ease (button hover)",
+    "0.7s with custom ease (page section reveals)"
+  ],
+  "fonts": {
+    "primary_family": "Inter (Next.js font-loader, served as __Inter_d88be3)",
+    "weights": [400, 500, 700],
+    "fallback": "Arial (with ascent-override: 90.49%, descent-override: 22.56%, size-adjust: 107.06% for CLS prevention)",
+    "icon_font": "revicons (used by react-multi-carousel for prev/next arrows)",
+    "source": "self-hosted woff2 via /_next/static/media/",
+    "loading_strategy": "font-display: swap, subset by unicode-range for performance"
+  }
+}

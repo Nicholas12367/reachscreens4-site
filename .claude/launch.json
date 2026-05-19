@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "reachscreens",
-      "runtimeExecutable": "bash",
-      "runtimeArgs": ["/Users/nicholasconnelly/Applications/reachscreens-website/.claude/serve.sh"],
-      "port": 8090,
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8091", "--directory", "/Users/nicholasconnelly/Applications/reachscreens-website"],
+      "port": 8091,
       "autoPort": true
     }
   ]
