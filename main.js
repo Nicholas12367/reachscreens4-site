@@ -88,23 +88,19 @@
       const start = performance.now();
       const easeOut = t => 1 - Math.pow(1 - t, 3);
 
+      const fmt = (v) => {
+        if (decimals) return v.toFixed(decimals);
+        if (target >= 1000) return Math.round(v).toLocaleString();
+        return Math.round(v).toString();
+      };
       const render = (now) => {
         const t = Math.min(1, (now - start) / duration);
         const v = target * easeOut(t);
-        let display;
-        if (target >= 1000000) display = (v / 1000000).toFixed(t === 1 ? 1 : 1) + 'M';
-        else if (target >= 1000) display = Math.round(v).toLocaleString();
-        else display = decimals ? v.toFixed(decimals) : Math.round(v).toString();
-        // Special: if target itself has M in it (handled by data-suffix containing M), don't double-add
-        el.textContent = prefix + display + suffix;
+        el.textContent = prefix + fmt(v) + suffix;
         if (t < 1) requestAnimationFrame(render);
       };
       if (prefersReduce) {
-        let display;
-        if (target >= 1000000) display = (target / 1000000).toFixed(1) + 'M';
-        else if (target >= 1000) display = Math.round(target).toLocaleString();
-        else display = decimals ? target.toFixed(decimals) : Math.round(target).toString();
-        el.textContent = prefix + display + suffix;
+        el.textContent = prefix + fmt(target) + suffix;
       } else {
         requestAnimationFrame(render);
       }
