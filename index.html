@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
   <link rel="preload" as="image" href="assets/website-header.png">
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=11">
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
   <link rel="icon" href="assets/favicon.ico">
 
@@ -131,6 +131,12 @@
 
 <!-- ============ SCREENS + MAP (side-by-side) ============ -->
 <section class="split-section" id="screens" aria-labelledby="screens-h">
+  <div class="wavy-decor" aria-hidden="true">
+    <svg viewBox="0 0 1600 220" preserveAspectRatio="none">
+      <path d="M0,150 C220,60 460,30 700,100 C940,170 1140,200 1380,130 C1500,90 1560,80 1600,90" />
+      <path d="M0,110 C200,30 420,10 660,80 C900,150 1120,170 1340,100 C1480,60 1560,50 1600,60" opacity="0.6" />
+    </svg>
+  </div>
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">The Network</span>
@@ -227,6 +233,12 @@
 
 <!-- ============ FORM ============ -->
 <section class="form-section" id="idea" aria-labelledby="form-h">
+  <div class="wavy-decor" aria-hidden="true">
+    <svg viewBox="0 0 1600 220" preserveAspectRatio="none">
+      <path d="M0,130 C180,60 380,40 600,100 C820,160 1040,180 1280,110 C1440,70 1540,60 1600,80" />
+      <path d="M0,90 C160,20 360,0 580,60 C800,120 1020,140 1260,80 C1420,40 1540,30 1600,50" opacity="0.5" />
+    </svg>
+  </div>
   <div class="container">
     <div class="form-grid">
       <div class="form-side reveal">
@@ -388,7 +400,7 @@
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="assets/screen-locations.js"></script>
-<script src="map.js?v=10"></script>
-<script src="main.js?v=10"></script>
+<script src="map.js?v=11"></script>
+<script src="main.js?v=11"></script>
 </body>
 </html>

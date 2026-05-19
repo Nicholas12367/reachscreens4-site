@@ -26,16 +26,16 @@ a { color: inherit; text-decoration: none; }
 /* ---------- Design Tokens (Pattison-matched) ---------- */
 :root {
   /* Brand */
-  --rs-primary:     #0079C1;
-  --rs-primary-2:   #0089D9;
-  --rs-navy:        #00285E;
-  --rs-navy-2:      #051A3D;
-  --rs-navy-3:      #001A41;
-  --rs-mint:        #50C1CB;
-  --rs-mint-2:      #6FCFD8;
-  --rs-mint-soft:   rgba(80, 193, 203, 0.18);
-  --rs-mint-glow:   rgba(80, 193, 203, 0.35);
-  --rs-glow-navy:   rgba(0, 40, 94, 0.5);
+  --rs-primary:     #0093D9;
+  --rs-primary-2:   #2FA9E8;
+  --rs-navy:        #103D74;
+  --rs-navy-2:      #14457F;
+  --rs-navy-3:      #0E3766;
+  --rs-mint:        #4FD1C5;
+  --rs-mint-2:      #6FDED3;
+  --rs-mint-soft:   rgba(79, 209, 197, 0.22);
+  --rs-mint-glow:   rgba(79, 209, 197, 0.45);
+  --rs-glow-navy:   rgba(20, 69, 127, 0.55);
 
   /* Surface */
   --rs-light:       #FAFAFA;
@@ -1259,20 +1259,60 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   fill: none;
 }
 .wavy-decor.hero-wave {
-  top: 65%;
-  height: 280px;
-  transform: translateY(calc(var(--scroll-y, 0) * -0.12px));
+  top: 58%;
+  height: 320px;
+  transform: translate3d(0, calc(var(--scroll-y, 0) * -0.18px), 0);
   will-change: transform;
 }
-.wavy-decor.mid-wave {
-  position: relative;
-  width: 100%;
-  left: 0;
-  margin: 0 auto;
-  height: 200px;
-  z-index: 1;
+.wavy-decor.hero-wave path:nth-child(1) { stroke: rgba(79, 209, 197, 0.38); }
+.wavy-decor.hero-wave path:nth-child(2) { stroke: rgba(0, 147, 217, 0.30); }
+
+/* Split-section decorative wave (drifts with scroll, slower) */
+.split-section .wavy-decor {
+  top: 12%;
+  height: 220px;
+  z-index: 0;
+  opacity: 0.55;
+  transform: translate3d(0, calc((var(--scroll-y, 0) - 800) * -0.06px), 0);
+  will-change: transform;
 }
-.wavy-decor.mid-wave path { stroke: rgba(80, 193, 203, 0.4); }
+.split-section .wavy-decor path { stroke: rgba(255, 255, 255, 0.22); }
+.split-section .container { position: relative; z-index: 2; }
+
+/* Form section decorative wave */
+.form-section .wavy-decor {
+  bottom: 8%;
+  height: 200px;
+  z-index: 0;
+  opacity: 0.65;
+  transform: translate3d(0, calc((var(--scroll-y, 0) - 2400) * -0.08px), 0);
+  will-change: transform;
+}
+.form-section .wavy-decor path { stroke: rgba(0, 147, 217, 0.25); }
+.form-section .container { position: relative; z-index: 2; }
+
+/* Hero content drift: text moves slightly slower than scroll for depth */
+.hero-content {
+  transform: translate3d(0, calc(var(--scroll-y, 0) * 0.22px), 0);
+  will-change: transform;
+}
+
+/* Screen card subtle scroll lift (CSS only — uses scroll position cue via reveal-stagger) */
+.screen-card { transition: transform 700ms var(--ease-pat), box-shadow 700ms var(--ease-pat); }
+.reveal-stagger.in .screen-card { transform: translateY(0); }
+.reveal-stagger:not(.in) .screen-card { transform: translateY(40px); }
+
+/* Hero h1 subtle scale on scroll */
+.hero h1 {
+  transform: translate3d(0, calc(var(--scroll-y, 0) * 0.05px), 0) scale(calc(1 - min(var(--scroll-y, 0) * 0.00015, 0.08)));
+  transform-origin: left center;
+  will-change: transform;
+}
+.hero-sub, .hero-actions, .hero-status {
+  transform: translate3d(0, calc(var(--scroll-y, 0) * 0.12px), 0);
+  opacity: calc(1 - min(var(--scroll-y, 0) * 0.0018, 0.7));
+  will-change: transform, opacity;
+}
 
 /* ---- Solid backgrounds on sections so they cover the pinned hero ---- */
 .logo-collage-section,
@@ -1284,7 +1324,19 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
 }
 .logo-collage-section,
 .form-section { background: var(--rs-light); }
-.split-section { background: var(--rs-navy); }
+/* Split section: lighter, softer navy with a deep gradient feel */
+.split-section {
+  background:
+    radial-gradient(60% 70% at 70% 10%, rgba(79, 209, 197, 0.10) 0%, transparent 60%),
+    radial-gradient(40% 50% at 0% 100%, rgba(0, 147, 217, 0.12) 0%, transparent 60%),
+    linear-gradient(180deg, #1B4F8C 0%, #143D74 60%, #103266 100%);
+  color: var(--rs-text);
+}
+.split-section .section-head p { color: rgba(255, 255, 255, 0.78); }
+
+/* Stats lines + labels visible on the new lighter background */
+.stats { border-top-color: rgba(255, 255, 255, 0.14); }
+.stat-label { color: rgba(255, 255, 255, 0.72); }
 
 /* Logo collage refinement */
 .logo-tile {
