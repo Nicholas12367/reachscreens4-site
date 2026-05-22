@@ -268,7 +268,6 @@
         btn.className = 'location-item';
         btn.dataset.locId = loc.id;
         btn.innerHTML = `
-          <span class="location-num">${idx + 1}</span>
           <span class="location-info">
             <span class="location-name">${escapeHtml(loc.name)}</span>
             <span class="location-addr">${escapeHtml(loc.address)}</span>
