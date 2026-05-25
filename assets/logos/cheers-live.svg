@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" role="img" aria-label="Cheers Live">
+  <defs>
+    <linearGradient id="cheersGold" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#F4D27A"/>
+      <stop offset="1" stop-color="#C99334"/>
+    </linearGradient>
+  </defs>
+  <g font-family="Georgia, 'Times New Roman', serif">
+    <text x="120" y="50" font-size="34" font-weight="700" font-style="italic" fill="url(#cheersGold)" text-anchor="middle">Cheers</text>
+    <text x="120" y="78" font-size="14" font-weight="500" letter-spacing="0.42em" fill="#F4D27A" text-anchor="middle">LIVE LOUNGE</text>
+  </g>
+</svg>

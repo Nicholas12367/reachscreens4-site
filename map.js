@@ -52,25 +52,59 @@
     map.addControl(new maplibregl.AttributionControl({ compact: true }));
 
     let setupRan = false;
+    let flyRan = false;
+
+    function doFlyIn() {
+      if (flyRan) return;
+      flyRan = true;
+      try { map.resize(); } catch (_) {}
+      map.flyTo({
+        center: [-110.0050, 53.2783],
+        zoom: 14,
+        pitch: 55,
+        bearing: -18,
+        duration: 3500,
+        essential: true,
+        curve: 1.4,
+      });
+      try { map.triggerRepaint(); } catch (_) {}
+    }
+
+    // Fire the cinematic flyTo when the map first scrolls into view.
+    // Falls back to firing immediately if IntersectionObserver isn't available.
+    function armFlyOnScroll() {
+      const mapEl = document.getElementById('map');
+      if (!mapEl) return;
+      if (typeof IntersectionObserver === 'undefined') {
+        setTimeout(doFlyIn, 300);
+        return;
+      }
+      const rect = mapEl.getBoundingClientRect();
+      const inView = rect.top < (window.innerHeight || document.documentElement.clientHeight) * 0.85
+        && rect.bottom > 0;
+      if (inView) {
+        setTimeout(doFlyIn, 300);
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+            doFlyIn();
+            io.disconnect();
+            break;
+          }
+        }
+      }, { threshold: [0, 0.25, 0.5] });
+      io.observe(mapEl);
+    }
+
     function setup() {
       if (setupRan) return;
       setupRan = true;
       addBuildings(map);
       addMarkers(map, locations);
       try { map.resize(); map.triggerRepaint(); } catch (_) {}
-      setTimeout(() => {
-        try { map.resize(); } catch (_) {}
-        map.flyTo({
-          center: [-110.0050, 53.2783],
-          zoom: 14,
-          pitch: 55,
-          bearing: -18,
-          duration: 3500,
-          essential: true,
-          curve: 1.4,
-        });
-        try { map.triggerRepaint(); } catch (_) {}
-      }, 300);
+      armFlyOnScroll();
     }
     map.on('load', setup);
     map.on('idle', setup);

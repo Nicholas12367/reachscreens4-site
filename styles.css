@@ -187,11 +187,12 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.4rem;
+  padding: 0.75rem 1.85rem;
   background: var(--rs-red);
   color: #FFFFFF !important;
   border-radius: var(--radius-pill);
   font-weight: 600;
+  letter-spacing: 0.01em;
   transition: background 500ms var(--ease-std), transform 500ms var(--ease-std), box-shadow 500ms var(--ease-std);
 }
 .nav-cta:hover {
@@ -611,13 +612,19 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
 /* ---------- Stats ---------- */
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
   margin-top: var(--space-5);
   padding: var(--space-5) 0 0;
   border-top: 1px solid var(--rs-line);
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.stat { text-align: left; }
+@media (max-width: 720px) {
+  .stats { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+.stat { text-align: center; }
 .stat-num {
   font-size: clamp(2rem, 4vw, 3.25rem);
   white-space: nowrap;
@@ -1545,14 +1552,18 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
 }
 
 /* ---- Nav CTA — fits properly ---- */
-.nav-cta {
-  padding: 0.55rem 1.1rem;
-  font-size: 0.9rem;
-  font-weight: 500;
+.nav-links a.nav-cta,
+.nav .nav-cta {
+  padding: 0.7rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
+  min-width: 11rem;
+  justify-content: center;
 }
-.nav-inner { gap: 1.5rem; }
+.nav-inner { gap: 2rem; }
+.nav-links { gap: var(--space-5); }
 
 /* ---- Footer ---- */
 .footer { position: relative; padding-top: var(--space-7); z-index: 1; }
@@ -1646,7 +1657,8 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
 
 .review-card {
   position: relative;
-  padding: 2rem 1.75rem 1.75rem;
+  padding: 4.25rem 2rem 2rem;
+  min-height: 18rem;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--rs-line);
   border-radius: 18px;
@@ -1654,19 +1666,19 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   -webkit-backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.1rem;
   transition: transform 350ms var(--ease-std), border-color 350ms var(--ease-std), box-shadow 350ms var(--ease-std);
 }
 .review-card::before {
   content: "\201C";
   position: absolute;
-  top: -0.5rem;
-  left: 1.25rem;
+  top: 0.65rem;
+  left: 1.5rem;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 5rem;
+  font-size: 4.75rem;
   line-height: 1;
   color: var(--rs-mint);
-  opacity: 0.45;
+  opacity: 0.5;
   pointer-events: none;
 }
 .review-card:hover {

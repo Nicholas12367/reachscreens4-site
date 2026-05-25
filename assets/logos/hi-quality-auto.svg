@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" role="img" aria-label="Lloyd Hi-Quality Auto">
+  <g transform="translate(120 24)" text-anchor="middle" font-family="-apple-system, 'Inter', 'Helvetica Neue', sans-serif">
+    <text font-size="11" font-weight="600" letter-spacing="0.42em" fill="#9BB0CC">LLOYDMINSTER</text>
+  </g>
+  <g transform="translate(120 56)" text-anchor="middle" font-family="-apple-system, 'Inter', 'Helvetica Neue', sans-serif">
+    <text font-size="26" font-weight="800" letter-spacing="-0.01em" fill="#FFFFFF">HI-QUALITY</text>
+  </g>
+  <g transform="translate(120 84)" text-anchor="middle" font-family="-apple-system, 'Inter', 'Helvetica Neue', sans-serif">
+    <text font-size="16" font-weight="600" letter-spacing="0.34em" fill="#E11D2C">AUTO</text>
+  </g>
+</svg>
