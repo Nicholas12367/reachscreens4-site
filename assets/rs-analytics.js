@@ -1,17 +1,25 @@
 /* ============================================================
-   Reach Screens — first-party analytics tracker
+   Reach Screens — first-party analytics tracker (v2)
 
    Sends pageviews, clicks, scroll depth, and per-section dwell
    time to https://forms-api.reachscreens.ca/track. Powers the
-   self-hosted /admin/analytics dashboard. Runs alongside the
-   GA4 tracker in analytics.js — the two are independent.
+   self-hosted /admin/analytics dashboard. Runs alongside the GA4
+   tracker in analytics.js — the two are independent.
+
+   v2 is intentionally quiet: 20s flush interval (was 8s), queue
+   cap of 30 events, per-label click dedup (1 per 500ms), no
+   MutationObserver (sections are collected once on load + once
+   on full-page-load). Designed so a busy page can't accidentally
+   flood the API.
    ============================================================ */
 (function () {
   'use strict';
 
   var ENDPOINT = 'https://forms-api.reachscreens.ca/track';
-  var FLUSH_INTERVAL_MS = 8000;
-  var SESSION_TTL_MS = 30 * 60 * 1000; // 30 min of inactivity ends a session
+  var FLUSH_INTERVAL_MS = 20000;
+  var SESSION_TTL_MS = 30 * 60 * 1000;
+  var QUEUE_CAP = 30;
+  var CLICK_DEDUP_MS = 500;
 
   // --- Session id (per-tab, persists across navigations) ---
   function uuid() {
@@ -42,6 +50,7 @@
   // --- Outgoing queue ---
   var queue = [];
   function enqueue(type, extras) {
+    if (queue.length >= QUEUE_CAP) queue.shift(); // drop oldest
     var ev = {
       sid: SID,
       type: type,
@@ -51,7 +60,6 @@
     if (extras) {
       if (extras.label != null) ev.label = String(extras.label).slice(0, 200);
       if (extras.value != null) ev.value = Number(extras.value);
-      if (extras.meta && typeof extras.meta === 'object') ev.meta = extras.meta;
     }
     queue.push(ev);
   }
@@ -70,7 +78,7 @@
         body: payload,
         keepalive: true,
         credentials: 'omit'
-      }).catch(function () { /* swallow network errors */ });
+      }).catch(function () { /* swallow */ });
     } catch (_) { /* swallow */ }
   }
   setInterval(function () { flush(false); }, FLUSH_INTERVAL_MS);
@@ -79,10 +87,11 @@
     if (document.visibilityState === 'hidden') flush(true);
   });
 
-  // --- Pageview (one per load) ---
+  // --- Pageview ---
   enqueue('pageview');
 
-  // --- Click tracking (delegated) ---
+  // --- Click tracking with per-label dedup ---
+  var lastClickAt = {};
   function labelFor(target) {
     if (!target) return '';
     var t = target;
@@ -106,6 +115,9 @@
     if (!clickable) return;
     var label = labelFor(clickable);
     if (!label) return;
+    var now = Date.now();
+    if (lastClickAt[label] && (now - lastClickAt[label]) < CLICK_DEDUP_MS) return;
+    lastClickAt[label] = now;
     enqueue('click', { label: label });
     if (clickable.tagName === 'A' && clickable.href && clickable.host && clickable.host !== location.host) {
       enqueue('outbound_click', { label: clickable.href.slice(0, 200) });
@@ -113,7 +125,7 @@
     }
   }, true);
 
-  // --- Scroll-depth milestones (25 / 50 / 75 / 100) ---
+  // --- Scroll depth (25 / 50 / 75 / 100) ---
   var milestonesHit = {};
   function scrollPercent() {
     var doc = document.documentElement;
@@ -146,22 +158,21 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // --- Per-section dwell time ---
+  // --- Section dwell time ---
+  // Sections are collected ONCE (no MutationObserver). The map block
+  // and form section both exist in the static markup at parse time,
+  // so we don't miss anything important.
   var sections = [];
   function collectSections() {
-    var nodes = document.querySelectorAll('section[id], section[aria-labelledby], .review-card, .logo-collage-section, .map-block, .form-section, .social-proof');
+    var nodes = document.querySelectorAll('section[id], section[aria-labelledby], .logo-collage-section, .map-block, .form-section, .social-proof');
     nodes.forEach(function (node) {
-      if (sections.find(function (s) { return s.node === node; })) return;
       var key = node.id || node.getAttribute('aria-labelledby') || (node.className || '').split(' ')[0] || 'section';
       sections.push({ node: node, key: key, visibleSince: 0, totalMs: 0 });
     });
   }
-  collectSections();
-  if (window.MutationObserver) {
-    var mo = new MutationObserver(function () { collectSections(); });
-    mo.observe(document.body, { childList: true, subtree: true });
-  }
-  if ('IntersectionObserver' in window) {
+  function setupDwell() {
+    if (!('IntersectionObserver' in window)) return;
+    collectSections();
     var io = new IntersectionObserver(function (entries) {
       var now = Date.now();
       entries.forEach(function (entry) {
@@ -175,11 +186,8 @@
         }
       });
     }, { threshold: [0, 0.3, 0.6] });
-    function observeAll() {
-      sections.forEach(function (s) { try { io.observe(s.node); } catch (_) {} });
-    }
-    observeAll();
-    setInterval(observeAll, 5000);
+    sections.forEach(function (s) { try { io.observe(s.node); } catch (_) {} });
+
     function emitDwell() {
       var now = Date.now();
       sections.forEach(function (s) {
@@ -187,7 +195,7 @@
           s.totalMs += now - s.visibleSince;
           s.visibleSince = 0;
         }
-        if (s.totalMs > 1000) {
+        if (s.totalMs > 1500) {
           enqueue('section_dwell', { label: s.key, value: Math.round(s.totalMs / 1000) });
           s.totalMs = 0;
         }
@@ -198,14 +206,25 @@
     });
     window.addEventListener('pagehide', emitDwell);
   }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupDwell);
+  } else {
+    setupDwell();
+  }
 
   // --- Form-interaction events ---
-  var form = document.getElementById('idea-form');
-  if (form) {
+  function wireForm() {
+    var form = document.getElementById('idea-form');
+    if (!form) return;
     enqueue('form_view');
     form.addEventListener('submit', function () {
       enqueue('form_submit');
       flush(true);
     });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireForm);
+  } else {
+    wireForm();
   }
 })();
