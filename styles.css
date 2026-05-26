@@ -459,6 +459,16 @@ body.page-light-header .nav {
    bigger without crowding the tile edges. */
 .logo-tile.boost img { transform: scale(1.05); }
 .logo-tile.boost-lg img { transform: scale(1.15); }
+/* Mobile: tiles are smaller, so the same px padding feels cramped and
+   transform-scaled artwork starts to crowd the tile edges. Give every
+   tile more breathing room and disable the boost transforms so square /
+   portrait logos (Honda, Viking, Katchi, Summit, Superior Water, PRG)
+   don't visually fill edge-to-edge. */
+@media (max-width: 700px) {
+  .logo-tile { padding: 1.25rem 1.4rem; }
+  .logo-tile.boost img,
+  .logo-tile.boost-lg img { transform: none; }
+}
 /* Special: cursive text-tile for Curls by Felicity */
 .logo-tile.text.cursive {
   font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
