@@ -4,168 +4,192 @@ window.screenLocations = [
     "name": "Katchai Cafe",
     "address": "C-5730 44 Street, Lloydminster, AB T9V 0B6",
     "lng": -110.029295,
-    "lat": 53.2785304
+    "lat": 53.2785304,
+    "image": "assets/locations/katchai-cafe.png"
   },
   {
     "id": 2,
     "name": "CL Therapy",
     "address": "4161 70 Avenue, Lloydminster, AB T9V 3L9",
     "lng": -110.04734,
-    "lat": 53.27302
+    "lat": 53.27302,
+    "image": "assets/locations/cl-therapy.png"
   },
   {
     "id": 3,
     "name": "Cuts by Jord",
     "address": "5710 44 Street, Lloydminster, AB T9V 0B6",
     "lng": -110.02637,
-    "lat": 53.27855
+    "lat": 53.27855,
+    "image": "assets/locations/cuts-by-jord.png"
   },
   {
     "id": 4,
     "name": "Superior Water",
     "address": "4305B 57 Avenue, Lloydminster, AB T9V 1Y4",
     "lng": -110.0251,
-    "lat": 53.27726
+    "lat": 53.27726,
+    "image": "assets/locations/superior-water.png"
   },
   {
     "id": 5,
     "name": "Mr. Sparkles",
     "address": "6201 43 Street, Lloydminster, AB T9V 2W9",
     "lng": -110.03456,
-    "lat": 53.27635
+    "lat": 53.27635,
+    "image": "assets/locations/mr-sparkles.png"
   },
   {
     "id": 6,
     "name": "3 Guys Truck Wash",
     "address": "4807 40 Avenue, Lloydminster, SK S9V 1Y8",
     "lng": -109.97811,
-    "lat": 53.28196
+    "lat": 53.28196,
+    "image": "assets/locations/3-guys-truck-wash.png"
   },
   {
     "id": 7,
     "name": "Truck Zone",
     "address": "5205 65 Street, Lloydminster, AB T9V 2E8",
     "lng": -110.01431,
-    "lat": 53.30287
+    "lat": 53.30287,
+    "image": "assets/locations/truck-zone.png"
   },
   {
     "id": 8,
     "name": "Alicia's Apothecary",
     "address": "101-1724 50 Avenue, Lloydminster, AB T9V 0Y1",
     "lng": -110.0059,
-    "lat": 53.26645
+    "lat": 53.26645,
+    "image": "assets/locations/alicias-apothecary.png"
   },
   {
     "id": 9,
     "name": "Fountain Tire",
     "address": "5110 63 Avenue, Lloydminster, AB T9V 2E6",
     "lng": -110.03752,
-    "lat": 53.28594
+    "lat": 53.28594,
+    "image": "assets/locations/fountain-tire.png"
   },
   {
     "id": 10,
     "name": "Neighbours Pub",
     "address": "3-5601 31 Street, Lloydminster, AB T9V 2H3",
     "lng": -110.02223,
-    "lat": 53.26681
+    "lat": 53.26681,
+    "image": "assets/locations/neighbours-pub.png"
   },
   {
     "id": 11,
     "name": "Supplement King",
     "address": "105-4100 70 Avenue, Lloydminster, AB T9V 2X3",
     "lng": -110.04869,
-    "lat": 53.27435
+    "lat": 53.27435,
+    "image": "assets/locations/supplement-king.png"
   },
   {
     "id": 12,
     "name": "In2Golf",
     "address": "6202 48 Street, Lloydminster, AB T9V 2G1",
     "lng": -110.03472,
-    "lat": 53.28257
+    "lat": 53.28257,
+    "image": "assets/locations/in2golf.png"
   },
   {
     "id": 13,
     "name": "Sunrise Pharmacy",
     "address": "102-5001 18 Street, Lloydminster, AB T9V 2G7",
     "lng": -110.00628,
-    "lat": 53.25307
+    "lat": 53.25307,
+    "image": "assets/locations/sunrise-pharmacy.png"
   },
   {
     "id": 14,
     "name": "Marc'd Up Tattoos",
     "address": "12-1804 50 Avenue, Lloydminster, AB T9V 2W7",
     "lng": -110.00588,
-    "lat": 53.26445
+    "lat": 53.26445,
+    "image": "assets/locations/marc-d-up-tattoos.png"
   },
   {
     "id": 15,
     "name": "Nouveau Lasers",
     "address": "1429B 50 Avenue, Lloydminster, SK S9V 2K1",
     "lng": -110.005488,
-    "lat": 53.2552228
+    "lat": 53.2552228,
+    "image": "assets/locations/nouveau-lasers.png"
   },
   {
     "id": 16,
     "name": "Aveiro Sleep",
     "address": "101-5101 48 Street, Lloydminster, AB T9V 0H9",
     "lng": -110.0084442,
-    "lat": 53.2814466
+    "lat": 53.2814466,
+    "image": "assets/locations/aveiro-sleep.png"
   },
   {
     "id": 17,
     "name": "Station Auto",
     "address": "5013 49 Avenue, Lloydminster, SK S9V 0T8",
     "lng": -110.0029182,
-    "lat": 53.2841821
+    "lat": 53.2841821,
+    "image": "assets/locations/station-auto.png"
   },
   {
     "id": 18,
     "name": "Border City Dental",
     "address": "4804 50 Street, Lloydminster, SK S9V 0M9",
     "lng": -110.000823,
-    "lat": 53.2818884
+    "lat": 53.2818884,
+    "image": "assets/locations/border-city-dental.png"
   },
   {
     "id": 19,
     "name": "Diamond Auto",
     "address": "4634 44 Street, Lloydminster, SK S9V 0G4",
     "lng": -109.9971602,
-    "lat": 53.2783075
+    "lat": 53.2783075,
+    "image": "assets/locations/diamond-auto.png"
   },
   {
     "id": 20,
     "name": "Lloyd Hi-Quality Auto",
     "address": "2709 50 Avenue, Lloydminster, SK S9V 2K1",
     "lng": -110.0046855,
-    "lat": 53.2622457
+    "lat": 53.2622457,
+    "image": "assets/locations/lloyd-hi-quality-auto.png"
   },
   {
     "id": 21,
     "name": "Sage and Soul",
     "address": "1-2801 50 Avenue, Lloydminster, SK S9V 2A8",
     "lng": -110.0039764,
-    "lat": 53.2628901
+    "lat": 53.2628901,
+    "image": "assets/locations/sage-and-soul.png"
   },
   {
     "id": 22,
     "name": "The Sticks",
     "address": "5704 44 Street, Lloydminster, AB T9V 0B6",
     "lng": -110.0248362,
-    "lat": 53.2788003
+    "lat": 53.2788003,
+    "image": "assets/locations/the-sticks.png"
   },
   {
     "id": 23,
     "name": "Imagine Laser Works",
     "address": "106-5101 48 Street, Lloydminster, AB T9V 2G5",
     "lng": -110.0084442,
-    "lat": 53.2814466
+    "lat": 53.2814466,
+    "image": "assets/locations/imagine-laser-works.png"
   },
   {
     "id": 24,
     "name": "Superior Water (Coin-Op)",
     "address": "3245 50 Avenue, Lloydminster, SK S9V 0N8",
     "lng": -110.0054804,
-    "lat": 53.2507699
+    "lat": 53.2507699,
+    "image": "assets/locations/superior-water-coin-op.png"
   },
   {
     "id": 25,
@@ -179,14 +203,16 @@ window.screenLocations = [
     "name": "Tasty K's",
     "address": "5008A 39 Street, Lloydminster, AB T9V 2Y8",
     "lng": -110.0069965,
-    "lat": 53.2734142
+    "lat": 53.2734142,
+    "image": "assets/locations/tasty-ks.png"
   },
   {
     "id": 27,
     "name": "Viking Strength",
     "address": "4203 70 Avenue, Lloydminster, AB T9V 3L9",
     "lng": -110.046947,
-    "lat": 53.2752662
+    "lat": 53.2752662,
+    "image": "assets/locations/viking-strength.png"
   },
   {
     "id": 28,
@@ -194,14 +220,16 @@ window.screenLocations = [
     "address": "5501 44 Street, Lloydminster, AB T9V 2H4",
     "lng": -110.0179997,
     "lat": 53.2770657,
-    "screens": 2
+    "screens": 2,
+    "image": "assets/locations/cheers-live.png"
   },
   {
     "id": 29,
     "name": "Kat Salon",
     "address": "5019 50 Street, Lloydminster, AB T9V 0L9",
     "lng": -110.007219,
-    "lat": 53.2831913
+    "lat": 53.2831913,
+    "image": "assets/locations/kat-salon.png"
   },
   {
     "id": 30,
@@ -209,27 +237,31 @@ window.screenLocations = [
     "address": "6206 44 Street, Lloydminster, AB T9V 1V9",
     "lng": -110.034931,
     "lat": 53.2789847,
-    "screens": 2
+    "screens": 2,
+    "image": "assets/locations/astec-safety.png"
   },
   {
     "id": 31,
     "name": "Lloydminster Honda",
     "address": "1904 50 Avenue, Lloydminster, AB T9V 2W7",
     "lng": -110.0067501,
-    "lat": 53.2558581
+    "lat": 53.2558581,
+    "image": "assets/locations/lloydminster-honda.png"
   },
   {
     "id": 32,
     "name": "Wilson Registries",
     "address": "2-1202 50 Avenue, Lloydminster, AB T9V 0Y1",
     "lng": -110.0067158,
-    "lat": 53.2494939
+    "lat": 53.2494939,
+    "image": "assets/locations/wilson-registries.png"
   },
   {
     "id": 33,
     "name": "World Class Training and Nutrition",
     "address": "6601 43 Street, Lloydminster, AB T9V 3E8",
     "lng": -110.0416158,
-    "lat": 53.2763864
+    "lat": 53.2763864,
+    "image": "assets/locations/world-class-training.png"
   }
 ];

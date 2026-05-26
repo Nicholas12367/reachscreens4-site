@@ -4,7 +4,7 @@
     <path d="M12,-6 C18,-6 18,4 12,4" fill="none" stroke="#D4A26A" stroke-width="2.5" stroke-linejoin="round"/>
     <path d="M-6,-16 C-6,-13 -3,-13 -3,-10 M0,-16 C0,-13 3,-13 3,-10 M6,-16 C6,-13 9,-13 9,-10" stroke="#D4A26A" stroke-width="1.6" stroke-linecap="round" fill="none"/>
   </g>
-  <g font-family="Georgia, 'Times New Roman', serif" fill="#FFFFFF" text-anchor="start">
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#0E1726" text-anchor="start">
     <text x="66" y="48" font-size="26" font-weight="700" font-style="italic">Katchai</text>
     <text x="66" y="74" font-family="-apple-system, 'Inter', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" letter-spacing="0.46em" fill="#D4A26A">CAFÉ</text>
   </g>

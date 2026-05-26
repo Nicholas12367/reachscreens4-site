@@ -417,12 +417,14 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   line-height: 1.3;
   font-family: 'Inter', sans-serif;
 }
-/* Some logos use white text and need a dark tile to show */
+/* Legacy dark-tile (kept for any future use, but no logos use it now) */
 .logo-tile.dark {
   background: var(--rs-navy);
   border-color: var(--rs-navy);
 }
 .logo-tile.dark.text { color: var(--rs-text); }
+/* Invert a raster logo whose artwork is white-on-transparent so it reads on a white tile */
+.logo-tile.invert img { filter: invert(1) hue-rotate(180deg); }
 
 /* ---------- Screens + Map split ---------- */
 .split-section {
@@ -500,6 +502,42 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
 }
 @media (min-width: 1024px) {
   .map-block { min-height: 720px; position: sticky; top: calc(var(--nav-h) + 1rem); }
+}
+.map-block.full-width {
+  width: 100%;
+  margin-top: var(--space-5);
+  position: relative;
+  top: auto;
+  min-height: 560px;
+}
+@media (min-width: 1024px) {
+  .map-block.full-width { min-height: 780px; }
+}
+
+/* ---------- Screens Photos (white-bg, below map) ---------- */
+.screens-photos-section {
+  background: #FFFFFF;
+  padding: var(--space-7) 0;
+  color: var(--rs-text-dark);
+}
+.screens-photos-section h2 { color: var(--rs-text-dark); }
+.screens-photos-section p  { color: #4B5563; }
+.screens-photos-section .eyebrow { color: var(--rs-primary); }
+.screens-photos-section .screen-gallery {
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 700px) {
+  .screens-photos-section .screen-gallery { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1100px) {
+  .screens-photos-section .screen-gallery { grid-template-columns: repeat(4, 1fr); }
+}
+.screens-photos-section .screen-card {
+  background: #F4F6F9;
+  border: 1px solid rgba(0, 40, 94, 0.08);
+}
+.screens-photos-section .screen-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 40, 94, 0.12);
 }
 #map, .map-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .map-caption {
@@ -780,23 +818,27 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   border: 1px solid #FCA5A5;
 }
 
-/* ---------- Locations page ---------- */
+/* ---------- Locations page (light theme) ---------- */
 .locations-page-header {
   position: relative;
-  background: var(--rs-navy-2);
+  background: #FFFFFF;
   padding: calc(var(--nav-h) + var(--space-5)) 0 var(--space-5);
-  border-bottom: 1px solid var(--rs-line);
+  border-bottom: 1px solid rgba(0, 40, 94, 0.08);
   overflow: hidden;
+  color: var(--rs-text-dark);
 }
 .locations-page-header::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(60% 60% at 70% 30%, var(--rs-glow-navy) 0%, transparent 65%);
+  background: radial-gradient(60% 60% at 70% 30%, rgba(0, 121, 193, 0.08) 0%, transparent 65%);
   pointer-events: none;
 }
 .locations-page-header > .container { position: relative; z-index: 1; }
-.locations-section { padding: var(--space-6) 0 var(--space-7); background: var(--rs-navy); }
+.locations-page-header h1 { color: var(--rs-text-dark); }
+.locations-page-header .eyebrow { color: var(--rs-primary); }
+.locations-page-header .hero-sub { color: #4B5563; text-shadow: none; }
+.locations-section { padding: var(--space-6) 0 var(--space-7); background: #FFFFFF; }
 .locations-split {
   display: grid;
   grid-template-columns: 1fr;
@@ -806,22 +848,23 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   .locations-split { grid-template-columns: 0.85fr 1fr; gap: var(--space-4); align-items: start; }
 }
 .locations-list-wrap {
-  background: var(--rs-navy-2);
+  background: #FFFFFF;
   border-radius: var(--radius-card);
-  border: 1px solid var(--rs-line);
+  border: 1px solid rgba(0, 40, 94, 0.10);
   max-height: 760px;
   overflow-y: auto;
+  box-shadow: 0 4px 18px rgba(0, 40, 94, 0.04);
 }
 .locations-list-wrap::-webkit-scrollbar { width: 8px; }
-.locations-list-wrap::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
-.locations-list-wrap::-webkit-scrollbar-thumb { background: rgba(80, 193, 203, 0.25); border-radius: 4px; }
+.locations-list-wrap::-webkit-scrollbar-track { background: rgba(0, 40, 94, 0.03); }
+.locations-list-wrap::-webkit-scrollbar-thumb { background: rgba(80, 193, 203, 0.45); border-radius: 4px; }
 .locations-list { list-style: none; }
 .location-item {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--rs-line);
+  border-bottom: 1px solid rgba(0, 40, 94, 0.07);
   cursor: pointer;
   transition: background 250ms var(--ease-std);
   background: none;
@@ -830,10 +873,10 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
 }
 .location-item:last-child { border-bottom: none; }
 .location-item:hover {
-  background: rgba(80, 193, 203, 0.08);
+  background: rgba(80, 193, 203, 0.10);
   transition-duration: 75ms;
 }
-.location-item.active { background: rgba(80, 193, 203, 0.14); }
+.location-item.active { background: rgba(80, 193, 203, 0.18); }
 .location-num {
   flex-shrink: 0;
   width: 32px; height: 32px;
@@ -849,33 +892,33 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
 .location-info { flex: 1; min-width: 0; }
 .location-name {
   font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--rs-text);
+  font-weight: 600;
+  color: var(--rs-text-dark);
   margin-bottom: 0.2rem;
   line-height: 1.3;
 }
 .location-addr {
   font-size: 0.85rem;
-  color: var(--rs-text-mid);
+  color: #4B5563;
   line-height: 1.4;
 }
 .location-screens-badge {
   display: inline-block;
   font-size: 0.7rem;
   padding: 0.15rem 0.55rem;
-  background: var(--rs-mint-soft);
-  color: var(--rs-mint);
+  background: rgba(80, 193, 203, 0.15);
+  color: #0F8C95;
   border-radius: var(--radius-pill);
   margin-top: 0.4rem;
 }
 .location-arrow {
   flex-shrink: 0;
-  color: var(--rs-text-muted);
+  color: #94A3B8;
   font-size: 1.25rem;
   align-self: center;
   transition: color 250ms var(--ease-std), transform 250ms var(--ease-std);
 }
-.location-item:hover .location-arrow { color: var(--rs-mint); transform: translateX(3px); }
+.location-item:hover .location-arrow { color: var(--rs-primary); transform: translateX(3px); }
 
 /* ---------- Modal ---------- */
 .modal-overlay {
@@ -964,6 +1007,10 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   border: none;
   display: block;
   object-fit: cover;
+}
+.modal-image-wrap img.modal-location-img {
+  background: #0E1726;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 .modal-image-empty {
   position: absolute;

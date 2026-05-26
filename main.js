@@ -19,11 +19,8 @@
 
     const onScroll = () => {
       const y = window.scrollY;
-      // Scrolled state (background)
+      // Scrolled state (background) — nav stays pinned at all times
       nav.classList.toggle('scrolled', y > 24);
-      // Hide on scroll-down (only past hero ~ 120px), show on scroll-up
-      const goingDown = y > lastY && y > 140;
-      nav.classList.toggle('nav-hidden', goingDown && !nav.classList.contains('menu-open'));
       // Hero parallax (px-based, drives translateY directly)
       const hero = $('.hero-bg');
       if (hero && y < window.innerHeight) {
@@ -209,19 +206,29 @@
         metaEl.appendChild(el);
       });
 
-      // Embed OpenStreetMap — no API key required, no iframe restrictions
+      // Prefer a real photo of the location; fall back to OSM embed
       const q = encodeURIComponent(loc.lat + ',' + loc.lng);
-      const dLat = 0.0030, dLng = 0.0060; // ~300m view box
-      const bbox = [loc.lng - dLng, loc.lat - dLat, loc.lng + dLng, loc.lat + dLat]
-        .map(v => v.toFixed(6)).join(',');
-      const osmUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${loc.lat},${loc.lng}`;
-      imgWrap.innerHTML = `
-        <iframe src="${osmUrl}" title="Map of ${loc.name}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      const pillHtml = `
         <div class="modal-image-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
           <span>${escapeHtml(loc.address)}</span>
         </div>
       `;
+      if (loc.image) {
+        imgWrap.innerHTML = `
+          <img src="${loc.image}" alt="${escapeHtml(loc.name)} — inside the location" class="modal-location-img" loading="lazy">
+          ${pillHtml}
+        `;
+      } else {
+        const dLat = 0.0030, dLng = 0.0060; // ~300m view box
+        const bbox = [loc.lng - dLng, loc.lat - dLat, loc.lng + dLng, loc.lat + dLat]
+          .map(v => v.toFixed(6)).join(',');
+        const osmUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${loc.lat},${loc.lng}`;
+        imgWrap.innerHTML = `
+          <iframe src="${osmUrl}" title="Map of ${loc.name}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          ${pillHtml}
+        `;
+      }
 
       // Directions link
       if (dirBtn) dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${q}`;
