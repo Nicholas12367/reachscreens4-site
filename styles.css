@@ -1806,6 +1806,9 @@ body.page-light-header .nav {
 .g-review-avatar--katchi {
   background: linear-gradient(135deg, #FF1A8C 0%, #FFB142 100%);
 }
+.g-review-avatar--felicity {
+  background: linear-gradient(135deg, #8E44AD 0%, #C77DFF 100%);
+}
 .g-review-id { flex: 1; min-width: 0; }
 .g-review-name {
   font-weight: 600;
