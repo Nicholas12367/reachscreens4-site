@@ -402,6 +402,27 @@
       });
     });
 
+    // Read more / Show less toggle
+    cards.forEach(card => {
+      const body = $('.g-review-body', card);
+      const toggle = $('.g-review-toggle', card);
+      if (!body || !toggle) return;
+      // Mark cards whose text is clamped so the toggle becomes visible
+      const checkOverflow = () => {
+        const overflowing = body.scrollHeight - body.clientHeight > 2;
+        card.classList.toggle('has-overflow', overflowing || card.classList.contains('is-expanded'));
+      };
+      requestAnimationFrame(checkOverflow);
+      window.addEventListener('resize', checkOverflow, { passive: true });
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const expanded = card.classList.toggle('is-expanded');
+        toggle.textContent = expanded ? 'Show less' : 'Read more';
+        toggle.setAttribute('aria-expanded', String(expanded));
+      });
+    });
+
     // Re-evaluate on resize
     window.addEventListener('resize', () => setCenter(), { passive: true });
   }

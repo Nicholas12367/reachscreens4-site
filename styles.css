@@ -1753,18 +1753,18 @@ body.page-light-header .nav {
 .reviews-track::-webkit-scrollbar { display: none; }
 
 .g-review-card {
-  flex: 0 0 min(420px, 86vw);
+  flex: 0 0 min(340px, 86vw);
   scroll-snap-align: center;
   background: #FFFFFF;
   color: #1F2937;
   border-radius: 16px;
-  padding: 1.5rem 1.6rem 1.75rem;
+  padding: 1.4rem 1.5rem 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
-  transform: scale(0.82);
+  gap: 0.85rem;
+  transform: scale(0.85);
   opacity: 0.55;
   filter: saturate(0.7);
   transition: transform 450ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 450ms ease, filter 450ms ease, box-shadow 450ms ease;
@@ -1836,22 +1836,37 @@ body.page-light-header .nav {
 
 .g-review-body {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.55;
   color: #3C4043;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   letter-spacing: 0.005em;
-  max-height: 16em;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
 }
-.g-review-card.is-center .g-review-body {
-  max-height: none;
-  -webkit-mask-image: none;
-  mask-image: none;
+.g-review-card.is-expanded .g-review-body {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
 }
+.g-review-toggle {
+  align-self: flex-start;
+  background: none;
+  border: 0;
+  padding: 0.15rem 0;
+  margin: 0;
+  color: #1A73E8;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: none;
+}
+.g-review-toggle:hover { text-decoration: underline; }
+.g-review-card.has-overflow .g-review-toggle { display: inline-block; }
 
 .reviews-cta {
   margin-top: 1.5rem;
