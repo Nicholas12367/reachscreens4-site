@@ -135,7 +135,8 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   will-change: transform;
 }
 .nav.nav-hidden { transform: translateY(-100%); }
-.nav.scrolled {
+.nav.scrolled,
+body.page-light-header .nav {
   background: rgba(0, 26, 65, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -520,9 +521,9 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   padding: var(--space-7) 0;
   color: var(--rs-text-dark);
 }
-.screens-photos-section h2 { color: var(--rs-text-dark); }
-.screens-photos-section p  { color: #4B5563; }
-.screens-photos-section .eyebrow { color: var(--rs-primary); }
+.screens-photos-section h2 { color: #FFFFFF; }
+.screens-photos-section p  { color: #FFFFFF; }
+.screens-photos-section .eyebrow { color: #FFFFFF; }
 .screens-photos-section .screen-gallery {
   grid-template-columns: repeat(2, 1fr);
 }
@@ -536,6 +537,11 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   background: #F4F6F9;
   border: 1px solid rgba(0, 40, 94, 0.08);
 }
+.screens-photos-section .screen-card img {
+  object-position: top center;
+}
+.screens-photos-section .screen-card-label { color: #FFFFFF; }
+.screens-photos-section .screen-card-title { color: #FFFFFF; }
 .screens-photos-section .screen-card:hover {
   box-shadow: 0 20px 40px rgba(0, 40, 94, 0.12);
 }
@@ -1012,6 +1018,23 @@ p { color: var(--rs-text-mid); line-height: 1.6; }
   background: #0E1726;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
+.modal-image-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #0E1726 0%, #1a2540 100%);
+  color: var(--rs-text-mid);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding: 1rem;
+}
+.modal-image-placeholder svg { width: 56px; height: 56px; opacity: 0.55; color: var(--rs-mint); }
+.modal-image-placeholder span { color: var(--rs-text); font-weight: 500; }
 .modal-image-empty {
   position: absolute;
   inset: 0;
