@@ -521,9 +521,12 @@ body.page-light-header .nav {
   padding: var(--space-7) 0;
   color: var(--rs-text-dark);
 }
-.screens-photos-section h2 { color: #FFFFFF; }
-.screens-photos-section p  { color: #FFFFFF; }
-.screens-photos-section .eyebrow { color: #FFFFFF; }
+.screens-photos-section .section-head h2,
+.screens-photos-section h2 { color: #FFFFFF !important; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55); }
+.screens-photos-section .section-head p,
+.screens-photos-section p  { color: #FFFFFF !important; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5); }
+.screens-photos-section .section-head .eyebrow,
+.screens-photos-section .eyebrow { color: #FFFFFF !important; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5); }
 .screens-photos-section .screen-gallery {
   grid-template-columns: repeat(2, 1fr);
 }
