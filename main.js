@@ -385,19 +385,28 @@
     track.addEventListener('pointercancel', endDrag);
     track.addEventListener('pointerleave', endDrag);
 
-    // If the pointer was dragged, swallow the next click so the card doesn't open
+    // Card click: open Google profile (unless click was on toggle or was a drag)
     cards.forEach(card => {
       card.addEventListener('click', (e) => {
-        if (moved) { e.preventDefault(); moved = false; }
-      });
-    });
-
-    // Click a non-center card → snap it to center (in addition to opening on second click)
-    cards.forEach(card => {
-      card.addEventListener('click', (e) => {
+        // Ignore clicks that originated on the Read more toggle
+        if (e.target.closest('.g-review-toggle')) return;
+        // Ignore drags
+        if (moved) { moved = false; return; }
+        // Non-center → snap to center first
         if (!card.classList.contains('is-center')) {
-          e.preventDefault();
           card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          return;
+        }
+        // Center → open the Google profile
+        const href = card.dataset.href;
+        if (href) window.open(href, '_blank', 'noopener,noreferrer');
+      });
+      // Keyboard activation (Enter / Space) since role="link" expects it
+      card.addEventListener('keydown', (e) => {
+        if (e.target.closest('.g-review-toggle')) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.click();
         }
       });
     });
@@ -409,13 +418,16 @@
       if (!body || !toggle) return;
       // Mark cards whose text is clamped so the toggle becomes visible
       const checkOverflow = () => {
+        if (card.classList.contains('is-expanded')) {
+          card.classList.add('has-overflow');
+          return;
+        }
         const overflowing = body.scrollHeight - body.clientHeight > 2;
-        card.classList.toggle('has-overflow', overflowing || card.classList.contains('is-expanded'));
+        card.classList.toggle('has-overflow', overflowing);
       };
       requestAnimationFrame(checkOverflow);
       window.addEventListener('resize', checkOverflow, { passive: true });
       toggle.addEventListener('click', (e) => {
-        e.preventDefault();
         e.stopPropagation();
         const expanded = card.classList.toggle('is-expanded');
         toggle.textContent = expanded ? 'Show less' : 'Read more';
