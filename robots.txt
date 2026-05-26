@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /Inspiration/
+Disallow: /archive/
 
 Sitemap: https://reachscreens.ca/sitemap.xml
