@@ -1738,7 +1738,12 @@ body.page-light-header .nav {
   cursor: grab;
 }
 .reviews-carousel.is-dragging { cursor: grabbing; }
-.reviews-carousel.is-dragging .g-review-card { pointer-events: none; }
+/* While actively dragging, swallow pointer events on card content so the drag
+   keeps tracking smoothly — but keep the toggle button clickable so Read more
+   still fires when the user just clicks without dragging. */
+.reviews-carousel.is-dragging .g-review-card > *:not(.g-review-toggle) {
+  pointer-events: none;
+}
 .reviews-track {
   display: flex;
   gap: 1.5rem;
@@ -1884,8 +1889,31 @@ body.page-light-header .nav {
 }
 
 @media (max-width: 700px) {
-  .g-review-card { flex-basis: 88vw; padding: 1.25rem 1.25rem 1.5rem; }
-  .reviews-track { padding: 1rem max(1rem, calc(50% - 44vw)); gap: 1rem; }
+  /* Card width + track padding tuned so the next card (which scales to 0.85
+     because it's not centered) still peeks ~25px past the viewport edge —
+     visual hint that more reviews are scrollable. transform-origin is shifted
+     toward the inside edge so the shrink doesn't pull the peek out of view. */
+  .g-review-card { flex-basis: 70vw; padding: 1.25rem 1.25rem 1.5rem; }
+  .reviews-track { padding: 1rem 15vw; gap: 0.85rem; }
+  .g-review-card { transform-origin: 50% 50%; }
+  .g-review-card:not(.is-center) { transform: scale(0.88); }
+}
+
+/* Subtle scroll-hint chevron on mobile so users see there's more to swipe */
+.reviews-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 64px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, var(--rs-navy-3) 100%);
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+@media (max-width: 700px) {
+  .reviews-carousel::after { opacity: 0.85; }
 }
 
 /* ---- Mobile-specific ---- */

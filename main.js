@@ -360,7 +360,10 @@
       setCenter();
     });
 
-    // Click-and-drag horizontal scroll (desktop)
+    // Click-and-drag horizontal scroll (desktop). Only mark as "dragging" once
+    // the pointer has actually moved past a threshold — a plain click should
+    // never set .is-dragging, otherwise pointer-events:none on the descendants
+    // would kill the Read more button's click event.
     let isDown = false, startX = 0, startScroll = 0, moved = false;
     track.addEventListener('pointerdown', (e) => {
       if (e.pointerType === 'touch') return; // let native touch handle it
@@ -368,13 +371,15 @@
       moved = false;
       startX = e.clientX;
       startScroll = track.scrollLeft;
-      carousel.classList.add('is-dragging');
     });
     track.addEventListener('pointermove', (e) => {
       if (!isDown) return;
       const dx = e.clientX - startX;
-      if (Math.abs(dx) > 5) moved = true;
-      track.scrollLeft = startScroll - dx;
+      if (!moved && Math.abs(dx) > 5) {
+        moved = true;
+        carousel.classList.add('is-dragging');
+      }
+      if (moved) track.scrollLeft = startScroll - dx;
     });
     const endDrag = () => {
       if (!isDown) return;
