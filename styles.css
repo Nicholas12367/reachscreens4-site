@@ -424,7 +424,7 @@ body.page-light-header .nav {
   justify-content: center;
   width: 100%;
   aspect-ratio: 3 / 2;
-  padding: 0.4rem;
+  padding: 0.9rem;
   background: #FFFFFF;
   border-radius: 12px;
   border: 1px solid rgba(0, 40, 94, 0.06);
@@ -455,16 +455,15 @@ body.page-light-header .nav {
   padding: 0.5rem;
 }
 /* Per-logo size boosts for tiles whose artwork still has heavy internal
-   negative space (circles, badges, etc.). object-fit: contain bounds them,
-   then transform: scale pushes them past those bounds, with overflow:hidden
-   on the parent so they don't bleed into siblings. */
-.logo-tile.boost img { transform: scale(1.18); }
-.logo-tile.boost-lg img { transform: scale(1.35); }
+   negative space (circles, badges, etc.). Subtle bump so the logo reads
+   bigger without crowding the tile edges. */
+.logo-tile.boost img { transform: scale(1.05); }
+.logo-tile.boost-lg img { transform: scale(1.15); }
 /* Special: cursive text-tile for Curls by Felicity */
 .logo-tile.text.cursive {
   font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 1.75rem;
   line-height: 1;
   color: #1a1a1a;
   letter-spacing: 0.01em;
