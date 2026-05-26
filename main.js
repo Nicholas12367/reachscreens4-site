@@ -322,6 +322,90 @@
     }[c]));
   }
 
+  /* ---------- Reviews carousel (Google-style with center scale) ---------- */
+  function initReviewsCarousel() {
+    const carousel = $('[data-reviews-carousel]');
+    if (!carousel) return;
+    const track = $('[data-reviews-track]', carousel);
+    const cards = $$('[data-review-card]', carousel);
+    if (!track || !cards.length) return;
+
+    // Mark the card whose center is closest to the track's center as .is-center
+    const setCenter = () => {
+      const trackRect = track.getBoundingClientRect();
+      const centerX = trackRect.left + trackRect.width / 2;
+      let nearest = null, nearestDist = Infinity;
+      cards.forEach(card => {
+        const r = card.getBoundingClientRect();
+        const dist = Math.abs(r.left + r.width / 2 - centerX);
+        if (dist < nearestDist) { nearestDist = dist; nearest = card; }
+      });
+      cards.forEach(c => c.classList.toggle('is-center', c === nearest));
+    };
+    let rafId = null;
+    track.addEventListener('scroll', () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => { setCenter(); rafId = null; });
+    }, { passive: true });
+
+    // Initial centering — scroll the first card into center
+    requestAnimationFrame(() => {
+      const first = cards[0];
+      if (first) {
+        const trackRect = track.getBoundingClientRect();
+        const cardRect = first.getBoundingClientRect();
+        const offset = (cardRect.left - trackRect.left) - (trackRect.width / 2 - cardRect.width / 2);
+        track.scrollLeft = offset;
+      }
+      setCenter();
+    });
+
+    // Click-and-drag horizontal scroll (desktop)
+    let isDown = false, startX = 0, startScroll = 0, moved = false;
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'touch') return; // let native touch handle it
+      isDown = true;
+      moved = false;
+      startX = e.clientX;
+      startScroll = track.scrollLeft;
+      carousel.classList.add('is-dragging');
+    });
+    track.addEventListener('pointermove', (e) => {
+      if (!isDown) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 5) moved = true;
+      track.scrollLeft = startScroll - dx;
+    });
+    const endDrag = () => {
+      if (!isDown) return;
+      isDown = false;
+      carousel.classList.remove('is-dragging');
+    };
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+    track.addEventListener('pointerleave', endDrag);
+
+    // If the pointer was dragged, swallow the next click so the card doesn't open
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (moved) { e.preventDefault(); moved = false; }
+      });
+    });
+
+    // Click a non-center card → snap it to center (in addition to opening on second click)
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (!card.classList.contains('is-center')) {
+          e.preventDefault();
+          card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      });
+    });
+
+    // Re-evaluate on resize
+    window.addEventListener('resize', () => setCenter(), { passive: true });
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
     initNav();
@@ -329,6 +413,7 @@
     initCountUps();
     initForm();
     initLocationsList();
+    initReviewsCarousel();
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);
