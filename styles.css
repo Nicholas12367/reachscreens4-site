@@ -256,7 +256,7 @@ body.page-light-header .nav {
   position: absolute;
   inset: 0;
   z-index: -3;
-  background: url('assets/website-header.png') var(--hero-img-pos)/cover no-repeat;
+  background: url('assets/website-header.webp') var(--hero-img-pos)/cover no-repeat;
   transform: translate3d(0, calc(var(--scroll-y, 0) * 0.18px), 0);
   will-change: transform;
 }
@@ -1346,7 +1346,7 @@ body.page-light-header .nav {
   width: 100vw;
   height: 100vh;
   z-index: -10;
-  background: url('assets/website-header.png') var(--hero-img-pos, center)/cover no-repeat;
+  background: url('assets/website-header.webp') var(--hero-img-pos, center)/cover no-repeat;
   transform: none !important;
 }
 /* Pinned overlay layer in fixed viewport (dimming) */
