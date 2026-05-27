@@ -214,9 +214,39 @@
           <span>${escapeHtml(loc.address)}</span>
         </div>
       `;
-      if (loc.image) {
+      const photos = Array.isArray(loc.images) && loc.images.length ? loc.images : (loc.image ? [loc.image] : []);
+      const fitClass = loc.objectFit === 'contain' ? ' modal-location-img--contain' : '';
+      if (photos.length > 1) {
+        const slides = photos.map((src, i) => `
+          <img src="${src}" alt="${escapeHtml(loc.name)} — inside the location" class="modal-location-img${fitClass}${i === 0 ? ' is-active' : ''}" data-slide="${i}" loading="lazy">
+        `).join('');
+        const dots = photos.map((_, i) => `<button type="button" class="modal-image-dot${i === 0 ? ' is-active' : ''}" data-dot="${i}" aria-label="Show photo ${i + 1}"></button>`).join('');
         imgWrap.innerHTML = `
-          <img src="${loc.image}" alt="${escapeHtml(loc.name)} — inside the location" class="modal-location-img" loading="lazy">
+          ${slides}
+          <button type="button" class="modal-image-nav modal-image-nav--prev" data-prev aria-label="Previous photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="modal-image-nav modal-image-nav--next" data-next aria-label="Next photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="modal-image-dots" role="tablist">${dots}</div>
+          ${pillHtml}
+        `;
+        let current = 0;
+        const total = photos.length;
+        const showSlide = (idx) => {
+          current = (idx + total) % total;
+          imgWrap.querySelectorAll('.modal-location-img').forEach((el, i) => el.classList.toggle('is-active', i === current));
+          imgWrap.querySelectorAll('.modal-image-dot').forEach((el, i) => el.classList.toggle('is-active', i === current));
+        };
+        imgWrap.querySelector('[data-prev]').addEventListener('click', (e) => { e.stopPropagation(); showSlide(current - 1); });
+        imgWrap.querySelector('[data-next]').addEventListener('click', (e) => { e.stopPropagation(); showSlide(current + 1); });
+        imgWrap.querySelectorAll('.modal-image-dot').forEach((el) => {
+          el.addEventListener('click', (e) => { e.stopPropagation(); showSlide(parseInt(el.dataset.dot, 10)); });
+        });
+      } else if (photos.length === 1) {
+        imgWrap.innerHTML = `
+          <img src="${photos[0]}" alt="${escapeHtml(loc.name)} — inside the location" class="modal-location-img${fitClass} is-active" loading="lazy">
           ${pillHtml}
         `;
       } else {
