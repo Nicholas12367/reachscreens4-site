@@ -19,8 +19,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=45">
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="styles.css?v=46">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"></noscript>
   <link rel="icon" href="assets/favicon.ico">
 </head>
 <body class="page-light-header">
@@ -157,15 +158,17 @@
 
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-<script src="assets/screen-locations.js?v=45"></script>
-<script src="map.js?v=45"></script>
-<script src="main.js?v=45"></script>
+<script defer src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script defer src="assets/screen-locations.js?v=46"></script>
+<script defer src="map.js?v=46"></script>
+<script defer src="main.js?v=46"></script>
 
 <!-- Analytics -->
-<script src="assets/analytics.js?v=45" defer></script>
-<script src="assets/rs-analytics.js?v=45" defer></script>
-<script src="assets/hotjar.js?v=45" defer></script>
+<script defer src="assets/rs-analytics.js?v=46"></script>
+<!-- GA4 + Hotjar stubs (no-op until IDs are pasted): uncomment to activate.
+<script defer src="assets/analytics.js?v=46"></script>
+<script defer src="assets/hotjar.js?v=46"></script>
+-->
 
 <!-- Form modal + Contact modal mounts (built by main.js on load) -->
 <div id="form-modal-mount"></div>

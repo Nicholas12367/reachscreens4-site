@@ -21,7 +21,7 @@ window.screenLocations = [
     "address": "5710 44 Street, Lloydminster, AB T9V 0B6",
     "lng": -110.02637,
     "lat": 53.27855,
-    "image": "assets/locations/cuts-by-jord.webp?v=45",
+    "image": "assets/locations/cuts-by-jord.webp?v=46",
     "objectFit": "contain"
   },
   {
@@ -46,7 +46,7 @@ window.screenLocations = [
     "address": "4807 40 Avenue, Lloydminster, SK S9V 1Y8",
     "lng": -109.97811,
     "lat": 53.28196,
-    "image": "assets/locations/3-guys-truck-wash.webp?v=45",
+    "image": "assets/locations/3-guys-truck-wash.webp?v=46",
     "objectFit": "contain"
   },
   {
@@ -103,7 +103,7 @@ window.screenLocations = [
     "address": "102-5001 18 Street, Lloydminster, AB T9V 2G7",
     "lng": -110.00628,
     "lat": 53.25307,
-    "image": "assets/locations/sunrise-pharmacy.webp?v=45",
+    "image": "assets/locations/sunrise-pharmacy.webp?v=46",
     "objectFit": "contain"
   },
   {
@@ -225,8 +225,8 @@ window.screenLocations = [
     "lat": 53.2770657,
     "screens": 2,
     "images": [
-      "assets/locations/cheers-live.webp?v=45",
-      "assets/locations/cheers-live-2.webp?v=45"
+      "assets/locations/cheers-live.webp?v=46",
+      "assets/locations/cheers-live-2.webp?v=46"
     ],
     "objectFit": "contain"
   },
