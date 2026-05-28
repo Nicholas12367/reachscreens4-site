@@ -2446,14 +2446,23 @@ body.page-light-header .nav {
   align-self: flex-start;
   background: none;
   border: 0;
-  padding: 0.15rem 0;
-  margin: 0;
+  padding: 0.5rem 0.75rem;
+  margin: 0 0 0 -0.75rem;
+  min-height: 32px;
   color: #1A73E8;
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
   display: none;
+}
+/* Footer section headings — visually identical to original <h5>, but in proper outline order */
+.footer-col-h {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+  color: var(--rs-text);
+  letter-spacing: 0.02em;
 }
 .g-review-toggle:hover { text-decoration: underline; }
 .g-review-card.has-overflow .g-review-toggle { display: inline-block; }
