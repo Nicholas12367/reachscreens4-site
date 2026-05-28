@@ -219,6 +219,68 @@ body.page-light-header .nav {
 }
 .nav-cta::after { display: none !important; }
 
+/* Secondary nav "Contact Us" — outline pill, sits next to Claim Your Spot */
+.nav-contact {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.35rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 200ms var(--ease-std), border-color 200ms var(--ease-std), color 200ms var(--ease-std);
+}
+.nav-contact:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--rs-mint);
+  color: var(--rs-mint);
+}
+.nav.scrolled .nav-contact { border-color: rgba(255, 255, 255, 0.65); }
+.nav-contact::after { display: none !important; }
+.page-light-header .nav-contact { border-color: rgba(255, 255, 255, 0.65); }
+
+/* ---------- Floating tap-to-call button ---------- */
+.floating-call {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 1.75rem);
+  bottom: clamp(1rem, 2.5vw, 1.75rem);
+  z-index: 950;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.25rem 0.85rem 1rem;
+  background: var(--rs-red);
+  color: #FFFFFF !important;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 10px 28px -6px var(--rs-red-glow),
+    0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: background 200ms var(--ease-std), transform 180ms var(--ease-std), box-shadow 200ms var(--ease-std);
+}
+.floating-call svg {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+}
+.floating-call:hover {
+  background: var(--rs-red-2);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 14px 34px -6px var(--rs-red-glow),
+    0 6px 14px rgba(0, 0, 0, 0.28);
+}
+.floating-call:active { transform: translateY(0); transition-duration: 80ms; }
+@media (max-width: 640px) {
+  .floating-call { padding: 0.85rem; }
+  .floating-call .floating-call-label { display: none; }
+  .floating-call svg { width: 24px; height: 24px; }
+}
+
 .nav-toggle {
   display: none;
   width: 40px;
@@ -298,16 +360,31 @@ body.page-light-header .nav {
   font-family: 'Manrope', 'Inter', system-ui, sans-serif;
   font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(2.25rem, 6.4vw, 6rem);
+  font-size: clamp(2.1rem, 5vw, 3.85rem);
   line-height: 0.98;
   letter-spacing: -0.02em;
-  max-width: 18ch;
+  max-width: 22ch;
   margin-bottom: var(--space-3);
   color: var(--rs-text);
+}
+.hero h1 .hero-h-prefix {
+  display: block;
+  font-size: 0.42em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  margin-bottom: 0.55em;
+  color: var(--rs-text);
+  opacity: 0.95;
 }
 .hero h1 .accent {
   color: var(--rs-mint);
   display: block;
+  line-height: 0.95;
+}
+.hero h1 .accent br { display: none; }
+@media (min-width: 900px) {
+  .hero h1 .accent br { display: inline; }
 }
 .hero h1 .big {
   display: block;
