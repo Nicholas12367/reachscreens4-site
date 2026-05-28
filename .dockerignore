@@ -1,0 +1,13 @@
+.git
+.claude
+.gitignore
+CLAUDE.md
+Inspiration
+archive
+scripts
+node_modules
+*.md
+.DS_Store
+Dockerfile
+nginx.conf
+.dockerignore
