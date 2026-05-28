@@ -4,7 +4,7 @@
    Source palette: pattisonoutdoor.com (#0079C1 / #00285E / #50C1CB)
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -187,20 +187,28 @@ body.page-light-header .nav {
 .nav-cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.85rem;
+  padding: 0.7rem 1.25rem;
+  min-width: 220px;
   background: var(--rs-red);
   color: #FFFFFF !important;
+  border: 2px solid var(--rs-red);
   border-radius: var(--radius-pill);
-  font-weight: 600;
+  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 0.92rem;
   letter-spacing: 0.01em;
-  /* Soft elevation + faint top highlight — subtle, no chunky 3D edge */
+  white-space: nowrap;
+  outline: 4px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 2px;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.18),
     0 6px 16px -4px var(--rs-red-glow),
     0 2px 4px rgba(0, 0, 0, 0.15);
-  transition: background 200ms var(--ease-std), transform 180ms var(--ease-std), box-shadow 200ms var(--ease-std);
+  transition: background 200ms var(--ease-std), outline-color 200ms var(--ease-std), transform 180ms var(--ease-std), box-shadow 200ms var(--ease-std);
 }
+.page-light-header .nav-cta { outline-color: rgba(0, 40, 94, 0.10); }
 .nav-cta:hover {
   background: var(--rs-red-2);
   transform: translateY(-1px);
@@ -223,14 +231,16 @@ body.page-light-header .nav {
 .nav-links a.nav-contact {
   display: inline-flex;
   align-items: center;
-  padding: 0.85rem 2.3rem;
+  justify-content: center;
+  padding: 0.7rem 1.25rem;
+  min-width: 220px;
   background: #FFFFFF;
   color: var(--rs-primary) !important;
   border: 2px solid #FFFFFF;
   border-radius: var(--radius-pill);
   font-family: 'Manrope', 'Inter', system-ui, sans-serif;
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   letter-spacing: 0.01em;
   white-space: nowrap;
   outline: 4px solid rgba(255, 255, 255, 0.35);
@@ -948,9 +958,9 @@ body.page-light-header .nav {
 .hero-stat-num {
   font-family: 'Manrope', 'Inter', system-ui, sans-serif;
   font-weight: 800;
-  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 0.95;
-  letter-spacing: -0.028em;
+  letter-spacing: -0.03em;
   color: var(--rs-mint);
   white-space: nowrap;
   display: block;
@@ -981,18 +991,24 @@ body.page-light-header .nav {
   font-weight: 400;
 }
 
-/* Staircase reveal — each stat starts hidden below-right at a slight tilt,
-   slides up + flattens into its grid slot one at a time. */
+/* Staircase 3D reveal — each card folds down from steeply below,
+   blur-fades up, then snaps flat into its grid slot. */
+.hero-stats-grid { perspective: 1400px; perspective-origin: 50% 30%; }
 .hero-stat[data-stat-index] {
   opacity: 0;
-  transform: perspective(1200px) rotateX(22deg) rotateY(-8deg) translate3d(40px, 90px, 0) scale(0.92);
+  transform: rotateX(55deg) translate3d(0, 180px, -160px) scale(0.85);
   transform-origin: 50% 100%;
-  transition: opacity 800ms var(--ease-pat), transform 950ms var(--ease-pat);
-  will-change: opacity, transform;
+  filter: blur(6px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 950ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 600ms ease-out;
+  will-change: opacity, transform, filter;
 }
 .hero-stat[data-stat-index].is-visible {
   opacity: 1;
-  transform: perspective(1200px) rotateX(0) rotateY(0) translate3d(0, 0, 0) scale(1);
+  transform: rotateX(0) translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
 }
 
 /* ---------- Map descriptor chip (above the map) ---------- */
@@ -1483,16 +1499,16 @@ body.page-light-header .nav {
   }
 }
 .form-section--modal .form-side h2 {
-  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Manrope', 'Inter', system-ui, sans-serif;
   font-weight: 800;
   text-transform: uppercase;
   font-size: clamp(1.85rem, 3.8vw, 3rem);
   line-height: 1.0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   color: var(--rs-text-dark);
   margin-bottom: var(--space-3);
 }
-.form-section--modal .form-side h2 .text-mint { color: var(--rs-primary); }
+.form-section--modal .form-side h2 .text-mint { color: var(--rs-mint); }
 .form-section--modal .form-side > p { color: #4B5563; }
 .form-section--modal .form-card {
   box-shadow: 0 10px 30px -15px rgba(0, 26, 65, 0.18);
@@ -2120,16 +2136,16 @@ body.page-light-header .nav {
 .form-section > .container { position: relative; z-index: 1; }
 
 .form-side h2 {
-  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Manrope', 'Inter', system-ui, sans-serif;
   font-weight: 800;
   text-transform: uppercase;
   font-size: clamp(2rem, 4.2vw, 3.5rem);
   line-height: 1.0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   margin-bottom: var(--space-3);
   color: var(--rs-text-dark);
 }
-.form-side h2 .text-mint { color: var(--rs-primary); }
+.form-side h2 .text-mint { color: var(--rs-mint); }
 .form-checklist li {
   font-size: 1rem;
   font-weight: 500;
