@@ -530,11 +530,7 @@
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
         </button>
         <div class="form-section form-section--modal">
-          <div class="contact-modal-head">
-            <span class="eyebrow">Talk to us</span>
-            <h2 id="contact-modal-title">Hop on a <span class="text-mint">quick call.</span></h2>
-            <p>The fastest way to lock in your ad. We answer the phone &mdash; really.</p>
-          </div>
+          <h2 id="contact-modal-title" class="sr-only">Contact Reach Screens</h2>
           <a class="contact-call-btn" href="tel:+13065143752">
             <span class="contact-call-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
@@ -544,7 +540,7 @@
               <span class="contact-call-number">(306) 514-3752</span>
             </span>
           </a>
-          <div class="contact-divider"><span>Prefer to message? Send a quick note</span></div>
+          <div class="contact-divider"><span>Prefer to send a quick note?</span></div>
           <div class="form-card">
             <form id="contact-form" class="idea-form-instance" data-endpoint="https://forms-api.reachscreens.ca/submit" data-form-source="reachscreens.ca / contact modal">
               <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
@@ -655,23 +651,26 @@
     }
   }
 
-  /* ---------- Per-stat scroll reveal (hero stats — one-by-one) ---------- */
+  /* ---------- Stats staircase reveal (sticky scroll, per-trigger) ---------- */
   function initStatsReveal() {
-    const stats = $$('[data-stat-reveal]');
+    const triggers = $$('.hero-stats-trigger');
+    const stats = $$('[data-stat-index]');
     if (!stats.length) return;
-    if (prefersReduce) {
+    if (prefersReduce || !triggers.length) {
       stats.forEach(s => s.classList.add('is-visible'));
       return;
     }
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
+          const idx = parseInt(e.target.dataset.trigger, 10);
+          const stat = stats[idx];
+          if (stat) stat.classList.add('is-visible');
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.35 });
-    stats.forEach(el => io.observe(el));
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    triggers.forEach(t => io.observe(t));
   }
 
   /* ---------- Boot ---------- */

@@ -219,30 +219,40 @@ body.page-light-header .nav {
 }
 .nav-cta::after { display: none !important; }
 
-/* Secondary nav "Contact Us" — white pill with blue text */
-.nav-contact {
+/* Secondary nav "Contact Us" — Pattison-style ringed white pill */
+.nav-links a.nav-contact {
   display: inline-flex;
   align-items: center;
-  padding: 0.75rem 1.9rem;
+  padding: 0.85rem 2.3rem;
   background: #FFFFFF;
   color: var(--rs-primary) !important;
-  border: 1.5px solid #FFFFFF;
+  border: 2px solid #FFFFFF;
   border-radius: var(--radius-pill);
-  font-weight: 700;
+  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
   letter-spacing: 0.01em;
   white-space: nowrap;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 4px 12px -4px rgba(0, 26, 65, 0.25);
-  transition: background 200ms var(--ease-std), color 200ms var(--ease-std), transform 180ms var(--ease-std), box-shadow 200ms var(--ease-std);
+  outline: 4px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 6px 16px -4px rgba(0, 26, 65, 0.28);
+  transition: background 200ms var(--ease-std), color 200ms var(--ease-std), outline-color 200ms var(--ease-std), transform 180ms var(--ease-std), box-shadow 200ms var(--ease-std);
 }
-.nav-contact:hover {
+.nav-links a.nav-contact:hover {
   background: var(--rs-primary);
   color: #FFFFFF !important;
-  border-color: var(--rs-primary);
+  border-color: #FFFFFF;
+  outline-color: rgba(0, 147, 217, 0.45);
   transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 8px 18px -4px rgba(0, 121, 193, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 10px 22px -4px rgba(0, 121, 193, 0.55);
 }
-.nav-contact:active { transform: translateY(1px); transition-duration: 80ms; }
-.nav-contact::after { display: none !important; }
+.nav-links a.nav-contact:active { transform: translateY(1px); transition-duration: 80ms; }
+.nav-links a.nav-contact::after { display: none !important; }
+.page-light-header .nav-links a.nav-contact { outline-color: rgba(0, 40, 94, 0.10); }
 
 /* ---------- Floating tap-to-call button ---------- */
 .floating-call {
@@ -574,6 +584,15 @@ body.page-light-header .nav {
   .logo-tile { padding: 1.25rem 1.4rem; }
   .logo-tile.boost img,
   .logo-tile.boost-lg img { transform: none; }
+  /* Specific logos that fill the tile edge-to-edge on mobile — shrink them
+     so they have proper margins like the rest. */
+  .logo-tile img[src*="lloydminster-honda"],
+  .logo-tile img[src*="viking-strength"],
+  .logo-tile img[src*="prg"],
+  .logo-tile img[src*="summit-vision"] {
+    transform: scale(0.72) !important;
+    transform-origin: center center;
+  }
 }
 /* Special: cursive text-tile for Curls by Felicity */
 .logo-tile.text.cursive {
@@ -861,30 +880,61 @@ body.page-light-header .nav {
   letter-spacing: 0.14em;
 }
 
-/* ---------- Hero stats (vertical stack, per-card scroll reveal) ---------- */
+/* ---------- Hero stats (sticky pinned, staircase scroll reveal) ---------- */
 .hero-stats {
   background: linear-gradient(180deg, var(--rs-navy) 0%, var(--rs-navy-2) 60%, var(--rs-navy-3) 100%);
-  padding: clamp(4rem, 9vw, 8rem) 0;
   position: relative;
   z-index: 1;
+  padding: 0;
+}
+.hero-stats-track {
+  position: relative;
+  height: 260vh;
+}
+.hero-stats-trigger {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  pointer-events: none;
+  visibility: hidden;
+}
+.hero-stats-trigger[data-trigger="0"] { top: 18%; }
+.hero-stats-trigger[data-trigger="1"] { top: 46%; }
+.hero-stats-trigger[data-trigger="2"] { top: 74%; }
+
+.hero-stats-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--container-pad);
 }
 .hero-stats-grid {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(4rem, 10vw, 9rem);
-  max-width: 960px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 var(--container-pad);
+}
+@media (max-width: 760px) {
+  .hero-stats-track { height: 240vh; }
+  .hero-stats-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .hero-stats-trigger[data-trigger="0"] { top: 15%; }
+  .hero-stats-trigger[data-trigger="1"] { top: 45%; }
+  .hero-stats-trigger[data-trigger="2"] { top: 75%; }
 }
 .hero-stat {
   text-align: center;
-  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
-  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%);
-  border: 1px solid rgba(255,255,255,0.10);
+  padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 3vw, 2rem);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 22px;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.08),
-    0 22px 50px -12px rgba(0,0,0,0.55);
+    0 24px 60px -14px rgba(0,0,0,0.6);
   position: relative;
   overflow: hidden;
 }
@@ -892,56 +942,57 @@ body.page-light-header .nav {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(130% 80% at 50% 0%, rgba(79,209,197,0.12) 0%, transparent 65%);
+  background: radial-gradient(130% 80% at 50% 0%, rgba(79,209,197,0.14) 0%, transparent 65%);
   pointer-events: none;
 }
 .hero-stat-num {
   font-family: 'Manrope', 'Inter', system-ui, sans-serif;
   font-weight: 800;
-  font-size: clamp(3.25rem, 9vw, 6.5rem);
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
   line-height: 0.95;
   letter-spacing: -0.028em;
   color: var(--rs-mint);
   white-space: nowrap;
   display: block;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   background: linear-gradient(180deg, #B7F5EB 0%, var(--rs-mint) 55%, #2EB0A4 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 6px 30px rgba(79,209,197,0.18);
+  text-shadow: 0 6px 30px rgba(79,209,197,0.2);
 }
 .hero-stat-label {
   font-family: 'Manrope', 'Inter', system-ui, sans-serif;
-  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  font-size: clamp(0.78rem, 1vw, 0.92rem);
   font-weight: 800;
   color: var(--rs-text);
   text-transform: uppercase;
   letter-spacing: 0.16em;
   display: block;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.75rem;
 }
 .hero-stat-desc {
   display: block;
-  max-width: 48ch;
+  max-width: 36ch;
   margin: 0 auto;
-  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-  line-height: 1.55;
+  font-size: clamp(0.88rem, 1.05vw, 0.98rem);
+  line-height: 1.5;
   color: var(--rs-text-mid);
   font-weight: 400;
 }
 
-/* Per-card scroll reveal — fades + slides up from below, stays after reveal */
-.hero-stat[data-stat-reveal] {
+/* Staircase reveal — each stat starts hidden below-right at a slight tilt,
+   slides up + flattens into its grid slot one at a time. */
+.hero-stat[data-stat-index] {
   opacity: 0;
-  transform: perspective(1000px) rotateX(14deg) translateY(60px) scale(0.97);
+  transform: perspective(1200px) rotateX(22deg) rotateY(-8deg) translate3d(40px, 90px, 0) scale(0.92);
   transform-origin: 50% 100%;
-  transition: opacity 900ms var(--ease-pat), transform 1000ms var(--ease-pat);
+  transition: opacity 800ms var(--ease-pat), transform 950ms var(--ease-pat);
   will-change: opacity, transform;
 }
-.hero-stat[data-stat-reveal].is-visible {
+.hero-stat[data-stat-index].is-visible {
   opacity: 1;
-  transform: perspective(1000px) rotateX(0) translateY(0) scale(1);
+  transform: perspective(1200px) rotateX(0) rotateY(0) translate3d(0, 0, 0) scale(1);
 }
 
 /* ---------- Map descriptor chip (above the map) ---------- */
@@ -1431,7 +1482,17 @@ body.page-light-header .nav {
     align-items: start;
   }
 }
-.form-section--modal .form-side h2 { color: var(--rs-text-dark); margin-bottom: var(--space-3); font-weight: 700; }
+.form-section--modal .form-side h2 {
+  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(1.85rem, 3.8vw, 3rem);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--rs-text-dark);
+  margin-bottom: var(--space-3);
+}
+.form-section--modal .form-side h2 .text-mint { color: var(--rs-primary); }
 .form-section--modal .form-side > p { color: #4B5563; }
 .form-section--modal .form-card {
   box-shadow: 0 10px 30px -15px rgba(0, 26, 65, 0.18);
@@ -1439,35 +1500,30 @@ body.page-light-header .nav {
 }
 
 /* ---------- Contact modal (Call Now + form) ---------- */
-.contact-modal-head { text-align: center; margin-bottom: 1.75rem; }
-.contact-modal-head .eyebrow { color: var(--rs-primary); margin-bottom: 0.5rem; }
-.contact-modal-head h2 {
-  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
-  color: var(--rs-text-dark);
-  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.015em;
-  margin-bottom: 0.5rem;
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
 }
-.contact-modal-head h2 .text-mint { color: var(--rs-primary); }
-.contact-modal-head p { color: #4B5563; font-size: 1.05rem; max-width: 42ch; margin: 0 auto; }
 
 .contact-call-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1.1rem;
-  padding: 1.1rem 1.5rem;
+  padding: 1.35rem 1.75rem;
   background: var(--rs-red);
   color: #FFFFFF !important;
-  border-radius: 18px;
+  border-radius: 20px;
   text-decoration: none;
-  margin: 0 auto 1.5rem;
-  max-width: 460px;
+  margin: 0.5rem auto 1.5rem;
+  max-width: 520px;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.18),
-    0 14px 32px -8px var(--rs-red-glow),
-    0 6px 14px rgba(0, 0, 0, 0.18);
+    0 18px 40px -8px var(--rs-red-glow),
+    0 8px 18px rgba(0, 0, 0, 0.2);
   transition: background 200ms var(--ease-std), transform 180ms var(--ease-std), box-shadow 220ms var(--ease-std);
 }
 .contact-call-btn:hover {
@@ -2064,11 +2120,16 @@ body.page-light-header .nav {
 .form-section > .container { position: relative; z-index: 1; }
 
 .form-side h2 {
-  font-size: clamp(2.25rem, 4vw, 3.5rem);
-  line-height: 1.05;
+  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  line-height: 1.0;
   letter-spacing: -0.02em;
   margin-bottom: var(--space-3);
+  color: var(--rs-text-dark);
 }
+.form-side h2 .text-mint { color: var(--rs-primary); }
 .form-checklist li {
   font-size: 1rem;
   font-weight: 500;

@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
   <link rel="preload" as="image" href="assets/website-header.webp">
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=42">
+  <link rel="stylesheet" href="styles.css?v=43">
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
   <link rel="icon" href="assets/favicon.ico">
 
@@ -143,24 +143,29 @@
   </div>
 </section>
 
-<!-- ============ HERO STATS (per-card scroll reveal) ============ -->
+<!-- ============ HERO STATS (sticky staircase scroll reveal) ============ -->
 <section class="hero-stats" aria-label="Network reach">
-  <div class="container">
-    <div class="hero-stats-grid">
-      <div class="hero-stat" data-stat-reveal>
-        <span class="hero-stat-num" data-count="3500000" data-suffix="+">0</span>
-        <span class="hero-stat-label">Monthly Ad Plays</span>
-        <span class="hero-stat-desc">Reach Screens delivers your message millions of times every month across Lloydminster.</span>
-      </div>
-      <div class="hero-stat" data-stat-reveal>
-        <span class="hero-stat-num" data-count="15" data-suffix="+ min">0</span>
-        <span class="hero-stat-label">Avg. Viewer Dwell</span>
-        <span class="hero-stat-desc">Customers spend over fifteen minutes in front of our screens &mdash; way more time than a billboard at highway speed.</span>
-      </div>
-      <div class="hero-stat" data-stat-reveal>
-        <span class="hero-stat-num" data-count="0.02" data-prefix="$">0</span>
-        <span class="hero-stat-label">Cost Per Ad Play</span>
-        <span class="hero-stat-desc">Two cents per play. The lowest cost-per-impression on any local advertising channel.</span>
+  <div class="hero-stats-track">
+    <div class="hero-stats-trigger" data-trigger="0"></div>
+    <div class="hero-stats-trigger" data-trigger="1"></div>
+    <div class="hero-stats-trigger" data-trigger="2"></div>
+    <div class="hero-stats-sticky">
+      <div class="hero-stats-grid">
+        <div class="hero-stat" data-stat-index="0">
+          <span class="hero-stat-num" data-count="3500000" data-suffix="+">0</span>
+          <span class="hero-stat-label">Monthly Ad Plays</span>
+          <span class="hero-stat-desc">Millions of impressions every month across Lloydminster.</span>
+        </div>
+        <div class="hero-stat" data-stat-index="1">
+          <span class="hero-stat-num" data-count="15" data-suffix="+ min">0</span>
+          <span class="hero-stat-label">Avg. Viewer Dwell</span>
+          <span class="hero-stat-desc">Customers spend 15+ minutes in front of our screens &mdash; way more time than a highway billboard.</span>
+        </div>
+        <div class="hero-stat" data-stat-index="2">
+          <span class="hero-stat-num" data-count="0.02" data-prefix="$">0</span>
+          <span class="hero-stat-label">Cost Per Ad Play</span>
+          <span class="hero-stat-desc">Two cents per play &mdash; the lowest cost-per-impression on any local channel.</span>
+        </div>
       </div>
     </div>
   </div>
@@ -174,34 +179,34 @@
       <h2 id="logos-h">Some of the brands already on Reach Screens.</h2>
     </div>
     <div class="logo-collage reveal">
-      <div class="logo-tile"><img src="assets/logos/lloydminster-honda.webp?v=42" alt="Lloydminster Honda" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/fountain-tire.webp?v=42" alt="Fountain Tire" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/supplement-king.svg?v=42" alt="Supplement King" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/astec-safety.webp?v=42" alt="Astec Safety" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/aveiro-sleep.webp?v=42" alt="Aveiro Sleep" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/wilson-registries.webp?v=42" alt="Wilson Registries" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/harris-electric.svg?v=42" alt="Harris Electric" loading="lazy"></div>
-      <div class="logo-tile invert"><img src="assets/logos/in2golf.webp?v=42" alt="IN2GOLF" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/viking-strength.webp?v=42" alt="Viking Strength" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/marc-d-up.webp?v=42" alt="Marc'd Up Tattoos" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/imagine-laser.webp?v=42" alt="Imagine Laserworks" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/truck-zone.webp?v=42" alt="Truck Zone" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/cheers-live.webp?v=42" alt="Cheers Live Lounge" loading="lazy"></div>
-      <div class="logo-tile boost-lg"><img src="assets/logos/border-city-dental.svg?v=42" alt="Border City Dental" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/sunrise-pharmacy.webp?v=42" alt="Sunrise Pharmacy" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/hi-quality-auto.webp?v=42" alt="Lloyd Hi-Quality Auto" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/diamond-auto.webp?v=42" alt="Diamond Auto" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/sage-and-soul.webp?v=42" alt="Sage and Soul" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/neighbours-pub.webp?v=42" alt="Neighbours Pub and Kitchen" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/the-sticks.webp?v=42" alt="The Sticks" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/world-class-training.webp?v=42" alt="World Class Training" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/mr-sparkles.webp?v=42" alt="Mr. Sparkles Car Wash" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/katchai-cafe.webp?v=42" alt="Katchai Cafe" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/prg.webp?v=42" alt="Pothole Repair Guys" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/superior-water.webp?v=42" alt="Superior Water" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/summit-vision.webp?v=42" alt="Summit Vision Training" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/lloydminster-honda.webp?v=43" alt="Lloydminster Honda" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/fountain-tire.webp?v=43" alt="Fountain Tire" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/supplement-king.svg?v=43" alt="Supplement King" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/astec-safety.webp?v=43" alt="Astec Safety" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/aveiro-sleep.webp?v=43" alt="Aveiro Sleep" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/wilson-registries.webp?v=43" alt="Wilson Registries" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/harris-electric.svg?v=43" alt="Harris Electric" loading="lazy"></div>
+      <div class="logo-tile invert"><img src="assets/logos/in2golf.webp?v=43" alt="IN2GOLF" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/viking-strength.webp?v=43" alt="Viking Strength" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/marc-d-up.webp?v=43" alt="Marc'd Up Tattoos" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/imagine-laser.webp?v=43" alt="Imagine Laserworks" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/truck-zone.webp?v=43" alt="Truck Zone" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/cheers-live.webp?v=43" alt="Cheers Live Lounge" loading="lazy"></div>
+      <div class="logo-tile boost-lg"><img src="assets/logos/border-city-dental.svg?v=43" alt="Border City Dental" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/sunrise-pharmacy.webp?v=43" alt="Sunrise Pharmacy" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/hi-quality-auto.webp?v=43" alt="Lloyd Hi-Quality Auto" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/diamond-auto.webp?v=43" alt="Diamond Auto" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/sage-and-soul.webp?v=43" alt="Sage and Soul" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/neighbours-pub.webp?v=43" alt="Neighbours Pub and Kitchen" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/the-sticks.webp?v=43" alt="The Sticks" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/world-class-training.webp?v=43" alt="World Class Training" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/mr-sparkles.webp?v=43" alt="Mr. Sparkles Car Wash" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/katchai-cafe.webp?v=43" alt="Katchai Cafe" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/prg.webp?v=43" alt="Pothole Repair Guys" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/superior-water.webp?v=43" alt="Superior Water" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/summit-vision.webp?v=43" alt="Summit Vision Training" loading="lazy"></div>
       <div class="logo-tile text cursive">Curls by Felicity</div>
-      <div class="logo-tile"><img src="assets/logos/cuts-by-jord.webp?v=42" alt="Cuts by Jord" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/cuts-by-jord.webp?v=43" alt="Cuts by Jord" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -242,49 +247,49 @@
     </div>
     <div class="screen-gallery reveal-stagger">
       <div class="screen-card">
-        <img src="assets/screens/katchai-cafe.webp?v=42" alt="Cafe — customers ordering with the Reach Screen on the wall" loading="lazy" style="object-position: 12% 25%;">
+        <img src="assets/screens/katchai-cafe.webp?v=43" alt="Cafe — customers ordering with the Reach Screen on the wall" loading="lazy" style="object-position: 12% 25%;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Cafe</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/cheers-live.webp?v=42" alt="Pub and Grill — diners at the bar with the screen above" loading="lazy" style="object-position: center top;">
+        <img src="assets/screens/cheers-live.webp?v=43" alt="Pub and Grill — diners at the bar with the screen above" loading="lazy" style="object-position: center top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Pub and Grill</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/cuts-by-jord.webp?v=42" alt="Barber Shop — barber working with a client" loading="lazy" style="object-position: 30% top;">
+        <img src="assets/screens/cuts-by-jord.webp?v=43" alt="Barber Shop — barber working with a client" loading="lazy" style="object-position: 30% top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Barber Shop</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/kat-salon.webp?v=42" alt="Salon — clients waiting near the screen" loading="lazy" style="object-position: center top;">
+        <img src="assets/screens/kat-salon.webp?v=43" alt="Salon — clients waiting near the screen" loading="lazy" style="object-position: center top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Salon</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/aveiro-sleep.webp?v=42" alt="Retail showroom — customers viewing the Reach Screen on the back wall" loading="lazy" style="object-position: center center;">
+        <img src="assets/screens/aveiro-sleep.webp?v=43" alt="Retail showroom — customers viewing the Reach Screen on the back wall" loading="lazy" style="object-position: center center;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Retail</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/viking-strength.webp?v=42" alt="Gym — counter staff serving a member" loading="lazy" style="object-position: 85% top;">
+        <img src="assets/screens/viking-strength.webp?v=43" alt="Gym — counter staff serving a member" loading="lazy" style="object-position: 85% top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Gym</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/sage-and-soul.webp?v=42" alt="Salon and Spa — customers shopping with the screen above" loading="lazy" style="object-position: 85% top;">
+        <img src="assets/screens/sage-and-soul.webp?v=43" alt="Salon and Spa — customers shopping with the screen above" loading="lazy" style="object-position: 85% top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Salon and Spa</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/neighbours-pub.webp?v=42" alt="Bar and Lounge — patrons at the bar under the screen" loading="lazy" style="object-position: center top;">
+        <img src="assets/screens/neighbours-pub.webp?v=43" alt="Bar and Lounge — patrons at the bar under the screen" loading="lazy" style="object-position: center top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Bar and Lounge</span>
         </div>
@@ -544,9 +549,9 @@
           </li>
         </ol>
         <div class="photo-strip" aria-hidden="true">
-          <img src="assets/screens/cheers-live.webp?v=42" alt="" loading="lazy" style="object-position: center top;">
-          <img src="assets/screens/cuts-by-jord.webp?v=42" alt="" loading="lazy" style="object-position: 30% top;">
-          <img src="assets/screens/kat-salon.webp?v=42" alt="" loading="lazy" style="object-position: center top;">
+          <img src="assets/screens/cheers-live.webp?v=43" alt="" loading="lazy" style="object-position: center top;">
+          <img src="assets/screens/cuts-by-jord.webp?v=43" alt="" loading="lazy" style="object-position: 30% top;">
+          <img src="assets/screens/kat-salon.webp?v=43" alt="" loading="lazy" style="object-position: center top;">
         </div>
       </div>
 
@@ -692,16 +697,16 @@
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-<script src="assets/screen-locations.js?v=42"></script>
-<script src="map.js?v=42"></script>
-<script src="main.js?v=42"></script>
+<script src="assets/screen-locations.js?v=43"></script>
+<script src="map.js?v=43"></script>
+<script src="main.js?v=43"></script>
 
 <!-- Google Analytics 4 (industry-standard) -->
-<script src="assets/analytics.js?v=42" defer></script>
+<script src="assets/analytics.js?v=43" defer></script>
 <!-- First-party tracker → feeds the dashboard at forms-api.reachscreens.ca/admin/analytics -->
-<script src="assets/rs-analytics.js?v=42" defer></script>
+<script src="assets/rs-analytics.js?v=43" defer></script>
 <!-- Hotjar — fill HOTJAR_ID in assets/hotjar.js after you create the site at https://insights.hotjar.com/sites -->
-<script src="assets/hotjar.js?v=42" defer></script>
+<script src="assets/hotjar.js?v=43" defer></script>
 
 <!-- Floating tap-to-call button -->
 <a href="tel:+13065143752" class="floating-call" aria-label="Call Reach Screens">
