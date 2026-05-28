@@ -378,12 +378,13 @@
       rafId = requestAnimationFrame(() => { setCenter(); rafId = null; });
     }, { passive: true });
 
-    // Initial centering — scroll the first card into center
+    // Initial centering — scroll the [data-review-center] card into center,
+    // falling back to the middle card if none is marked, then to cards[0].
     requestAnimationFrame(() => {
-      const first = cards[0];
-      if (first) {
+      const target = $('[data-review-center]', track) || cards[Math.floor(cards.length / 2)] || cards[0];
+      if (target) {
         const trackRect = track.getBoundingClientRect();
-        const cardRect = first.getBoundingClientRect();
+        const cardRect = target.getBoundingClientRect();
         const offset = (cardRect.left - trackRect.left) - (trackRect.width / 2 - cardRect.width / 2);
         track.scrollLeft = offset;
       }
@@ -474,12 +475,118 @@
     window.addEventListener('resize', () => setCenter(), { passive: true });
   }
 
+  /* ---------- Form modal (mount + open/close + CTA intercept) ---------- */
+  const FORM_MODAL_HTML = `
+    <div class="modal-overlay form-modal-overlay" id="form-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="form-h" hidden>
+      <div class="form-modal-shell">
+        <button type="button" class="form-modal-close" data-form-modal-close aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+        <div class="form-section form-section--modal">
+          <div class="form-grid">
+            <div class="form-side">
+              <span class="eyebrow">What happens next</span>
+              <h2 id="form-h">One message away from a <span class="text-mint">free, no-obligation ad design.</span></h2>
+              <p>Three simple steps &mdash; you won't lift a finger after the first one.</p>
+              <ol class="form-steps">
+                <li><span class="form-step-num">1</span><div class="form-step-text"><strong>Send us your idea</strong><span>Fill the form. One sentence about your business is enough.</span></div></li>
+                <li><span class="form-step-num">2</span><div class="form-step-text"><strong>We come back with a plan</strong><span>Within 48 hours &mdash; locations, timing, and price.</span></div></li>
+                <li><span class="form-step-num">3</span><div class="form-step-text"><strong>Your ad goes live within a day</strong><span>Free design included. No commitment to get a quote.</span></div></li>
+              </ol>
+            </div>
+            <div class="form-card">
+              <div class="form-card-head">
+                <div class="form-card-head-title">Start the conversation</div>
+                <div class="form-card-head-sub">We'll be in touch within 48 hours</div>
+              </div>
+              <form id="idea-form" data-endpoint="https://forms-api.reachscreens.ca/submit">
+                <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+                <div class="form-row"><div class="form-field"><label for="f-message"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg> What's your idea?</label><textarea id="f-message" name="message" required placeholder="e.g., Promote our grand opening on June 14 — drive foot traffic for four weeks"></textarea></div></div>
+                <div class="form-row two"><div class="form-field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" required placeholder="First & last name"></div><div class="form-field"><label for="f-business">Business</label><input id="f-business" name="business" type="text" required placeholder="Company name"></div></div>
+                <div class="form-row two"><div class="form-field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required placeholder="you@business.com"></div><div class="form-field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" required placeholder="(306) 555-0123"></div></div>
+                <button type="submit" class="form-submit">Get My Free Ad Design <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg></button>
+                <div class="form-feedback" data-form-feedback></div>
+                <div class="form-trust">
+                  <span class="form-trust-item"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7 7a1 1 0 01-1.4 0l-3-3a1 1 0 111.4-1.4l2.3 2.3 6.3-6.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg> 48-hour response</span>
+                  <span class="form-trust-item"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7 7a1 1 0 01-1.4 0l-3-3a1 1 0 111.4-1.4l2.3 2.3 6.3-6.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg> Ad design included</span>
+                  <span class="form-trust-item"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7 7a1 1 0 01-1.4 0l-3-3a1 1 0 111.4-1.4l2.3 2.3 6.3-6.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg> No commitment</span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  let formModalEl = null;
+  function mountFormModal() {
+    const mount = $('#form-modal-mount');
+    if (!mount) return;
+    mount.innerHTML = FORM_MODAL_HTML;
+    formModalEl = $('#form-modal-overlay');
+  }
+  function openFormModal() {
+    if (!formModalEl) return;
+    formModalEl.removeAttribute('hidden');
+    // Force a reflow so the browser computes display:flex before applying .open,
+    // letting the CSS opacity/transform transition fire.
+    void formModalEl.offsetHeight;
+    formModalEl.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    const firstField = formModalEl.querySelector('#f-message');
+    if (firstField) setTimeout(() => firstField.focus(), 250);
+  }
+  function closeFormModal() {
+    if (!formModalEl) return;
+    formModalEl.classList.remove('open');
+    setTimeout(() => formModalEl.setAttribute('hidden', ''), 260);
+    document.body.style.overflow = '';
+    // Strip #idea from URL without scroll-jump
+    if (location.hash === '#idea') {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
+  function initFormModal() {
+    if (!formModalEl) return;
+    // X close button
+    formModalEl.addEventListener('click', (e) => {
+      if (e.target === formModalEl || e.target.closest('[data-form-modal-close]')) {
+        closeFormModal();
+      }
+    });
+    // Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && formModalEl.classList.contains('open')) closeFormModal();
+    });
+    // Intercept every CTA pointing at #idea (same-page or cross-page)
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href$="#idea"]');
+      if (!a) return;
+      // Always open the local modal instead of navigating/scrolling
+      e.preventDefault();
+      // Close any other open modal (e.g. location modal) first
+      const otherModal = $('#location-modal');
+      if (otherModal && otherModal.classList.contains('open')) {
+        otherModal.classList.remove('open');
+        setTimeout(() => otherModal.setAttribute('hidden', ''), 260);
+      }
+      openFormModal();
+    });
+    // Auto-open if landed with #idea hash
+    if (location.hash === '#idea') {
+      setTimeout(openFormModal, 50);
+    }
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
+    mountFormModal();
     initNav();
     initReveals();
     initCountUps();
     initForm();
+    initFormModal();
     initLocationsList();
     initReviewsCarousel();
   }

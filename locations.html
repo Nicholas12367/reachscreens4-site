@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=40">
+  <link rel="stylesheet" href="styles.css?v=41">
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
   <link rel="icon" href="assets/favicon.ico">
 </head>
@@ -34,8 +34,8 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="locations.html" class="active">Locations</a></li>
-      <li><a href="index.html#idea" class="nav-contact">Contact Us</a></li>
-      <li><a href="index.html#idea" class="nav-cta">Claim Your Spot</a></li>
+      <li><a href="#idea" class="nav-contact">Contact Us</a></li>
+      <li><a href="#idea" class="nav-cta">Get My Free Ad Design</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -67,8 +67,13 @@
       </div>
 
       <div class="map-block">
+        <div class="map-chip" data-map-chip>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Click any pin to see that location's details</span>
+        </div>
         <div id="map" class="map-canvas" aria-label="Map of all Reach Screens locations"></div>
-        <div class="map-caption"><span class="map-caption-dot"></span>Click a pin for details</div>
       </div>
     </div>
   </div>
@@ -87,7 +92,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="locations.html">Locations</a></li>
-          <li><a href="index.html#idea">Claim Your Spot</a></li>
+          <li><a href="#idea">Get My Free Ad Design</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -141,7 +146,7 @@
     <div class="modal-body">
       <div class="modal-meta" data-modal-meta></div>
       <div class="modal-actions">
-        <a href="index.html#idea" class="btn btn-primary" data-modal-close-then>Claim Your Spot
+        <a href="#idea" class="btn btn-primary" data-modal-close-then>Get My Free Ad Design
           <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
         </a>
         <a href="#" class="btn btn-outline" data-modal-directions target="_blank" rel="noopener">Get directions</a>
@@ -153,14 +158,17 @@
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-<script src="assets/screen-locations.js?v=40"></script>
-<script src="map.js?v=40"></script>
-<script src="main.js?v=40"></script>
+<script src="assets/screen-locations.js?v=41"></script>
+<script src="map.js?v=41"></script>
+<script src="main.js?v=41"></script>
 
 <!-- Analytics -->
-<script src="assets/analytics.js?v=40" defer></script>
-<script src="assets/rs-analytics.js?v=40" defer></script>
-<script src="assets/hotjar.js?v=40" defer></script>
+<script src="assets/analytics.js?v=41" defer></script>
+<script src="assets/rs-analytics.js?v=41" defer></script>
+<script src="assets/hotjar.js?v=41" defer></script>
+
+<!-- Form modal mount (built by main.js on load) -->
+<div id="form-modal-mount"></div>
 
 <!-- Floating tap-to-call button -->
 <a href="tel:+13065143752" class="floating-call" aria-label="Call Reach Screens">
