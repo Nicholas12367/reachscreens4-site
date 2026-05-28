@@ -18,8 +18,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=47">
+  <link rel="stylesheet" href="styles.css?v=48">
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"></noscript>
   <link rel="icon" href="assets/favicon.ico">
@@ -74,7 +75,7 @@
           </svg>
           <span>Click any pin to see that location's details</span>
         </div>
-        <div id="map" class="map-canvas" aria-label="Map of all Reach Screens locations"></div>
+        <div id="map" class="map-canvas" role="region" aria-label="Map of all Reach Screens locations"></div>
       </div>
     </div>
   </div>
@@ -85,11 +86,11 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/logo-white.webp" alt="Reach Screens">
+        <img src="assets/logo-white.webp" alt="Reach Screens" width="160" height="36">
         <p>Indoor digital advertising across Lloydminster. We put your ad where attention already lives.</p>
       </div>
       <div class="footer-col">
-        <h5>Site</h5>
+        <h2 class="footer-col-h">Site</h2>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="locations.html">Locations</a></li>
@@ -97,7 +98,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Contact</h5>
+        <h2 class="footer-col-h">Contact</h2>
         <ul>
           <li><a href="mailto:info@reachscreens.ca">info@reachscreens.ca</a></li>
           <li><a href="tel:+13065143752">(306) 514-3752</a></li>
@@ -105,7 +106,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Coverage</h5>
+        <h2 class="footer-col-h">Coverage</h2>
         <ul>
           <li><span style="color:var(--rs-text-mid);">Lloydminster, AB</span></li>
           <li><span style="color:var(--rs-text-mid);">Lloydminster, SK</span></li>
@@ -159,15 +160,15 @@
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script defer src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-<script defer src="assets/screen-locations.js?v=47"></script>
-<script defer src="map.js?v=47"></script>
-<script defer src="main.js?v=47"></script>
+<script defer src="assets/screen-locations.js?v=48"></script>
+<script defer src="map.js?v=48"></script>
+<script defer src="main.js?v=48"></script>
 
 <!-- Analytics -->
-<script defer src="assets/rs-analytics.js?v=47"></script>
+<script defer src="assets/rs-analytics.js?v=48"></script>
 <!-- GA4 + Hotjar stubs (no-op until IDs are pasted): uncomment to activate.
-<script defer src="assets/analytics.js?v=47"></script>
-<script defer src="assets/hotjar.js?v=47"></script>
+<script defer src="assets/analytics.js?v=48"></script>
+<script defer src="assets/hotjar.js?v=48"></script>
 -->
 
 <!-- Form modal + Contact modal mounts (built by main.js on load) -->
