@@ -8,6 +8,4 @@ scripts
 node_modules
 *.md
 .DS_Store
-Dockerfile
-nginx.conf
-.dockerignore
+# Note: Dockerfile + nginx.conf must NOT be excluded — the build uses them.
