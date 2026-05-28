@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
   <link rel="preload" as="image" href="assets/website-header.webp">
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=41">
+  <link rel="stylesheet" href="styles.css?v=42">
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
   <link rel="icon" href="assets/favicon.ico">
 
@@ -104,7 +104,7 @@
     <ul class="nav-links">
       <li><a href="/" class="active">Home</a></li>
       <li><a href="locations.html">Locations</a></li>
-      <li><a href="#idea" class="nav-contact">Contact Us</a></li>
+      <li><a href="#contact" class="nav-contact">Contact Us</a></li>
       <li><a href="#idea" class="nav-cta">Get My Free Ad Design</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -143,21 +143,24 @@
   </div>
 </section>
 
-<!-- ============ HERO STATS (count-up, 3D stagger) ============ -->
+<!-- ============ HERO STATS (per-card scroll reveal) ============ -->
 <section class="hero-stats" aria-label="Network reach">
   <div class="container">
-    <div class="hero-stats-grid reveal-stagger">
-      <div class="hero-stat">
+    <div class="hero-stats-grid">
+      <div class="hero-stat" data-stat-reveal>
         <span class="hero-stat-num" data-count="3500000" data-suffix="+">0</span>
         <span class="hero-stat-label">Monthly Ad Plays</span>
+        <span class="hero-stat-desc">Reach Screens delivers your message millions of times every month across Lloydminster.</span>
       </div>
-      <div class="hero-stat">
+      <div class="hero-stat" data-stat-reveal>
         <span class="hero-stat-num" data-count="15" data-suffix="+ min">0</span>
         <span class="hero-stat-label">Avg. Viewer Dwell</span>
+        <span class="hero-stat-desc">Customers spend over fifteen minutes in front of our screens &mdash; way more time than a billboard at highway speed.</span>
       </div>
-      <div class="hero-stat">
+      <div class="hero-stat" data-stat-reveal>
         <span class="hero-stat-num" data-count="0.02" data-prefix="$">0</span>
         <span class="hero-stat-label">Cost Per Ad Play</span>
+        <span class="hero-stat-desc">Two cents per play. The lowest cost-per-impression on any local advertising channel.</span>
       </div>
     </div>
   </div>
@@ -171,34 +174,34 @@
       <h2 id="logos-h">Some of the brands already on Reach Screens.</h2>
     </div>
     <div class="logo-collage reveal">
-      <div class="logo-tile"><img src="assets/logos/lloydminster-honda.webp?v=41" alt="Lloydminster Honda" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/fountain-tire.webp?v=41" alt="Fountain Tire" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/supplement-king.svg?v=41" alt="Supplement King" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/astec-safety.webp?v=41" alt="Astec Safety" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/aveiro-sleep.webp?v=41" alt="Aveiro Sleep" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/wilson-registries.webp?v=41" alt="Wilson Registries" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/harris-electric.svg?v=41" alt="Harris Electric" loading="lazy"></div>
-      <div class="logo-tile invert"><img src="assets/logos/in2golf.webp?v=41" alt="IN2GOLF" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/viking-strength.webp?v=41" alt="Viking Strength" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/marc-d-up.webp?v=41" alt="Marc'd Up Tattoos" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/imagine-laser.webp?v=41" alt="Imagine Laserworks" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/truck-zone.webp?v=41" alt="Truck Zone" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/cheers-live.webp?v=41" alt="Cheers Live Lounge" loading="lazy"></div>
-      <div class="logo-tile boost-lg"><img src="assets/logos/border-city-dental.svg?v=41" alt="Border City Dental" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/sunrise-pharmacy.webp?v=41" alt="Sunrise Pharmacy" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/hi-quality-auto.webp?v=41" alt="Lloyd Hi-Quality Auto" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/diamond-auto.webp?v=41" alt="Diamond Auto" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/sage-and-soul.webp?v=41" alt="Sage and Soul" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/neighbours-pub.webp?v=41" alt="Neighbours Pub and Kitchen" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/the-sticks.webp?v=41" alt="The Sticks" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/world-class-training.webp?v=41" alt="World Class Training" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/mr-sparkles.webp?v=41" alt="Mr. Sparkles Car Wash" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/katchai-cafe.webp?v=41" alt="Katchai Cafe" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/prg.webp?v=41" alt="Pothole Repair Guys" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/superior-water.webp?v=41" alt="Superior Water" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/summit-vision.webp?v=41" alt="Summit Vision Training" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/lloydminster-honda.webp?v=42" alt="Lloydminster Honda" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/fountain-tire.webp?v=42" alt="Fountain Tire" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/supplement-king.svg?v=42" alt="Supplement King" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/astec-safety.webp?v=42" alt="Astec Safety" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/aveiro-sleep.webp?v=42" alt="Aveiro Sleep" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/wilson-registries.webp?v=42" alt="Wilson Registries" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/harris-electric.svg?v=42" alt="Harris Electric" loading="lazy"></div>
+      <div class="logo-tile invert"><img src="assets/logos/in2golf.webp?v=42" alt="IN2GOLF" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/viking-strength.webp?v=42" alt="Viking Strength" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/marc-d-up.webp?v=42" alt="Marc'd Up Tattoos" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/imagine-laser.webp?v=42" alt="Imagine Laserworks" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/truck-zone.webp?v=42" alt="Truck Zone" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/cheers-live.webp?v=42" alt="Cheers Live Lounge" loading="lazy"></div>
+      <div class="logo-tile boost-lg"><img src="assets/logos/border-city-dental.svg?v=42" alt="Border City Dental" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/sunrise-pharmacy.webp?v=42" alt="Sunrise Pharmacy" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/hi-quality-auto.webp?v=42" alt="Lloyd Hi-Quality Auto" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/diamond-auto.webp?v=42" alt="Diamond Auto" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/sage-and-soul.webp?v=42" alt="Sage and Soul" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/neighbours-pub.webp?v=42" alt="Neighbours Pub and Kitchen" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/the-sticks.webp?v=42" alt="The Sticks" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/world-class-training.webp?v=42" alt="World Class Training" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/mr-sparkles.webp?v=42" alt="Mr. Sparkles Car Wash" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/katchai-cafe.webp?v=42" alt="Katchai Cafe" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/prg.webp?v=42" alt="Pothole Repair Guys" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/superior-water.webp?v=42" alt="Superior Water" loading="lazy"></div>
+      <div class="logo-tile boost"><img src="assets/logos/summit-vision.webp?v=42" alt="Summit Vision Training" loading="lazy"></div>
       <div class="logo-tile text cursive">Curls by Felicity</div>
-      <div class="logo-tile"><img src="assets/logos/cuts-by-jord.webp?v=41" alt="Cuts by Jord" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/cuts-by-jord.webp?v=42" alt="Cuts by Jord" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -239,49 +242,49 @@
     </div>
     <div class="screen-gallery reveal-stagger">
       <div class="screen-card">
-        <img src="assets/screens/katchai-cafe.webp?v=41" alt="Cafe — customers ordering with the Reach Screen on the wall" loading="lazy" style="object-position: 12% 25%;">
+        <img src="assets/screens/katchai-cafe.webp?v=42" alt="Cafe — customers ordering with the Reach Screen on the wall" loading="lazy" style="object-position: 12% 25%;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Cafe</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/cheers-live.webp?v=41" alt="Pub and Grill — diners at the bar with the screen above" loading="lazy" style="object-position: center top;">
+        <img src="assets/screens/cheers-live.webp?v=42" alt="Pub and Grill — diners at the bar with the screen above" loading="lazy" style="object-position: center top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Pub and Grill</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/cuts-by-jord.webp?v=41" alt="Barber Shop — barber working with a client" loading="lazy" style="object-position: 30% top;">
+        <img src="assets/screens/cuts-by-jord.webp?v=42" alt="Barber Shop — barber working with a client" loading="lazy" style="object-position: 30% top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Barber Shop</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/kat-salon.webp?v=41" alt="Salon — clients waiting near the screen" loading="lazy" style="object-position: center top;">
+        <img src="assets/screens/kat-salon.webp?v=42" alt="Salon — clients waiting near the screen" loading="lazy" style="object-position: center top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Salon</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/aveiro-sleep.webp?v=41" alt="Retail showroom — customers viewing the Reach Screen on the back wall" loading="lazy" style="object-position: center center;">
+        <img src="assets/screens/aveiro-sleep.webp?v=42" alt="Retail showroom — customers viewing the Reach Screen on the back wall" loading="lazy" style="object-position: center center;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Retail</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/viking-strength.webp?v=41" alt="Gym — counter staff serving a member" loading="lazy" style="object-position: 85% top;">
+        <img src="assets/screens/viking-strength.webp?v=42" alt="Gym — counter staff serving a member" loading="lazy" style="object-position: 85% top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Gym</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/sage-and-soul.webp?v=41" alt="Salon and Spa — customers shopping with the screen above" loading="lazy" style="object-position: 85% top;">
+        <img src="assets/screens/sage-and-soul.webp?v=42" alt="Salon and Spa — customers shopping with the screen above" loading="lazy" style="object-position: 85% top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Salon and Spa</span>
         </div>
       </div>
       <div class="screen-card">
-        <img src="assets/screens/neighbours-pub.webp?v=41" alt="Bar and Lounge — patrons at the bar under the screen" loading="lazy" style="object-position: center top;">
+        <img src="assets/screens/neighbours-pub.webp?v=42" alt="Bar and Lounge — patrons at the bar under the screen" loading="lazy" style="object-position: center top;">
         <div class="screen-card-caption">
           <span class="screen-card-label">Bar and Lounge</span>
         </div>
@@ -332,7 +335,7 @@
             <div class="g-review-avatar g-review-avatar--daniel" aria-hidden="true">D</div>
             <div class="g-review-id">
               <div class="g-review-name">Daniel Campeau</div>
-              <div class="g-review-sub">Reach Screens client</div>
+              <div class="g-review-sub">Fountain Tire</div>
             </div>
             <svg class="g-review-logo" viewBox="0 0 24 24" aria-label="Google" role="img">
               <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.44a5.5 5.5 0 0 1-2.39 3.61v3h3.86c2.26-2.08 3.58-5.15 3.58-8.85z"/>
@@ -436,7 +439,7 @@
             <div class="g-review-avatar g-review-avatar--zander" aria-hidden="true">Z</div>
             <div class="g-review-id">
               <div class="g-review-name">Zander Norbury</div>
-              <div class="g-review-sub">2 reviews &middot; 1 photo</div>
+              <div class="g-review-sub">Supplement King</div>
             </div>
             <svg class="g-review-logo" viewBox="0 0 24 24" aria-label="Google" role="img">
               <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.44a5.5 5.5 0 0 1-2.39 3.61v3h3.86c2.26-2.08 3.58-5.15 3.58-8.85z"/>
@@ -499,8 +502,116 @@
 </section>
 
 <!-- STEP-5-CLOSE: do not edit -->
-<!-- Form modal is mounted by main.js — placeholder so SEO loop respects boundary -->
+<!-- Form modal mount for popup CTAs (built by main.js) -->
 <div id="form-modal-mount"></div>
+<div id="contact-modal-mount"></div>
+
+<!-- ============ INLINE FORM (also lives in the modal on CTA clicks) ============ -->
+<section class="form-section" id="idea" aria-labelledby="form-h-inline">
+  <div class="wavy-decor" aria-hidden="true">
+    <svg viewBox="0 0 1600 220" preserveAspectRatio="none">
+      <path d="M0,130 C180,60 380,40 600,100 C820,160 1040,180 1280,110 C1440,70 1540,60 1600,80" />
+      <path d="M0,90 C160,20 360,0 580,60 C800,120 1020,140 1260,80 C1420,40 1540,30 1600,50" opacity="0.5" />
+    </svg>
+  </div>
+  <div class="container">
+    <div class="form-grid">
+      <div class="form-side reveal">
+        <span class="eyebrow">What happens next</span>
+        <h2 id="form-h-inline">One message away from a <span class="text-mint">free, no-obligation ad design.</span></h2>
+        <p>Three simple steps &mdash; you won't lift a finger after the first one.</p>
+        <ol class="form-steps">
+          <li>
+            <span class="form-step-num">1</span>
+            <div class="form-step-text">
+              <strong>Send us your idea</strong>
+              <span>Fill the form. One sentence about your business is enough.</span>
+            </div>
+          </li>
+          <li>
+            <span class="form-step-num">2</span>
+            <div class="form-step-text">
+              <strong>We come back with a plan</strong>
+              <span>Within 48 hours &mdash; locations, timing, and price.</span>
+            </div>
+          </li>
+          <li>
+            <span class="form-step-num">3</span>
+            <div class="form-step-text">
+              <strong>Your ad goes live within a day</strong>
+              <span>Free design included. No commitment to get a quote.</span>
+            </div>
+          </li>
+        </ol>
+        <div class="photo-strip" aria-hidden="true">
+          <img src="assets/screens/cheers-live.webp?v=42" alt="" loading="lazy" style="object-position: center top;">
+          <img src="assets/screens/cuts-by-jord.webp?v=42" alt="" loading="lazy" style="object-position: 30% top;">
+          <img src="assets/screens/kat-salon.webp?v=42" alt="" loading="lazy" style="object-position: center top;">
+        </div>
+      </div>
+
+      <div class="form-card reveal">
+        <div class="form-card-head">
+          <div class="form-card-head-title">Start the conversation</div>
+          <div class="form-card-head-sub">We'll be in touch within 48 hours</div>
+        </div>
+
+        <form id="idea-form-inline" class="idea-form-instance" data-endpoint="https://forms-api.reachscreens.ca/submit" data-form-source="reachscreens.ca / home (inline)">
+          <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="f-message-inline">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg>
+                What's your idea?
+              </label>
+              <textarea id="f-message-inline" name="message" required placeholder="e.g., Promote our grand opening on June 14 — drive foot traffic for four weeks"></textarea>
+            </div>
+          </div>
+          <div class="form-row two">
+            <div class="form-field">
+              <label for="f-name-inline">Your name</label>
+              <input id="f-name-inline" name="name" type="text" required placeholder="First & last name">
+            </div>
+            <div class="form-field">
+              <label for="f-business-inline">Business</label>
+              <input id="f-business-inline" name="business" type="text" required placeholder="Company name">
+            </div>
+          </div>
+          <div class="form-row two">
+            <div class="form-field">
+              <label for="f-email-inline">Email</label>
+              <input id="f-email-inline" name="email" type="email" required placeholder="you@business.com">
+            </div>
+            <div class="form-field">
+              <label for="f-phone-inline">Phone</label>
+              <input id="f-phone-inline" name="phone" type="tel" required placeholder="(306) 555-0123">
+            </div>
+          </div>
+          <button type="submit" class="form-submit">
+            Get My Free Ad Design
+            <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+          </button>
+          <div class="form-feedback" data-form-feedback></div>
+
+          <div class="form-trust">
+            <span class="form-trust-item">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7 7a1 1 0 01-1.4 0l-3-3a1 1 0 111.4-1.4l2.3 2.3 6.3-6.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+              48-hour response
+            </span>
+            <span class="form-trust-item">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7 7a1 1 0 01-1.4 0l-3-3a1 1 0 111.4-1.4l2.3 2.3 6.3-6.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+              Ad design included
+            </span>
+            <span class="form-trust-item">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7 7a1 1 0 01-1.4 0l-3-3a1 1 0 111.4-1.4l2.3 2.3 6.3-6.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+              No commitment
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- /STEP-5-CLOSE -->
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
@@ -581,16 +692,16 @@
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-<script src="assets/screen-locations.js?v=41"></script>
-<script src="map.js?v=41"></script>
-<script src="main.js?v=41"></script>
+<script src="assets/screen-locations.js?v=42"></script>
+<script src="map.js?v=42"></script>
+<script src="main.js?v=42"></script>
 
 <!-- Google Analytics 4 (industry-standard) -->
-<script src="assets/analytics.js?v=41" defer></script>
+<script src="assets/analytics.js?v=42" defer></script>
 <!-- First-party tracker → feeds the dashboard at forms-api.reachscreens.ca/admin/analytics -->
-<script src="assets/rs-analytics.js?v=41" defer></script>
+<script src="assets/rs-analytics.js?v=42" defer></script>
 <!-- Hotjar — fill HOTJAR_ID in assets/hotjar.js after you create the site at https://insights.hotjar.com/sites -->
-<script src="assets/hotjar.js?v=41" defer></script>
+<script src="assets/hotjar.js?v=42" defer></script>
 
 <!-- Floating tap-to-call button -->
 <a href="tel:+13065143752" class="floating-call" aria-label="Call Reach Screens">

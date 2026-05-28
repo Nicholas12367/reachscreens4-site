@@ -107,36 +107,28 @@
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          if (!e.target.__animating) {
-            e.target.__animating = true;
-            animate(e.target);
-          }
-        } else {
-          // Reset when out of view so it re-counts on next entry
-          e.target.__animating = false;
-          const target = parseFloat(e.target.dataset.count);
-          const prefix = e.target.dataset.prefix || '';
-          const decimals = (String(target).split('.')[1] || '').length;
-          let zero = decimals ? (0).toFixed(decimals) : '0';
-          e.target.textContent = prefix + zero;
+        if (e.isIntersecting && !e.target.__animating && !e.target.__done) {
+          e.target.__animating = true;
+          animate(e.target);
+          e.target.__done = true;
+          io.unobserve(e.target);
         }
       });
     }, { threshold: 0.4 });
     els.forEach(el => io.observe(el));
   }
 
-  /* ---------- Form submission ---------- */
-  function initForm() {
-    const form = $('#idea-form');
-    if (!form) return;
+  /* ---------- Form submission (works for every .idea-form-instance) ---------- */
+  function bindForm(form) {
+    if (form.__bound) return;
+    form.__bound = true;
     const endpoint = form.dataset.endpoint;
+    const source = form.dataset.formSource || 'reachscreens.ca';
     const feedback = $('[data-form-feedback]', form);
     const submitBtn = $('.form-submit', form);
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      // Honeypot
       if (form._hp && form._hp.value) return;
 
       const data = {
@@ -146,7 +138,7 @@
         business: form.business.value.trim(),
         email: form.email.value.trim(),
         phone: form.phone.value.trim(),
-        source: 'reachscreens.ca / home',
+        source,
         page: location.href,
       };
 
@@ -173,6 +165,9 @@
         submitBtn.innerHTML = originalText + ' <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>';
       }
     });
+  }
+  function initForm() {
+    $$('.idea-form-instance').forEach(bindForm);
   }
 
   /* ---------- Location modal (shared across pages) ---------- */
@@ -499,7 +494,7 @@
                 <div class="form-card-head-title">Start the conversation</div>
                 <div class="form-card-head-sub">We'll be in touch within 48 hours</div>
               </div>
-              <form id="idea-form" data-endpoint="https://forms-api.reachscreens.ca/submit">
+              <form id="idea-form" class="idea-form-instance" data-endpoint="https://forms-api.reachscreens.ca/submit" data-form-source="reachscreens.ca / home (modal)">
                 <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
                 <div class="form-row"><div class="form-field"><label for="f-message"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg> What's your idea?</label><textarea id="f-message" name="message" required placeholder="e.g., Promote our grand opening on June 14 — drive foot traffic for four weeks"></textarea></div></div>
                 <div class="form-row two"><div class="form-field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" required placeholder="First & last name"></div><div class="form-field"><label for="f-business">Business</label><input id="f-business" name="business" type="text" required placeholder="Company name"></div></div>
@@ -525,6 +520,87 @@
     if (!mount) return;
     mount.innerHTML = FORM_MODAL_HTML;
     formModalEl = $('#form-modal-overlay');
+  }
+
+  /* ---------- Contact Us modal (Call Now + form) ---------- */
+  const CONTACT_MODAL_HTML = `
+    <div class="modal-overlay form-modal-overlay" id="contact-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" hidden>
+      <div class="form-modal-shell">
+        <button type="button" class="form-modal-close" data-contact-modal-close aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+        <div class="form-section form-section--modal">
+          <div class="contact-modal-head">
+            <span class="eyebrow">Talk to us</span>
+            <h2 id="contact-modal-title">Hop on a <span class="text-mint">quick call.</span></h2>
+            <p>The fastest way to lock in your ad. We answer the phone &mdash; really.</p>
+          </div>
+          <a class="contact-call-btn" href="tel:+13065143752">
+            <span class="contact-call-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+            </span>
+            <span class="contact-call-body">
+              <span class="contact-call-label">Call Now</span>
+              <span class="contact-call-number">(306) 514-3752</span>
+            </span>
+          </a>
+          <div class="contact-divider"><span>Prefer to message? Send a quick note</span></div>
+          <div class="form-card">
+            <form id="contact-form" class="idea-form-instance" data-endpoint="https://forms-api.reachscreens.ca/submit" data-form-source="reachscreens.ca / contact modal">
+              <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+              <div class="form-row"><div class="form-field"><label for="cf-message"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2"/></svg> What's your question?</label><textarea id="cf-message" name="message" required placeholder="One sentence is enough — we'll come back with a plan."></textarea></div></div>
+              <div class="form-row two"><div class="form-field"><label for="cf-name">Your name</label><input id="cf-name" name="name" type="text" required placeholder="First & last name"></div><div class="form-field"><label for="cf-business">Business</label><input id="cf-business" name="business" type="text" required placeholder="Company name"></div></div>
+              <div class="form-row two"><div class="form-field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required placeholder="you@business.com"></div><div class="form-field"><label for="cf-phone">Phone</label><input id="cf-phone" name="phone" type="tel" required placeholder="(306) 555-0123"></div></div>
+              <button type="submit" class="form-submit">Send Message <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg></button>
+              <div class="form-feedback" data-form-feedback></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  let contactModalEl = null;
+  function mountContactModal() {
+    const mount = $('#contact-modal-mount');
+    if (!mount) return;
+    mount.innerHTML = CONTACT_MODAL_HTML;
+    contactModalEl = $('#contact-modal-overlay');
+  }
+  function openContactModal() {
+    if (!contactModalEl) return;
+    contactModalEl.removeAttribute('hidden');
+    void contactModalEl.offsetHeight;
+    contactModalEl.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeContactModal() {
+    if (!contactModalEl) return;
+    contactModalEl.classList.remove('open');
+    setTimeout(() => contactModalEl.setAttribute('hidden', ''), 260);
+    document.body.style.overflow = '';
+    if (location.hash === '#contact') {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
+  function initContactModal() {
+    if (!contactModalEl) return;
+    contactModalEl.addEventListener('click', (e) => {
+      if (e.target === contactModalEl || e.target.closest('[data-contact-modal-close]')) {
+        closeContactModal();
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && contactModalEl.classList.contains('open')) closeContactModal();
+    });
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href$="#contact"]');
+      if (!a) return;
+      e.preventDefault();
+      openContactModal();
+    });
+    if (location.hash === '#contact') {
+      setTimeout(openContactModal, 50);
+    }
   }
   function openFormModal() {
     if (!formModalEl) return;
@@ -579,14 +655,36 @@
     }
   }
 
+  /* ---------- Per-stat scroll reveal (hero stats — one-by-one) ---------- */
+  function initStatsReveal() {
+    const stats = $$('[data-stat-reveal]');
+    if (!stats.length) return;
+    if (prefersReduce) {
+      stats.forEach(s => s.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    stats.forEach(el => io.observe(el));
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
     mountFormModal();
+    mountContactModal();
     initNav();
     initReveals();
     initCountUps();
+    initStatsReveal();
     initForm();
     initFormModal();
+    initContactModal();
     initLocationsList();
     initReviewsCarousel();
   }
