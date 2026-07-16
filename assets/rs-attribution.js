@@ -1,10 +1,10 @@
 /* Reach Screens — ad attribution capture.
  *
  * On landing, snapshots the ad tags (UTM params + Meta click id) from the URL
- * and stores them in a 90-day cookie. First touch is preserved (that's the ad
- * that originally brought the visitor in — what you want for attribution);
- * last touch is refreshed. Because it only writes when a visit actually carries
- * ad tags, plain internal navigation never wipes the attribution.
+ * and stores them in a 90-day cookie. Attribution is LAST-TOUCH: the most recent
+ * ad the visitor clicked wins (that's the ad that drove this conversion). First
+ * touch is also kept for reference. Because it only writes when a visit actually
+ * carries ad tags, an untagged/organic visit never wipes the attribution.
  *
  * window.__rsAttr() returns the flattened fields to attach to a form submit.
  * main.js spreads them into the /submit payload.
@@ -47,7 +47,12 @@
           fresh
         );
       }
-      store.last = Object.assign({ at: new Date().toISOString() }, fresh);
+      store.last = Object.assign(
+        { at: new Date().toISOString(),
+          landing: location.href.slice(0, 500),
+          referrer: (document.referrer || "").slice(0, 500) },
+        fresh
+      );
       writeCookie(COOKIE, JSON.stringify(store));
     }
     return store;
@@ -59,20 +64,19 @@
   // utm_term = ad name — the two you'll join against Meta for per-ad-set ROI.
   window.__rsAttr = function () {
     var s = parse(readCookie(COOKIE));
-    var f = s.first || {};
-    var l = s.last || {};
+    var l = s.last || {}; // last-touch: the most recent ad the visitor clicked
     return {
-      utm_source:   f.utm_source   || "",
-      utm_medium:   f.utm_medium   || "",
-      utm_campaign: f.utm_campaign || "",
-      utm_content:  f.utm_content  || "",
-      utm_term:     f.utm_term     || "",
-      fbclid:       f.fbclid       || l.fbclid || "",
-      ad_landing:   f.landing      || "",
-      ad_referrer:  f.referrer     || "",
-      ad_first_at:  f.at           || "",
+      utm_source:   l.utm_source   || "",
+      utm_medium:   l.utm_medium   || "",
+      utm_campaign: l.utm_campaign || "",
+      utm_content:  l.utm_content  || "",
+      utm_term:     l.utm_term     || "",
+      fbclid:       l.fbclid       || "",
+      ad_landing:   l.landing      || "",
+      ad_referrer:  l.referrer     || "",
+      ad_at:        l.at           || "",
       // Human-readable one-liner for the email + CRM badge.
-      attribution:  [f.utm_campaign, f.utm_content, f.utm_term].filter(Boolean).join(" › ")
+      attribution:  [l.utm_campaign, l.utm_content, l.utm_term].filter(Boolean).join(" › ")
     };
   };
 })();
