@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Text message sign-up — Reach Media Inc. (Reach Screens)</title>
+  <meta name="description" content="Sign up to receive text messages from Reach Media Inc., operating as Reach Screens. Consent is optional and you can opt out at any time by replying STOP.">
+  <link rel="canonical" href="https://reachscreens.ca/sms-optin">
+  <meta name="theme-color" content="#051018">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .legal-wrap{max-width:720px;margin:0 auto;padding:120px 20px 80px;}
+    .legal-wrap h1{font-size:clamp(2rem,5vw,2.75rem);margin:0 0 .5rem;}
+    .legal-wrap .updated{color:var(--rs-text-mid,#8b9aa6);font-size:.95rem;margin-bottom:2rem;}
+    .legal-wrap h2{margin:2.5rem 0 .75rem;font-size:1.35rem;}
+    .legal-wrap p,.legal-wrap li{line-height:1.7;}
+    .legal-wrap a{color:#4fc3a1;}
+    .optin-field{margin:0 0 1.1rem;}
+    .optin-field label{display:block;font-size:.9rem;margin:0 0 .35rem;color:var(--rs-text-mid,#8b9aa6);}
+    .optin-field input,.optin-field textarea{width:100%;padding:.75rem .9rem;border-radius:8px;
+      border:1px solid rgba(139,154,166,.35);background:rgba(255,255,255,.04);color:inherit;font:inherit;}
+    .optin-field input:focus,.optin-field textarea:focus{outline:2px solid #4fc3a1;outline-offset:1px;}
+    .consent-box{border:1px solid rgba(139,154,166,.28);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem;
+      background:rgba(255,255,255,.03);}
+    .consent-box label{display:flex;gap:.7rem;align-items:flex-start;cursor:pointer;}
+    .consent-box input[type=checkbox]{margin-top:.25rem;width:18px;height:18px;flex:none;accent-color:#4fc3a1;}
+    .consent-box .consent-text{font-size:.85rem;line-height:1.6;color:var(--rs-text-mid,#9dabb6);}
+    .optional-tag{display:inline-block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+      color:#4fc3a1;border:1px solid rgba(79,195,161,.4);border-radius:99px;padding:.1rem .5rem;margin-left:.4rem;}
+    .optin-submit{background:#4fc3a1;color:#05201a;border:0;border-radius:8px;padding:.85rem 1.6rem;
+      font:inherit;font-weight:600;cursor:pointer;}
+    .optin-submit:disabled{opacity:.5;cursor:default;}
+    .optin-note{font-size:.82rem;color:var(--rs-text-mid,#8b9aa6);line-height:1.6;margin-top:1rem;}
+    .optin-result{margin-top:1rem;font-size:.95rem;}
+    .optin-result.good{color:#4fc3a1;}
+    .optin-result.bad{color:#ff8a80;}
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  </style>
+</head>
+<body>
+<main class="legal-wrap">
+  <h1>Text message sign-up</h1>
+  <p class="updated">Reach Media Inc., operating as Reach Screens</p>
+
+  <p>Use this form if you would like us to be able to text you. Consent is completely optional.
+  You do not need to agree to anything here to contact us, to get a quote, or to do business
+  with us.</p>
+
+  <form id="optinForm" novalidate>
+    <div class="optin-field">
+      <label for="oName">Your name</label>
+      <input id="oName" name="name" type="text" autocomplete="name" required>
+    </div>
+    <div class="optin-field">
+      <label for="oBusiness">Business name (optional)</label>
+      <input id="oBusiness" name="business" type="text" autocomplete="organization">
+    </div>
+    <div class="optin-field">
+      <label for="oEmail">Email</label>
+      <input id="oEmail" name="email" type="email" autocomplete="email" required>
+    </div>
+    <div class="optin-field">
+      <label for="oPhone">Mobile number</label>
+      <input id="oPhone" name="phone" type="tel" autocomplete="tel" required placeholder="(306) 555-0123">
+    </div>
+
+    <!-- TWO SEPARATE, OPTIONAL, UNTICKED consent boxes. Neither is required to submit and neither
+         is a condition of doing business. Each carries the full disclosure the carriers look for:
+         who is sending, what kind of messages, that frequency varies, that rates may apply, how to
+         stop, how to get help, and links to the privacy policy and terms. -->
+    <div class="consent-box">
+      <label>
+        <input type="checkbox" name="consent_transactional" value="1">
+        <span class="consent-text">
+          <strong>Service and appointment texts</strong><span class="optional-tag">Optional</span><br>
+          I agree to receive text messages from <strong>Reach Media Inc. (Reach Screens)</strong> about
+          my enquiry, appointments, my account and my advertising, at the number provided. Message
+          frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out
+          or <strong>HELP</strong> for help. See our
+          <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and
+          <a href="/terms.html" target="_blank" rel="noopener">Terms of Service</a>.
+        </span>
+      </label>
+    </div>
+
+    <div class="consent-box">
+      <label>
+        <input type="checkbox" name="consent_marketing" value="1">
+        <span class="consent-text">
+          <strong>Offers and promotions</strong><span class="optional-tag">Optional</span><br>
+          I agree to receive promotional text messages from <strong>Reach Media Inc. (Reach Screens)</strong>
+          about services, availability and offers, at the number provided. Consent is not a condition
+          of purchase. Message frequency varies. Message and data rates may apply. Reply
+          <strong>STOP</strong> to opt out or <strong>HELP</strong> for help. See our
+          <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and
+          <a href="/terms.html" target="_blank" rel="noopener">Terms of Service</a>.
+        </span>
+      </label>
+    </div>
+
+    <div class="optin-field">
+      <label for="oMessage">Anything you would like us to know (optional)</label>
+      <textarea id="oMessage" name="message" rows="3"></textarea>
+    </div>
+
+    <div class="hp" aria-hidden="true">
+      <label>Leave this empty<input type="text" name="_hp" tabindex="-1" autocomplete="off"></label>
+    </div>
+
+    <button class="optin-submit" type="submit" id="oSubmit">Submit</button>
+    <div class="optin-result" id="oResult" role="status" aria-live="polite"></div>
+
+    <p class="optin-note">
+      We never buy, rent or message purchased lists. We only text people who gave us their number
+      directly. You can opt out at any time by replying STOP to any message, or by emailing
+      <a href="mailto:info@reachscreens.ca">info@reachscreens.ca</a>. Mobile information is never
+      shared with third parties for their own marketing purposes.
+    </p>
+  </form>
+
+  <h2>Who you are hearing from</h2>
+  <p>
+    Reach Media Inc., operating as Reach Screens<br>
+    5018 50 Ave, Lloydminster, Alberta, T9V 0W7, Canada<br>
+    <a href="mailto:info@reachscreens.ca">info@reachscreens.ca</a> ·
+    <a href="tel:+13065143752">(306) 514-3752</a><br>
+    <a href="/company.html">Company information</a>
+  </p>
+
+  <p style="margin-top:2rem"><a href="/">← Back to Reach Screens</a> ·
+  <a href="/terms.html">Terms of Service</a> · <a href="/privacy.html">Privacy Policy</a></p>
+</main>
+
+<script>
+(function () {
+  // Bump this whenever the disclosure wording above changes. It is stored with each submission so
+  // an old consent record always says which wording that person actually agreed to.
+  var CONSENT_VERSION = '2026-08-10.1';
+  var form = document.getElementById('optinForm');
+  var btn = document.getElementById('oSubmit');
+  var out = document.getElementById('oResult');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    out.className = 'optin-result'; out.textContent = '';
+    var fd = new FormData(form);
+    var payload = {
+      type: 'optin',
+      name: (fd.get('name') || '').trim(),
+      business: (fd.get('business') || '').trim(),
+      email: (fd.get('email') || '').trim(),
+      phone: (fd.get('phone') || '').trim(),
+      message: (fd.get('message') || '').trim(),
+      _hp: fd.get('_hp') || '',
+      consent_transactional: fd.get('consent_transactional') ? '1' : '0',
+      consent_marketing: fd.get('consent_marketing') ? '1' : '0',
+      consent_url: location.href,
+      consent_text_version: CONSENT_VERSION
+    };
+    if (!payload.name || !payload.email || !payload.phone) {
+      out.className = 'optin-result bad';
+      out.textContent = 'Please fill in your name, email and mobile number.';
+      return;
+    }
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      var res = await fetch('https://forms-api.reachscreens.ca/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      var j = await res.json().catch(function () { return {}; });
+      if (!res.ok || !j.ok) throw new Error(j.error || 'Something went wrong. Please try again.');
+      var any = payload.consent_transactional === '1' || payload.consent_marketing === '1';
+      out.className = 'optin-result good';
+      out.textContent = any
+        ? 'Thank you. Your preferences are saved and we will only text you about what you ticked.'
+        : 'Thank you. Your details are saved and we will not send you any text messages.';
+      form.reset();
+    } catch (err) {
+      out.className = 'optin-result bad';
+      out.textContent = err.message;
+    } finally {
+      btn.disabled = false; btn.textContent = 'Submit';
+    }
+  });
+})();
+</script>
+</body>
+</html>
