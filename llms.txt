@@ -1,0 +1,28 @@
+# Reach Screens
+
+> Reach Screens is Lloydminster's local indoor digital advertising network. We place your ad on screens inside the restaurants, shops, gyms and service venues local people already visit, on both the Alberta and Saskatchewan sides of the city. Ad design is included free.
+
+Reach Screens is the operating brand of Reach Media Inc., based in Lloydminster, Alberta, Canada. We serve Lloydminster and the surrounding Alberta and Saskatchewan region. We are a billboard alternative for local businesses that want repeat exposure where attention already is, without a long production cycle or an agency retainer.
+
+- Contact: info@reachscreens.ca · (306) 514-3752
+- Service area: Lloydminster, AB/SK, and the surrounding region
+- Network: 30+ indoor screen locations including cafes, pubs, salons, pharmacies, gyms and auto shops
+- Included: free ad design, placement across the network, and location reporting
+
+## Pages
+
+- [Home](https://reachscreens.ca/): What indoor screen advertising is, who it is for, the venues in the network, client results, and the enquiry form.
+- [Locations](https://reachscreens.ca/locations.html): The full map and searchable list of every Lloydminster screen location, split by the Alberta and Saskatchewan sides.
+- [Company](https://reachscreens.ca/company.html): Corporate information for Reach Media Inc., legal entity, registration, registered office and company officer.
+
+## Policies
+
+- [Privacy policy](https://reachscreens.ca/privacy.html): What we collect from website enquiries and how it is used.
+- [Terms](https://reachscreens.ca/terms.html): Terms of use for the website and advertising services.
+- [Text message sign-up](https://reachscreens.ca/sms-optin.html): Optional SMS consent form. Consent is not a condition of purchase and you can reply STOP at any time.
+
+## Notes for agents
+
+- To start an advertising enquiry, use the form on the home page or the Locations page. It posts to https://forms-api.reachscreens.ca/submit. A human replies within 48 hours.
+- Pricing is quoted per campaign and is not published on the site. Ask by phone or through the enquiry form.
+- Screen counts and venue names change as locations are added. The Locations page is the current source of truth.
