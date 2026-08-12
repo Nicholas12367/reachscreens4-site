@@ -19,16 +19,16 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
 
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
-  <!-- Self-hosted fonts. Preload only the two used above the fold, so the hero
-       never renders in a fallback face and then reflows. -->
-  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-500-800-latin.woff2" crossorigin>
   <!-- Responsive hero preload — fetch only the size needed for this viewport -->
   <link rel="preload" as="image" href="assets/website-header-sm.webp" media="(max-width: 900px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/website-header-md.webp" media="(min-width: 901px) and (max-width: 1280px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/website-header.webp" media="(min-width: 1281px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=70">
+  <link rel="stylesheet" href="styles.css?v=71">
+  <!-- Font preload sits after the stylesheet on purpose. styles.css is
+       render blocking, so it has to win the connection first. -->
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-500-800-latin.woff2" crossorigin>
   <!-- Decorative faces load after the page does, so their bytes never compete
        with the hero font on the first connection. -->
   <script>addEventListener("load",function(){var l=document.createElement("link");l.rel="stylesheet";l.href="fonts-deferred.css?v=1";document.head.appendChild(l)});</script>
