@@ -28,7 +28,11 @@
   <link rel="preload" as="image" href="assets/website-header-md.webp" media="(min-width: 901px) and (max-width: 1280px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/website-header.webp" media="(min-width: 1281px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=68">
+  <link rel="stylesheet" href="styles.css?v=69">
+  <!-- Decorative faces load after the page does, so their bytes never compete
+       with the hero font on the first connection. -->
+  <script>addEventListener("load",function(){var l=document.createElement("link");l.rel="stylesheet";l.href="fonts-deferred.css?v=1";document.head.appendChild(l)});</script>
+  <noscript><link rel="stylesheet" href="fonts-deferred.css?v=1"></noscript>
   <!-- MapLibre CSS loaded non-blocking — only the contact-map chip needs it -->
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"></noscript>
