@@ -27,8 +27,6 @@
        with the hero font on the first connection. -->
   <script>addEventListener("load",function(){var l=document.createElement("link");l.rel="stylesheet";l.href="fonts-deferred.css?v=1";document.head.appendChild(l)});</script>
   <noscript><link rel="stylesheet" href="fonts-deferred.css?v=1"></noscript>
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"></noscript>
   <link rel="icon" href="assets/favicon.ico">
 </head>
 <body class="page-light-header">
@@ -178,10 +176,37 @@
 
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script defer src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script defer src="assets/screen-locations.js?v=66"></script>
-<script defer src="map.js?v=66"></script>
 <script defer src="main.js?v=67"></script>
+
+<!-- Lazy-load MapLibre + map.js only when the map nears the viewport. On mobile the
+     split layout stacks, so the map sits below the searchable list and off the first
+     screen. maplibre is 207 KB plus ~280 KB of tiles, sprites and glyphs, and loading
+     it eagerly was the single biggest cost on this page. -->
+<script>
+(function(){
+  var mapEl = document.getElementById('map');
+  if (!mapEl) return;
+  var started = false;
+  function loadMap(){
+    if (started) return; started = true;
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';
+    document.head.appendChild(css);
+    ['https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js','map.js?v=66'].forEach(function(src){
+      var s = document.createElement('script');
+      s.src = src; s.async = false; // preserve execution order
+      document.body.appendChild(s);
+    });
+  }
+  if (!('IntersectionObserver' in window)) { window.addEventListener('load', loadMap); return; }
+  var io = new IntersectionObserver(function(entries){
+    if (entries.some(function(e){ return e.isIntersecting; })) { io.disconnect(); loadMap(); }
+  }, { rootMargin: '600px 0px' });
+  io.observe(mapEl);
+})();
+</script>
 
 <!-- Analytics -->
 <script defer src="assets/rs-defer.js?v=1"></script>
