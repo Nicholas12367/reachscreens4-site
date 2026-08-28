@@ -28,11 +28,16 @@
     return;
   }
 
-  // Inject the gtag.js library.
-  const s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-  document.head.appendChild(s);
+  // Inject the gtag.js library, but only once the page is idle. gtag calls made
+  // before it lands queue on window.dataLayer and flush on load, so nothing is
+  // lost. See assets/rs-defer.js for why.
+  const inject = function () {
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+  };
+  (window.rsDefer || function (f) { f(); })(inject);
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = function () { window.dataLayer.push(arguments); };
