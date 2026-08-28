@@ -17,7 +17,7 @@
 
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=75">
+  <link rel="stylesheet" href="styles.css?v=76">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -41,7 +41,6 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="locations.html" class="active">Locations</a></li>
-      <li><a href="company.html">Company</a></li>
       <li><a href="#idea" class="nav-cta">Advertise Now</a></li>
       <li><a href="#contact" class="nav-contact">Contact Us</a></li>
     </ul>
@@ -87,74 +86,17 @@
   </div>
 </section>
 
-<!-- ============ MARKETS / COMING SOON ============ -->
+<!-- ============ EDMONTON COMING SOON ============ -->
 <section class="markets-section" id="markets" aria-labelledby="markets-h">
   <div class="container">
     <div class="section-head center reveal">
-      <span class="eyebrow">Coverage</span>
-      <h2 id="markets-h">Live in Lloydminster.<br><span class="text-mint">Edmonton is next.</span></h2>
-      <p>We open one market at a time and fill it before moving on. The advertisers who get in first get first pick of the screens.</p>
+      <h2 id="markets-h"><span class="text-mint">Edmonton</span> coming soon.</h2>
     </div>
 
-    <div class="markets-grid reveal-stagger">
-      <article class="market-card is-live">
-        <span class="market-status market-status--live"><span class="market-dot"></span>Live now</span>
-        <h3 class="market-name">Lloydminster</h3>
-        <p class="market-region">Alberta &amp; Saskatchewan</p>
-        <ul class="market-facts">
-          <li><strong>33</strong> locations</li>
-          <li><strong>35</strong> screens</li>
-          <li>Cafes, pubs, salons, clinics, gyms, auto</li>
-        </ul>
-        <a href="locations.html" class="market-link">See all locations
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-      </article>
-
-      <article class="market-card is-soon">
-        <span class="market-status market-status--soon"><span class="market-dot"></span>Coming soon</span>
-        <h3 class="market-name">Edmonton</h3>
-        <p class="market-region">Alberta</p>
-        <ul class="market-facts">
-          <li>Venues being signed now</li>
-          <li>Limited launch slots</li>
-          <li>Founding rate held for pre-bookings</li>
-        </ul>
-        <a href="#prebook" class="market-link market-link--accent">Pre-book your slot
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-      </article>
-
-      <article class="market-card is-request">
-        <span class="market-status market-status--request"><span class="market-dot"></span>Taking requests</span>
-        <h3 class="market-name">Your town</h3>
-        <p class="market-region">Western Canada</p>
-        <ul class="market-facts">
-          <li>Tell us where you want screens</li>
-          <li>Requests decide the next market</li>
-          <li>Franchise territories available</li>
-        </ul>
-        <a href="#contact" class="market-link">Request a market
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-      </article>
-    </div>
-
-    <!-- ---- Edmonton pre-book panel ---- -->
     <div class="prebook" id="prebook">
       <div class="prebook-copy reveal">
-        <span class="prebook-badge"><span class="market-dot"></span>Edmonton · Coming soon</span>
-        <h3 class="prebook-h">Pre-book your slot before we open.</h3>
-        <p class="prebook-sub">
-          Only a limited number of advertiser spots exist in a market, and Edmonton is not open yet.
-          Put your name down now and you get first pick of the screens, the founding rate, and a call
-          before anyone else hears about it.
-        </p>
-        <ul class="prebook-points">
-          <li><span class="prebook-tick" aria-hidden="true">✓</span> First pick of locations when we go live</li>
-          <li><span class="prebook-tick" aria-hidden="true">✓</span> Founding rate, held for you</li>
-          <li><span class="prebook-tick" aria-hidden="true">✓</span> No payment now, no commitment</li>
-        </ul>
+        <h3 class="prebook-h">Pre-book your slot.</h3>
+        <p class="prebook-sub">Get on the waiting list. Only a limited number of spots.</p>
       </div>
 
       <div class="prebook-form-wrap reveal">
@@ -186,7 +128,7 @@
             </div>
             <div class="form-row">
               <div class="form-field">
-                <label for="pb-message">What would you like to advertise in Edmonton?</label>
+                <label for="pb-message">What would you like to advertise?</label>
                 <textarea id="pb-message" name="message" required placeholder="Tell us a bit about your business and what you'd like to promote."></textarea>
               </div>
             </div>
