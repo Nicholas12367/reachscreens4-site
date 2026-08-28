@@ -712,6 +712,7 @@
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script defer src="assets/rs-attribution.js?v=68"></script>
 <script defer src="main.js?v=67"></script>
+<script defer src="assets/rs-defer.js?v=1"></script>
 <script defer src="assets/rs-analytics.js?v=66"></script>
 
 <!-- Lazy-load MapLibre + locations data + map.js only when the map nears viewport.
@@ -746,12 +747,12 @@
 </script>
 
 <!-- Google Analytics 4 — real Measurement ID lives in assets/analytics.js -->
-<!-- GA4 and Clarity are injected after load, see the loader below -->
 <!-- Hotjar (no-op until HOTJAR_SITE_ID is set in assets/hotjar.js): uncomment to activate.
 <script defer src="assets/hotjar.js?v=66"></script>
 -->
 <!-- Microsoft Clarity (heatmaps + recordings) — project id set in assets/clarity.js -->
-<script>addEventListener("load",function(){function go(){["assets/analytics.js?v=66","assets/clarity.js?v=66"].forEach(function(src){var s=document.createElement("script");s.src=src;s.async=true;document.body.appendChild(s)})}"requestIdleCallback"in window?requestIdleCallback(go,{timeout:2500}):setTimeout(go,1200)});</script>
+<script defer src="assets/analytics.js?v=79"></script>
+<script defer src="assets/clarity.js?v=79"></script>
 
 <!-- Floating tap-to-call button -->
 <a href="tel:+15876062556" class="floating-call" aria-label="Call Reach Screens">

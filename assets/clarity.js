@@ -21,10 +21,14 @@
 
   if (!CLARITY_PROJECT_ID) return;   // no-op until configured
 
-  // Microsoft Clarity's standard async loader.
-  (function (c, l, a, r, i, t, y) {
+  // Microsoft Clarity's standard async loader, with the tag fetch held until the
+  // page is idle. The queue (clarity.q) is created immediately, so any call made
+  // before the tag lands is replayed. See assets/rs-defer.js.
+  (function (c, l, a, r, i) {
     c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
-    t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
-    y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    (c.rsDefer || function (f) { f(); })(function () {
+      var t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+      var y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    });
   })(window, document, 'clarity', 'script', CLARITY_PROJECT_ID);
 })();
