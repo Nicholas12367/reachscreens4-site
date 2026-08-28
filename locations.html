@@ -17,7 +17,7 @@
 
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=74">
+  <link rel="stylesheet" href="styles.css?v=75">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -87,6 +87,120 @@
   </div>
 </section>
 
+<!-- ============ MARKETS / COMING SOON ============ -->
+<section class="markets-section" id="markets" aria-labelledby="markets-h">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Coverage</span>
+      <h2 id="markets-h">Live in Lloydminster.<br><span class="text-mint">Edmonton is next.</span></h2>
+      <p>We open one market at a time and fill it before moving on. The advertisers who get in first get first pick of the screens.</p>
+    </div>
+
+    <div class="markets-grid reveal-stagger">
+      <article class="market-card is-live">
+        <span class="market-status market-status--live"><span class="market-dot"></span>Live now</span>
+        <h3 class="market-name">Lloydminster</h3>
+        <p class="market-region">Alberta &amp; Saskatchewan</p>
+        <ul class="market-facts">
+          <li><strong>33</strong> locations</li>
+          <li><strong>35</strong> screens</li>
+          <li>Cafes, pubs, salons, clinics, gyms, auto</li>
+        </ul>
+        <a href="locations.html" class="market-link">See all locations
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+        </a>
+      </article>
+
+      <article class="market-card is-soon">
+        <span class="market-status market-status--soon"><span class="market-dot"></span>Coming soon</span>
+        <h3 class="market-name">Edmonton</h3>
+        <p class="market-region">Alberta</p>
+        <ul class="market-facts">
+          <li>Venues being signed now</li>
+          <li>Limited launch slots</li>
+          <li>Founding rate held for pre-bookings</li>
+        </ul>
+        <a href="#prebook" class="market-link market-link--accent">Pre-book your slot
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+        </a>
+      </article>
+
+      <article class="market-card is-request">
+        <span class="market-status market-status--request"><span class="market-dot"></span>Taking requests</span>
+        <h3 class="market-name">Your town</h3>
+        <p class="market-region">Western Canada</p>
+        <ul class="market-facts">
+          <li>Tell us where you want screens</li>
+          <li>Requests decide the next market</li>
+          <li>Franchise territories available</li>
+        </ul>
+        <a href="#contact" class="market-link">Request a market
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+        </a>
+      </article>
+    </div>
+
+    <!-- ---- Edmonton pre-book panel ---- -->
+    <div class="prebook" id="prebook">
+      <div class="prebook-copy reveal">
+        <span class="prebook-badge"><span class="market-dot"></span>Edmonton · Coming soon</span>
+        <h3 class="prebook-h">Pre-book your slot before we open.</h3>
+        <p class="prebook-sub">
+          Only a limited number of advertiser spots exist in a market, and Edmonton is not open yet.
+          Put your name down now and you get first pick of the screens, the founding rate, and a call
+          before anyone else hears about it.
+        </p>
+        <ul class="prebook-points">
+          <li><span class="prebook-tick" aria-hidden="true">✓</span> First pick of locations when we go live</li>
+          <li><span class="prebook-tick" aria-hidden="true">✓</span> Founding rate, held for you</li>
+          <li><span class="prebook-tick" aria-hidden="true">✓</span> No payment now, no commitment</li>
+        </ul>
+      </div>
+
+      <div class="prebook-form-wrap reveal">
+        <div class="form-card">
+          <form id="prebook-form" class="idea-form-instance"
+                data-endpoint="https://forms-api.reachscreens.ca/submit"
+                data-form-source="reachscreens.ca / edmonton pre-book"
+                data-form-package="Edmonton pre-book">
+            <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+            <div class="form-row two">
+              <div class="form-field">
+                <label for="pb-name">Your name</label>
+                <input id="pb-name" name="name" type="text" required placeholder="First &amp; last name">
+              </div>
+              <div class="form-field">
+                <label for="pb-business">Business name</label>
+                <input id="pb-business" name="business" type="text" required placeholder="Company name">
+              </div>
+            </div>
+            <div class="form-row two">
+              <div class="form-field">
+                <label for="pb-email">Email</label>
+                <input id="pb-email" name="email" type="email" required placeholder="you@business.com">
+              </div>
+              <div class="form-field">
+                <label for="pb-phone">Phone number</label>
+                <input id="pb-phone" name="phone" type="tel" required placeholder="(587) 555-0123">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="pb-message">What would you like to advertise in Edmonton?</label>
+                <textarea id="pb-message" name="message" required placeholder="Tell us a bit about your business and what you'd like to promote."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="form-submit">Pre-book my slot
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+            </button>
+            <div class="form-feedback" data-form-feedback></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="container">
@@ -107,7 +221,7 @@
         <h2 class="footer-col-h">Contact</h2>
         <ul>
           <li><a href="mailto:info@reachscreens.ca">info@reachscreens.ca</a></li>
-          <li><a href="tel:+13065143752">(306) 514-3752</a></li>
+          <li><a href="tel:+15876062556">(587) 606-2556</a></li>
           <li><span style="color:var(--rs-text-mid);">Lloydminster, AB</span></li>
         </ul>
       </div>
@@ -117,6 +231,7 @@
           <li><span style="color:var(--rs-text-mid);">Lloydminster, AB</span></li>
           <li><span style="color:var(--rs-text-mid);">Lloydminster, SK</span></li>
           <li><span style="color:var(--rs-text-mid);">Lakeland region</span></li>
+          <li><a href="#prebook" style="color:var(--rs-mint);">Edmonton &mdash; coming soon</a></li>
         </ul>
       </div>
     </div>
@@ -134,7 +249,7 @@
         Reach Screens is a trading name of <strong>Reach Media Inc.</strong>, an Alberta corporation.<br>
         5018 50 Ave, Lloydminster, Alberta, T9V 0W7, Canada &nbsp;·&nbsp;
         <a href="mailto:info@reachscreens.ca" style="color:inherit;">info@reachscreens.ca</a> &nbsp;·&nbsp;
-        <a href="tel:+13065143752" style="color:inherit;">(306) 514-3752</a> &nbsp;·&nbsp;
+        <a href="tel:+15876062556" style="color:inherit;">(587) 606-2556</a> &nbsp;·&nbsp;
         <a href="/company.html" style="color:inherit;">Company information</a> &nbsp;·&nbsp;
         <a href="/sms-optin.html" style="color:inherit;">Text message sign-up</a><br>
         <a href="/privacy.html" style="color:inherit;">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms.html" style="color:inherit;">Terms of Service</a>
@@ -178,7 +293,7 @@
 <script defer src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script defer src="assets/screen-locations.js?v=66"></script>
 <script defer src="map.js?v=66"></script>
-<script defer src="main.js?v=66"></script>
+<script defer src="main.js?v=67"></script>
 
 <!-- Analytics -->
 <script defer src="assets/rs-analytics.js?v=66"></script>
@@ -195,7 +310,7 @@
 <div id="contact-modal-mount"></div>
 
 <!-- Floating tap-to-call button -->
-<a href="tel:+13065143752" class="floating-call" aria-label="Call Reach Screens">
+<a href="tel:+15876062556" class="floating-call" aria-label="Call Reach Screens">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
   </svg>
