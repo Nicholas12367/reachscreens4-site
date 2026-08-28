@@ -16,8 +16,9 @@
   <meta property="og:image" content="https://reachscreens.ca/assets/website-header.webp">
 
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=77">
+  <link rel="stylesheet" href="styles.css?v=78">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -71,7 +72,7 @@
           <input type="search" class="form-field" placeholder="Search by name or street…" data-locations-filter
                  style="width:100%; padding:0.65rem 0.9rem; background:#F4F6F9; border:1px solid rgba(0,40,94,0.12); border-radius:8px; color:var(--rs-text-dark); font-family:inherit; font-size:0.95rem;">
         </div>
-        <ul class="locations-list" data-locations-list></ul>
+        <div class="locations-list" data-locations-list role="group" aria-label="Screen locations"></div>
       </div>
 
       <div class="map-block">
