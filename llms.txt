@@ -12,7 +12,8 @@ Reach Screens is the operating brand of Reach Media Inc., based in Lloydminster,
 ## Pages
 
 - [Home](https://reachscreens.ca/): What indoor screen advertising is, who it is for, the venues in the network, client results, and the enquiry form.
-- [Locations](https://reachscreens.ca/locations.html): The full map and searchable list of every Lloydminster screen location, split by the Alberta and Saskatchewan sides.
+- [Locations](https://reachscreens.ca/locations.html): The markets Reach Screens operates in. Lloydminster is live, Edmonton is coming soon with a pre-book waiting list.
+- [Screen Map](https://reachscreens.ca/screen-map.html): The full map and searchable list of every Lloydminster screen location, split by the Alberta and Saskatchewan sides.
 - [Company](https://reachscreens.ca/company.html): Corporate information for Reach Media Inc., legal entity, registration, registered office and company officer.
 
 ## Policies

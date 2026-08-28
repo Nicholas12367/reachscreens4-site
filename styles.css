@@ -28,6 +28,22 @@
 .form-section:not(.form-section--modal){content-visibility:auto;contain-intrinsic-size:auto 1400px}
 .footer{content-visibility:auto;contain-intrinsic-size:auto 1000px}
 
+/* ---- market cards ---- */
+.markets-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.market-card{display:flex;flex-direction:column;padding:1.75rem;border-radius:var(--radius-card);background:rgba(255,255,255,.04);border:1px solid var(--rs-line);transition:transform .3s var(--ease-std),border-color .3s var(--ease-std),background .3s var(--ease-std)}
+.market-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+.market-card.is-soon{background:linear-gradient(160deg,rgba(79,209,197,.12),rgba(255,255,255,.03));border-color:var(--rs-mint-soft)}
+.market-card.is-soon:hover{border-color:var(--rs-mint)}
+.market-status{display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;padding:.35rem .75rem;border-radius:var(--radius-pill);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.market-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.market-status--live{color:#4FD1C5;background:rgba(79,209,197,.14)}
+.market-status--soon{color:#FFC94A;background:rgba(255,201,74,.14)}
+.market-name{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:300;margin-top:1.1rem;letter-spacing:-.02em}
+.market-region{color:var(--rs-text-muted);font-size:.9rem;margin-top:.25rem;margin-bottom:1.5rem}
+.market-link{margin-top:auto;display:inline-flex;align-items:center;gap:.45rem;font-weight:600;font-size:.95rem;color:var(--rs-text);border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:.2rem;align-self:flex-start;transition:color .25s var(--ease-std),border-color .25s var(--ease-std),gap .25s var(--ease-std)}
+.market-link:hover{gap:.75rem;color:var(--rs-mint);border-color:var(--rs-mint)}
+.market-link--accent{color:var(--rs-mint);border-color:var(--rs-mint-soft)}
+
 /* ============ EDMONTON COMING SOON ============ */
 .markets-section{position:relative;padding:var(--space-7) 0;background:var(--rs-navy);color:var(--rs-text)}
 .markets-section .section-head{margin-bottom:var(--space-4)}
