@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Locations: Where Reach Screens Operates | Lloydminster, Edmonton Coming Soon</title>
-  <meta name="description" content="Reach Screens is live in Lloydminster, Alberta and Saskatchewan. Edmonton is coming soon. Pre-book your advertising slot and get on the waiting list.">
-  <link rel="canonical" href="https://reachscreens.ca/locations.html">
+  <title>Screen Map: Every Digital Ad Screen in Lloydminster | Reach Screens</title>
+  <meta name="description" content="Map and searchable list of all 35 Reach Screens digital ad screens across Lloydminster, Alberta and Saskatchewan sides. Cafes, pubs, salons, clinics, gyms and auto shops.">
+  <link rel="canonical" href="https://reachscreens.ca/screen-map.html">
   <meta name="theme-color" content="#051018">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <meta property="og:title" content="Locations: Where Reach Screens Operates">
-  <meta property="og:description" content="Live in Lloydminster. Edmonton coming soon. Pre-book your slot.">
+  <meta property="og:title" content="Screen Map: Every Digital Ad Screen in Lloydminster">
+  <meta property="og:description" content="Every Reach Screens digital ad screen across Lloydminster, AB and SK, mapped.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://reachscreens.ca/locations.html">
+  <meta property="og:url" content="https://reachscreens.ca/screen-map.html">
   <meta property="og:image" content="https://reachscreens.ca/assets/website-header.webp">
 
+  <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
   <link rel="preload" as="image" href="assets/logo-white.webp">
   <link rel="stylesheet" href="styles.css?v=77">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
@@ -25,6 +26,8 @@
        with the hero font on the first connection. -->
   <script>addEventListener("load",function(){var l=document.createElement("link");l.rel="stylesheet";l.href="fonts-deferred.css?v=1";document.head.appendChild(l)});</script>
   <noscript><link rel="stylesheet" href="fonts-deferred.css?v=1"></noscript>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"></noscript>
   <link rel="icon" href="assets/favicon.ico">
 </head>
 <body class="page-light-header">
@@ -37,8 +40,8 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="locations.html" class="active">Locations</a></li>
-      <li><a href="screen-map.html">Screen Map</a></li>
+      <li><a href="locations.html">Locations</a></li>
+      <li><a href="screen-map.html" class="active">Screen Map</a></li>
       <li><a href="#idea" class="nav-cta">Advertise Now</a></li>
       <li><a href="#contact" class="nav-contact">Contact Us</a></li>
     </ul>
@@ -51,88 +54,34 @@
 <!-- ============ HEADER ============ -->
 <header class="locations-page-header">
   <div class="container">
-    <span class="eyebrow">Coverage</span>
-    <h1>Locations.</h1>
+    <span class="eyebrow">The Network</span>
+    <h1>Every Screen<br>In <span style="color:var(--rs-mint);">Lloydminster</span>.</h1>
     <p class="hero-sub" style="margin-top:1rem; max-width:60ch;">
-      Where Reach Screens is live today, and where we open next.
+      Locations across Alberta and Saskatchewan. Click any pin or list item to see the address and a map view.
     </p>
   </div>
 </header>
 
-<!-- ============ MARKETS ============ -->
-<section class="markets-section" aria-labelledby="markets-h">
+<!-- ============ LOCATIONS SECTION ============ -->
+<section class="locations-section">
   <div class="container">
-    <h2 id="markets-h" class="sr-only">Markets</h2>
-
-    <div class="markets-grid">
-      <article class="market-card is-live">
-        <span class="market-status market-status--live"><span class="market-dot"></span>Live now</span>
-        <h3 class="market-name">Lloydminster</h3>
-        <p class="market-region">Alberta &amp; Saskatchewan &nbsp;·&nbsp; 35 screens in 33 venues</p>
-        <a href="screen-map.html" class="market-link">See the screen map
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-      </article>
-
-      <article class="market-card is-soon">
-        <span class="market-status market-status--soon"><span class="market-dot"></span>Coming soon</span>
-        <h3 class="market-name">Edmonton</h3>
-        <p class="market-region">Alberta</p>
-        <a href="#prebook" class="market-link market-link--accent">Pre-book your slot
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-      </article>
-    </div>
-
-    <div class="section-head center" style="margin:var(--space-6) auto var(--space-4);">
-      <h2><span class="text-mint">Edmonton</span> coming soon.</h2>
-    </div>
-
-    <div class="prebook" id="prebook">
-      <div class="prebook-copy">
-        <h3 class="prebook-h">Pre-book your slot.</h3>
-        <p class="prebook-sub">Get on the waiting list. Only a limited number of spots.</p>
+    <div class="locations-split">
+      <div class="locations-list-wrap">
+        <div style="padding:1rem 1.5rem; border-bottom:1px solid rgba(0,40,94,0.10); position:sticky; top:0; background:#FFFFFF; z-index:2;">
+          <input type="search" class="form-field" placeholder="Search by name or street…" data-locations-filter
+                 style="width:100%; padding:0.65rem 0.9rem; background:#F4F6F9; border:1px solid rgba(0,40,94,0.12); border-radius:8px; color:var(--rs-text-dark); font-family:inherit; font-size:0.95rem;">
+        </div>
+        <ul class="locations-list" data-locations-list></ul>
       </div>
 
-      <div class="prebook-form-wrap">
-        <div class="form-card">
-          <form id="prebook-form" class="idea-form-instance"
-                data-endpoint="https://forms-api.reachscreens.ca/submit"
-                data-form-source="reachscreens.ca / edmonton pre-book"
-                data-form-package="Edmonton pre-book">
-            <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
-            <div class="form-row two">
-              <div class="form-field">
-                <label for="pb-name">Your name</label>
-                <input id="pb-name" name="name" type="text" required autocomplete="name" placeholder="First &amp; last name">
-              </div>
-              <div class="form-field">
-                <label for="pb-business">Business name</label>
-                <input id="pb-business" name="business" type="text" required autocomplete="organization" placeholder="Company name">
-              </div>
-            </div>
-            <div class="form-row two">
-              <div class="form-field">
-                <label for="pb-email">Email</label>
-                <input id="pb-email" name="email" type="email" required autocomplete="email" placeholder="you@business.com">
-              </div>
-              <div class="form-field">
-                <label for="pb-phone">Phone number</label>
-                <input id="pb-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(587) 555-0123">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-field">
-                <label for="pb-message">What would you like to advertise?</label>
-                <textarea id="pb-message" name="message" required placeholder="Tell us a bit about your business and what you'd like to promote."></textarea>
-              </div>
-            </div>
-            <button type="submit" class="form-submit">Pre-book my slot
-              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-            </button>
-            <div class="form-feedback" data-form-feedback></div>
-          </form>
+      <div class="map-block">
+        <div class="map-chip" data-map-chip>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Click any pin to see that location's details</span>
         </div>
+        <div id="map" class="map-canvas" role="region" aria-label="Map of all Reach Screens locations"></div>
       </div>
     </div>
   </div>
@@ -197,10 +146,41 @@
   </div>
 </footer>
 
+<!-- ============ MODAL (shared) ============ -->
+<div class="modal-overlay" id="location-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal">
+    <div class="modal-image-wrap" data-modal-image>
+      <div class="modal-image-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c2.5 3 4 6.5 4 10s-1.5 7-4 10c-2.5-3-4-6.5-4-10s1.5-7 4-10z"/></svg>
+        <span>Map view</span>
+      </div>
+    </div>
+    <div class="modal-header">
+      <div>
+        <span class="modal-eyebrow">Reach Screen</span>
+        <h3 class="modal-title" id="modal-title" data-modal-name>—</h3>
+        <p class="modal-addr" data-modal-addr>—</p>
+      </div>
+      <button class="modal-close" data-modal-close aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta" data-modal-meta></div>
+      <div class="modal-actions">
+        <a href="#idea" class="btn btn-primary" data-modal-close-then>Advertise Now
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+        </a>
+        <a href="#" class="btn btn-outline" data-modal-directions target="_blank" rel="noopener">Get directions</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script defer src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script defer src="assets/screen-locations.js?v=66"></script>
+<script defer src="map.js?v=66"></script>
 <script defer src="main.js?v=67"></script>
-<script defer src="assets/rs-attribution.js?v=68"></script>
 
 <!-- Analytics -->
 <script defer src="assets/rs-analytics.js?v=66"></script>
