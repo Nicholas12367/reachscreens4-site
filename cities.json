@@ -1,0 +1,51 @@
+{
+  "_readme": "The single source of truth for every market. Edit this, run `node scripts/build-cities.js`, commit the generated <slug>.html files and cities.html. Adding a market is one entry here. Never hand-edit a generated page, the build overwrites it.",
+  "site": {
+    "brand": "Reach Screens",
+    "legalName": "Reach Media Inc.",
+    "origin": "https://reachscreens.ca",
+    "phoneDisplay": "(587) 606-2556",
+    "phoneHref": "+15876062556",
+    "email": "info@reachscreens.ca",
+    "formEndpoint": "https://forms-api.reachscreens.ca/submit",
+    "assetVersion": "80"
+  },
+  "cities": [
+    {
+      "slug": "lloydminster",
+      "name": "Lloydminster",
+      "status": "live",
+      "province": "Alberta & Saskatchewan",
+      "regionCode": "AB",
+      "postalRegion": "Lloydminster",
+      "screens": 35,
+      "venues": 33,
+      "lat": 53.2783,
+      "lng": -110.005,
+      "eyebrow": "Live now",
+      "headline": "Indoor screen advertising in <span class=\"text-mint\">Lloydminster</span>.",
+      "intro": "35 screens across 33 venues on both the Alberta and Saskatchewan sides. Cafes, pubs, salons, clinics, gyms and auto shops, in front of the people who already walk past your competitors every day.",
+      "venueTypes": ["Cafes and restaurants", "Pubs and lounges", "Salons and barbers", "Clinics and pharmacies", "Gyms and studios", "Auto and service shops"],
+      "metaTitle": "Digital Screen Advertising in Lloydminster, AB & SK | Reach Screens",
+      "metaDescription": "Advertise on 35 indoor digital screens across 33 Lloydminster venues, both the Alberta and Saskatchewan sides. See every location on the map and get your ad on screen."
+    },
+    {
+      "slug": "edmonton",
+      "name": "Edmonton",
+      "status": "coming-soon",
+      "province": "Alberta",
+      "regionCode": "AB",
+      "postalRegion": "Edmonton",
+      "screens": null,
+      "venues": null,
+      "lat": 53.5461,
+      "lng": -113.4938,
+      "eyebrow": "Coming soon",
+      "headline": "<span class=\"text-mint\">Edmonton</span> coming soon.",
+      "intro": "We are signing venues in Edmonton now. A market only holds a limited number of advertisers, and the ones who get in first get first pick of the screens.",
+      "venueTypes": ["Cafes and restaurants", "Pubs and lounges", "Salons and barbers", "Clinics and pharmacies", "Gyms and studios", "Auto and service shops"],
+      "metaTitle": "Digital Screen Advertising in Edmonton, AB, Coming Soon | Reach Screens",
+      "metaDescription": "Reach Screens is opening in Edmonton. Pre-book your advertising slot, get on the waiting list, and take first pick of the screens at the founding rate."
+    }
+  ]
+}

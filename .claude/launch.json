@@ -2,11 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "reachscreens",
+      "name": "reachscreens-preview",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8091", "--directory", "/Users/nicholasconnelly/Applications/reachscreens-website"],
-      "port": 8091,
-      "autoPort": true
+      "runtimeArgs": ["-m", "http.server", "4321"],
+      "port": 4321
     }
   ]
 }
