@@ -24,7 +24,7 @@
   <link rel="preload" as="image" href="assets/website-header-md.webp" media="(min-width: 901px) and (max-width: 1280px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/website-header.webp" media="(min-width: 1281px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=78">
+  <link rel="stylesheet" href="styles.css?v=80">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -113,7 +113,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="/" class="active">Home</a></li>
-      <li><a href="locations.html">Locations</a></li>
+      <li><a href="cities.html">Cities</a></li>
       <li><a href="screen-map.html">Screen Map</a></li>
       <li><a href="#idea" class="nav-cta">Advertise Now</a></li>
       <li><a href="#contact" class="nav-contact">Contact Us</a></li>
@@ -631,7 +631,7 @@
         <h3 class="footer-col-h">Site</h3>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="locations.html">Locations</a></li>
+          <li><a href="cities.html">Cities</a></li>
           <li><a href="screen-map.html">Screen Map</a></li>
           <li><a href="#idea">Advertise Now</a></li>
                   <li><a href="/privacy.html">Privacy Policy</a></li>
@@ -647,12 +647,11 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h3 class="footer-col-h">Coverage</h3>
+        <h3 class="footer-col-h">Cities</h3>
         <ul>
-          <li><span style="color:var(--rs-text-mid);">Lloydminster, AB</span></li>
-          <li><span style="color:var(--rs-text-mid);">Lloydminster, SK</span></li>
-          <li><span style="color:var(--rs-text-mid);">Lakeland region</span></li>
-          <li><a href="locations.html#prebook" style="color:var(--rs-mint);">Edmonton &mdash; coming soon</a></li>
+          <li><a href="lloydminster.html">Lloydminster</a></li>
+          <li><a href="sherwood-park.html" style="color:var(--rs-mint);">Sherwood Park &middot; coming soon</a></li>
+          <li><a href="edmonton.html" style="color:var(--rs-mint);">Edmonton &middot; coming soon</a></li>
         </ul>
       </div>
     </div>
@@ -713,7 +712,7 @@
 <script defer src="assets/rs-attribution.js?v=68"></script>
 <script defer src="main.js?v=67"></script>
 <script defer src="assets/rs-defer.js?v=1"></script>
-<script defer src="assets/rs-analytics.js?v=66"></script>
+<script defer src="assets/rs-analytics.js?v=80"></script>
 
 <!-- Lazy-load MapLibre + locations data + map.js only when the map nears viewport.
      Saves ~270KB of JS off the initial page on every device that never scrolls to the map. -->

@@ -61,3 +61,26 @@
 .screens-photos-section .section-head p,.screens-photos-section p{color:#4b5a6e!important;text-shadow:none}
 .screens-photos-section .section-head .eyebrow,.screens-photos-section .eyebrow{color:var(--rs-primary)!important;text-shadow:none}
 .screens-photos-section .screen-card-label{color:#fff!important}
+
+/* ============ CITY PAGES ============ */
+.city-header{position:relative;background:var(--rs-navy);color:var(--rs-text);padding:calc(var(--nav-h) + var(--space-5)) 0 var(--space-6);overflow:hidden}
+.city-header::before{content:'';position:absolute;inset:0;background:radial-gradient(70% 70% at 75% 25%,rgba(79,209,197,.10) 0,transparent 65%);pointer-events:none}
+.city-header>.container{position:relative;z-index:1}
+.city-header h1{font-size:clamp(2.2rem,5.5vw,4.2rem);font-weight:200;line-height:1.05;letter-spacing:-.02em;margin-top:1.1rem;max-width:18ch}
+.city-intro{color:var(--rs-text-mid);font-size:var(--fs-lead);line-height:1.6;margin-top:1.25rem;max-width:60ch}
+.city-facts{display:flex;flex-wrap:wrap;gap:clamp(1.5rem,5vw,3.5rem);margin-top:var(--space-4)}
+.city-fact{display:flex;flex-direction:column}
+.city-fact-num{font-size:clamp(1.8rem,3.5vw,2.75rem);font-weight:200;line-height:1;letter-spacing:-.02em;color:var(--rs-mint)}
+.city-fact-label{font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--rs-text-mid);margin-top:.5rem}
+.city-actions{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:var(--space-5)}
+
+.city-venues{background:var(--rs-light);color:var(--rs-text-dark);padding:var(--space-6) 0}
+.city-venues h2{color:var(--rs-text-dark)!important;text-shadow:none;font-size:clamp(1.7rem,3.6vw,2.8rem);max-width:22ch;margin-inline:auto}
+.city-venue-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.9rem}
+.city-venue-list li{position:relative;padding:1rem 1.1rem 1rem 2.6rem;background:#fff;border:1px solid var(--rs-line-light);border-radius:var(--radius-sm);font-weight:500;color:var(--rs-text-dark)}
+.city-venue-list li::before{content:'';position:absolute;left:1.1rem;top:50%;transform:translateY(-50%);width:9px;height:9px;border-radius:50%;background:var(--rs-mint)}
+
+.markets-section--tight{padding:var(--space-6) 0}
+.prebook-points{list-style:none;margin:1.5rem 0 0;padding:0;display:flex;flex-direction:column;gap:.7rem}
+.prebook-points li{display:flex;align-items:flex-start;gap:.6rem;color:var(--rs-text);font-size:.98rem}
+.prebook-tick{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex:none;border-radius:50%;background:var(--rs-mint-soft);color:var(--rs-mint);font-size:.7rem;font-weight:700;margin-top:.15rem}

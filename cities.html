@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Locations: Where Reach Screens Operates | Lloydminster, Edmonton Coming Soon</title>
-  <meta name="description" content="Reach Screens is live in Lloydminster, Alberta and Saskatchewan. Edmonton is coming soon. Pre-book your advertising slot and get on the waiting list.">
-  <link rel="canonical" href="https://reachscreens.ca/locations.html">
+  <title>Cities: Where Reach Screens Operates | Lloydminster, Sherwood Park, Edmonton Coming Soon</title>
+  <meta name="description" content="Reach Screens is live in Lloydminster, with Sherwood Park, Edmonton coming soon. See every city, or pre-book your advertising slot before we open.">
+  <link rel="canonical" href="https://reachscreens.ca/cities.html">
   <meta name="theme-color" content="#051018">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <meta property="og:title" content="Locations: Where Reach Screens Operates">
-  <meta property="og:description" content="Live in Lloydminster. Edmonton coming soon. Pre-book your slot.">
+  <meta property="og:title" content="Cities: Where Reach Screens Operates">
+  <meta property="og:description" content="Live in Lloydminster. Sherwood Park, Edmonton coming soon. Pre-book your slot.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://reachscreens.ca/locations.html">
+  <meta property="og:url" content="https://reachscreens.ca/cities.html">
   <meta property="og:image" content="https://reachscreens.ca/assets/website-header.webp">
 
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=78">
+  <link rel="stylesheet" href="styles.css?v=80">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -28,7 +28,6 @@
   <link rel="icon" href="assets/favicon.ico">
 </head>
 <body class="page-light-header">
-
 <!-- ============ NAV ============ -->
 <nav class="nav" aria-label="Main">
   <div class="nav-inner">
@@ -37,7 +36,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="locations.html" class="active">Locations</a></li>
+      <li><a href="cities.html" class="active">Cities</a></li>
       <li><a href="screen-map.html">Screen Map</a></li>
       <li><a href="#idea" class="nav-cta">Advertise Now</a></li>
       <li><a href="#contact" class="nav-contact">Contact Us</a></li>
@@ -52,79 +51,88 @@
 <header class="locations-page-header">
   <div class="container">
     <span class="eyebrow">Coverage</span>
-    <h1>Locations.</h1>
+    <h1>Cities.</h1>
     <p class="hero-sub" style="margin-top:1rem; max-width:60ch;">
       Where Reach Screens is live today, and where we open next.
     </p>
   </div>
 </header>
 
-<!-- ============ MARKETS ============ -->
-<section class="markets-section" aria-labelledby="markets-h">
+<!-- ============ CITY CARDS ============ -->
+<section class="markets-section markets-section--tight" aria-labelledby="cities-h">
   <div class="container">
-    <h2 id="markets-h" class="sr-only">Markets</h2>
-
+    <h2 id="cities-h" class="sr-only">Every Reach Screens city</h2>
     <div class="markets-grid">
       <article class="market-card is-live">
         <span class="market-status market-status--live"><span class="market-dot"></span>Live now</span>
-        <h3 class="market-name">Lloydminster</h3>
-        <p class="market-region">Alberta &amp; Saskatchewan &nbsp;·&nbsp; 35 screens in 33 venues</p>
-        <a href="screen-map.html" class="market-link">See the screen map
+        <h2 class="market-name">Lloydminster</h2>
+        <p class="market-region">Alberta &amp; Saskatchewan &nbsp;&middot;&nbsp; 35 screens in 33 venues</p>
+        <a href="lloydminster.html" class="market-link">See Lloydminster
           <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
         </a>
       </article>
-
       <article class="market-card is-soon">
         <span class="market-status market-status--soon"><span class="market-dot"></span>Coming soon</span>
-        <h3 class="market-name">Edmonton</h3>
+        <h2 class="market-name">Sherwood Park</h2>
         <p class="market-region">Alberta</p>
-        <a href="#prebook" class="market-link market-link--accent">Pre-book your slot
+        <a href="sherwood-park.html" class="market-link market-link--accent">Pre-book Sherwood Park
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+        </a>
+      </article>
+      <article class="market-card is-soon">
+        <span class="market-status market-status--soon"><span class="market-dot"></span>Coming soon</span>
+        <h2 class="market-name">Edmonton</h2>
+        <p class="market-region">Alberta</p>
+        <a href="edmonton.html" class="market-link market-link--accent">Pre-book Edmonton
           <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
         </a>
       </article>
     </div>
+  </div>
+</section>
 
-    <div class="section-head center" style="margin:var(--space-6) auto var(--space-4);">
-      <h2><span class="text-mint">Edmonton</span> coming soon.</h2>
+<!-- ============ PRE-BOOK ============ -->
+<section class="markets-section" aria-labelledby="prebook-h">
+  <div class="container">
+    <div class="section-head center">
+      <h2 id="prebook-h"><span class="text-mint">Sherwood Park</span> coming soon.</h2>
     </div>
-
     <div class="prebook" id="prebook">
       <div class="prebook-copy">
         <h3 class="prebook-h">Pre-book your slot.</h3>
         <p class="prebook-sub">Get on the waiting list. Only a limited number of spots.</p>
       </div>
-
       <div class="prebook-form-wrap">
         <div class="form-card">
           <form id="prebook-form" class="idea-form-instance"
                 data-endpoint="https://forms-api.reachscreens.ca/submit"
-                data-form-source="reachscreens.ca / edmonton pre-book"
-                data-form-package="Edmonton pre-book">
+                data-form-source="reachscreens.ca / sherwood-park pre-book"
+                data-form-package="Sherwood Park pre-book">
             <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
             <div class="form-row two">
               <div class="form-field">
-                <label for="pb-name">Your name</label>
-                <input id="pb-name" name="name" type="text" required autocomplete="name" placeholder="First &amp; last name">
+                <label for="prebook-form-name">Your name</label>
+                <input id="prebook-form-name" name="name" type="text" required autocomplete="name" placeholder="First &amp; last name">
               </div>
               <div class="form-field">
-                <label for="pb-business">Business name</label>
-                <input id="pb-business" name="business" type="text" required autocomplete="organization" placeholder="Company name">
+                <label for="prebook-form-business">Business name</label>
+                <input id="prebook-form-business" name="business" type="text" required autocomplete="organization" placeholder="Company name">
               </div>
             </div>
             <div class="form-row two">
               <div class="form-field">
-                <label for="pb-email">Email</label>
-                <input id="pb-email" name="email" type="email" required autocomplete="email" placeholder="you@business.com">
+                <label for="prebook-form-email">Email</label>
+                <input id="prebook-form-email" name="email" type="email" required autocomplete="email" placeholder="you@business.com">
               </div>
               <div class="form-field">
-                <label for="pb-phone">Phone number</label>
-                <input id="pb-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(587) 555-0123">
+                <label for="prebook-form-phone">Phone number</label>
+                <input id="prebook-form-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(587) 555-0123">
               </div>
             </div>
             <div class="form-row">
               <div class="form-field">
-                <label for="pb-message">What would you like to advertise?</label>
-                <textarea id="pb-message" name="message" required placeholder="Tell us a bit about your business and what you'd like to promote."></textarea>
+                <label for="prebook-form-message">What would you like to advertise?</label>
+                <textarea id="prebook-form-message" name="message" required placeholder="Tell us a bit about your business and what you'd like to promote."></textarea>
               </div>
             </div>
             <button type="submit" class="form-submit">Pre-book my slot
@@ -150,7 +158,7 @@
         <h2 class="footer-col-h">Site</h2>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="locations.html">Locations</a></li>
+          <li><a href="cities.html">Cities</a></li>
           <li><a href="screen-map.html">Screen Map</a></li>
           <li><a href="#idea">Advertise Now</a></li>
         </ul>
@@ -164,17 +172,16 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h2 class="footer-col-h">Coverage</h2>
+        <h2 class="footer-col-h">Cities</h2>
         <ul>
-          <li><span style="color:var(--rs-text-mid);">Lloydminster, AB</span></li>
-          <li><span style="color:var(--rs-text-mid);">Lloydminster, SK</span></li>
-          <li><span style="color:var(--rs-text-mid);">Lakeland region</span></li>
-          <li><a href="#prebook" style="color:var(--rs-mint);">Edmonton &mdash; coming soon</a></li>
+          <li><a href="lloydminster.html">Lloydminster</a></li>
+          <li><a href="sherwood-park.html" style="color:var(--rs-mint);">Sherwood Park &middot; coming soon</a></li>
+          <li><a href="edmonton.html" style="color:var(--rs-mint);">Edmonton &middot; coming soon</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© <span id="year">2026</span> Reach Screens. All rights reserved.</p>
+      <p>&copy; <span id="year">2026</span> Reach Screens. All rights reserved.</p>
       <div class="footer-social" aria-label="Social links">
         <a href="https://m.facebook.com/profile.php?id=61585947433036&amp;name=xhp_nt__fb__action__open_user" aria-label="Facebook" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.5-4.5-10-10-10S2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7c4.7-.8 8.4-4.9 8.4-9.9z"/></svg>
@@ -185,33 +192,24 @@
       </div>
       <div class="footer-legal" style="grid-column:1/-1;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.08);color:var(--rs-text-mid,#8b9aa6);font-size:.85rem;line-height:1.6;">
         Reach Screens is a trading name of <strong>Reach Media Inc.</strong>, an Alberta corporation.<br>
-        5018 50 Ave, Lloydminster, Alberta, T9V 0W7, Canada &nbsp;·&nbsp;
-        <a href="mailto:info@reachscreens.ca" style="color:inherit;">info@reachscreens.ca</a> &nbsp;·&nbsp;
-        <a href="tel:+15876062556" style="color:inherit;">(587) 606-2556</a> &nbsp;·&nbsp;
-        <a href="/company.html" style="color:inherit;">Company information</a> &nbsp;·&nbsp;
+        5018 50 Ave, Lloydminster, Alberta, T9V 0W7, Canada &nbsp;&middot;&nbsp;
+        <a href="mailto:info@reachscreens.ca" style="color:inherit;">info@reachscreens.ca</a> &nbsp;&middot;&nbsp;
+        <a href="tel:+15876062556" style="color:inherit;">(587) 606-2556</a> &nbsp;&middot;&nbsp;
+        <a href="/company.html" style="color:inherit;">Company information</a> &nbsp;&middot;&nbsp;
         <a href="/sms-optin.html" style="color:inherit;">Text message sign-up</a><br>
-        <a href="/privacy.html" style="color:inherit;">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms.html" style="color:inherit;">Terms of Service</a>
+        <a href="/privacy.html" style="color:inherit;">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms.html" style="color:inherit;">Terms of Service</a>
       </div>
-
     </div>
   </div>
 </footer>
-
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script defer src="main.js?v=67"></script>
 <script defer src="assets/rs-attribution.js?v=68"></script>
-
-<!-- Analytics -->
 <script defer src="assets/rs-defer.js?v=1"></script>
-<script defer src="assets/rs-analytics.js?v=79"></script>
-<!-- Google Analytics 4 — real Measurement ID lives in assets/analytics.js -->
-<script defer src="assets/analytics.js?v=79"></script>
-<!-- Hotjar (no-op until HOTJAR_SITE_ID is set in assets/hotjar.js): uncomment to activate.
-<script defer src="assets/hotjar.js?v=66"></script>
--->
-<!-- Microsoft Clarity (heatmaps + recordings) — project id set in assets/clarity.js -->
-<script defer src="assets/clarity.js?v=79"></script>
+<script defer src="assets/rs-analytics.js?v=80"></script>
+<script defer src="assets/analytics.js?v=80"></script>
+<script defer src="assets/clarity.js?v=80"></script>
 
 <!-- Form modal + Contact modal mounts (built by main.js on load) -->
 <div id="form-modal-mount"></div>
