@@ -45,7 +45,11 @@ function jsonLd(c) {
     email: site.email,
     image: `${site.origin}/assets/website-header.webp`,
     parentOrganization: { '@type': 'Organization', name: site.legalName },
-    areaServed: { '@type': 'City', name: c.name, containedInPlace: { '@type': 'AdministrativeArea', name: c.province } },
+    // A territory is rarely one municipality. `alsoServes` in cities.json names the rest of it, and
+    // it must stay identical to the service area set on the Google Business Profile: two different
+    // answers to "where do you operate" is exactly what makes a listing look unverifiable.
+    areaServed: [{ '@type': 'City', name: c.name, containedInPlace: { '@type': 'AdministrativeArea', name: c.province } },
+      ...(c.alsoServes || []).map((n) => ({ '@type': 'AdministrativeArea', name: n, containedInPlace: { '@type': 'AdministrativeArea', name: c.province } }))],
     geo: { '@type': 'GeoCoordinates', latitude: c.lat, longitude: c.lng },
   };
   if (isLive(c)) {
@@ -222,7 +226,9 @@ ${P.form(site, { id: 'prebook-form', source: `reachscreens.ca / ${first.slug} pr
   const soonNames = soon.map((c) => c.name).join(', ');
 
   return P.head(site, {
-    title: 'Cities: Where Reach Screens Operates | Lloydminster, Edmonton Coming Soon',
+    // Computed, not literal. A hand-written title here goes stale the moment a city is added to
+    // cities.json, which is the one file that is supposed to be the single source of truth.
+    title: `Cities: Where Reach Screens Operates | ${liveNames}${soonNames ? `, ${soonNames} Coming Soon` : ''}`,
     description: `Reach Screens is live in ${liveNames}${soonNames ? `, with ${soonNames} coming soon` : ''}. See every city, or pre-book your advertising slot before we open.`,
     path: 'cities.html',
     ogTitle: 'Cities: Where Reach Screens Operates',
@@ -286,8 +292,31 @@ ${urls.map((u) => `  <url>
 `;
 }
 
+/* ---------- keep the hand-written pages' footer honest ----------
+   index.html, screen-map.html and friends are NOT generated, but their footer
+   lists the cities. Adding a market to cities.json used to leave them behind,
+   so half the site advertised two cities and half advertised three. This
+   rewrites just that one <ul> in place. Declaring the data file the source of
+   truth is not the same as enforcing it. */
+const STATIC_PAGES = ['index.html', 'screen-map.html'];
+function syncStaticFooters() {
+  const items = cities.map((c) => c.status === 'live'
+    ? `          <li><a href="${c.slug}.html">${esc(c.name)}</a></li>`
+    : `          <li><a href="${c.slug}.html" style="color:var(--rs-mint);">${esc(c.name)} &middot; coming soon</a></li>`
+  ).join('\n');
+  const re = /(<h([23]) class="footer-col-h">Cities<\/h\2>\s*\n\s*<ul>\n)([\s\S]*?)(\n\s*<\/ul>)/;
+  STATIC_PAGES.forEach((f) => {
+    const file = path.join(ROOT, f);
+    const html = fs.readFileSync(file, 'utf8');
+    if (!re.test(html)) throw new Error(`${f}: no footer Cities block found. The markup moved; fix this before shipping a half-updated footer.`);
+    const out = html.replace(re, (_m, open2, _lvl, _body, close) => `${open2}${items}${close}`);
+    if (out !== html) { fs.writeFileSync(file, out); written.push(`${f} (footer)`); }
+  });
+}
+
 // ---------- run -------------------------------------------------
 cities.forEach((c) => write(`${c.slug}.html`, cityPage(c)));
+syncStaticFooters();
 write('cities.html', citiesIndex());
 write('sitemap.xml', sitemap());
 console.log('built:', written.join(', '));

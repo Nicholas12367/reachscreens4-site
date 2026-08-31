@@ -65,7 +65,7 @@ function nav(active) {
 function footer(site, cities) {
   const coverage = cities.map((c) => c.status === 'live'
     ? `          <li><a href="${c.slug}.html">${esc(c.name)}</a></li>`
-    : `          <li><a href="${c.slug}.html" style="color:var(--rs-mint);">${esc(c.name)} &mdash; coming soon</a></li>`
+    : `          <li><a href="${c.slug}.html" style="color:var(--rs-mint);">${esc(c.name)} &middot; coming soon</a></li>`
   ).join('\n');
   return `
 <!-- ============ FOOTER ============ -->
