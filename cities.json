@@ -8,7 +8,7 @@
     "phoneHref": "+15876062556",
     "email": "info@reachscreens.ca",
     "formEndpoint": "https://forms-api.reachscreens.ca/submit",
-    "assetVersion": "80"
+    "assetVersion": "81"
   },
   "cities": [
     {
@@ -64,31 +64,6 @@
       ],
       "metaTitle": "Digital Screen Advertising in Sherwood Park, AB, Coming Soon | Reach Screens",
       "metaDescription": "Reach Screens is opening in Sherwood Park, Strathcona County and Fort Saskatchewan. Pre-book your slot and take first pick of the screens at the founding rate."
-    },
-    {
-      "slug": "edmonton",
-      "name": "Edmonton",
-      "status": "coming-soon",
-      "province": "Alberta",
-      "regionCode": "AB",
-      "postalRegion": "Edmonton",
-      "screens": null,
-      "venues": null,
-      "lat": 53.5461,
-      "lng": -113.4938,
-      "eyebrow": "Coming soon",
-      "headline": "<span class=\"text-mint\">Edmonton</span> coming soon.",
-      "intro": "We are signing venues in Edmonton now. A market only holds a limited number of advertisers, and the ones who get in first get first pick of the screens.",
-      "venueTypes": [
-        "Cafes and restaurants",
-        "Pubs and lounges",
-        "Salons and barbers",
-        "Clinics and pharmacies",
-        "Gyms and studios",
-        "Auto and service shops"
-      ],
-      "metaTitle": "Digital Screen Advertising in Edmonton, AB, Coming Soon | Reach Screens",
-      "metaDescription": "Reach Screens is opening in Edmonton. Pre-book your advertising slot, get on the waiting list, and take first pick of the screens at the founding rate."
     }
   ]
 }

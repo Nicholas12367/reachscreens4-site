@@ -84,3 +84,19 @@
 .prebook-points{list-style:none;margin:1.5rem 0 0;padding:0;display:flex;flex-direction:column;gap:.7rem}
 .prebook-points li{display:flex;align-items:flex-start;gap:.6rem;color:var(--rs-text);font-size:.98rem}
 .prebook-tick{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex:none;border-radius:50%;background:var(--rs-mint-soft);color:var(--rs-mint);font-size:.7rem;font-weight:700;margin-top:.15rem}
+
+/* ============ THE STACK (value stack on the home page) ============ */
+.stack-section{position:relative;background:var(--rs-navy);color:var(--rs-text);padding:var(--space-7) 0;overflow:hidden}
+.stack-section .section-head{max-width:56ch}
+.stack-section .section-head h2{font-size:clamp(1.6rem,3.1vw,2.5rem);line-height:1.16;max-width:24ch;margin-inline:auto}
+.stack-section .section-head p{color:var(--rs-text-mid);max-width:52ch;margin:1.25rem auto 0;font-size:var(--fs-lead)}
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:var(--space-5)}
+.stack-card{position:relative;padding:1.6rem 1.5rem 1.5rem;border-radius:var(--radius-card);background:rgba(255,255,255,.04);border:1px solid var(--rs-line);transition:transform .3s var(--ease-std),background .3s var(--ease-std),border-color .3s var(--ease-std)}
+.stack-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.06);border-color:var(--rs-mint-soft)}
+.stack-num{display:block;font-size:.72rem;font-weight:700;letter-spacing:.18em;color:var(--rs-mint);margin-bottom:.9rem}
+.stack-card h3{font-size:1.12rem;font-weight:600;letter-spacing:-.01em;line-height:1.25}
+.stack-card p{color:var(--rs-text-mid);font-size:.95rem;line-height:1.55;margin-top:.55rem}
+.stack-price{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.25rem;margin-top:var(--space-5);text-align:center}
+.stack-price-line{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--rs-text)}
+.stack-price-line strong{color:var(--rs-mint);font-weight:700;white-space:nowrap}
+.label-optional{font-weight:400;letter-spacing:.04em;text-transform:none;color:#5f6c80}

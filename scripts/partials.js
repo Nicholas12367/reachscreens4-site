@@ -129,7 +129,7 @@ function scripts(site) {
   return `
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script defer src="main.js?v=67"></script>
+<script defer src="main.js?v=68"></script>
 <script defer src="assets/rs-attribution.js?v=68"></script>
 <script defer src="assets/rs-defer.js?v=1"></script>
 <script defer src="assets/rs-analytics.js?v=${v}"></script>
@@ -180,6 +180,12 @@ function form(site, o) {
               <div class="form-field">
                 <label for="${id}-phone">Phone number</label>
                 <input id="${id}-phone" name="phone" type="tel" required autocomplete="tel" placeholder="${esc(o.phonePlaceholder)}">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="${id}-website">Website <span class="label-optional">(optional)</span></label>
+                <input id="${id}-website" name="website" type="url" autocomplete="url" placeholder="yourbusiness.com">
               </div>
             </div>
             <div class="form-row">

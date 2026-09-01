@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=80">
+  <link rel="stylesheet" href="styles.css?v=81">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -116,7 +116,6 @@
         <ul>
           <li><a href="lloydminster.html">Lloydminster</a></li>
           <li><a href="sherwood-park.html" style="color:var(--rs-mint);">Sherwood Park &middot; coming soon</a></li>
-          <li><a href="edmonton.html" style="color:var(--rs-mint);">Edmonton &middot; coming soon</a></li>
         </ul>
       </div>
     </div>
@@ -156,8 +155,8 @@
     <div class="modal-header">
       <div>
         <span class="modal-eyebrow">Reach Screen</span>
-        <h3 class="modal-title" id="modal-title" data-modal-name>—</h3>
-        <p class="modal-addr" data-modal-addr>—</p>
+        <h3 class="modal-title" id="modal-title" data-modal-name></h3>
+        <p class="modal-addr" data-modal-addr></p>
       </div>
       <button class="modal-close" data-modal-close aria-label="Close">×</button>
     </div>
@@ -176,7 +175,7 @@
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script defer src="assets/screen-locations.js?v=66"></script>
-<script defer src="main.js?v=67"></script>
+<script defer src="main.js?v=68"></script>
 
 <!-- Lazy-load MapLibre + map.js only when the map nears the viewport. On mobile the
      split layout stacks, so the map sits below the searchable list and off the first
