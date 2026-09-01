@@ -17,12 +17,12 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <!-- Responsive hero preload — fetch only the size needed for this viewport -->
+  <!-- Responsive hero preload. Fetch only the size needed for this viewport -->
   <link rel="preload" as="image" href="assets/website-header-sm.webp" media="(max-width: 900px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/website-header-md.webp" media="(min-width: 901px) and (max-width: 1280px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/website-header.webp" media="(min-width: 1281px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=81">
+  <link rel="stylesheet" href="styles.css?v=84">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -31,7 +31,6 @@
        with the hero font on the first connection. -->
   <script>addEventListener("load",function(){var l=document.createElement("link");l.rel="stylesheet";l.href="fonts-deferred.css?v=1";document.head.appendChild(l)});</script>
   <noscript><link rel="stylesheet" href="fonts-deferred.css?v=1"></noscript>
-  <!-- MapLibre CSS loaded non-blocking — only the contact-map chip needs it -->
   <link rel="icon" href="assets/favicon.ico">
 
   <script type="application/ld+json">
@@ -146,121 +145,50 @@
   </div>
 </section>
 
-<!-- ============ HERO STATS (sticky staircase scroll reveal) ============ -->
-<section class="hero-stats hero-stats--psc" aria-label="Problem, solution, change">
-  <div class="hero-stats-track">
-    <div class="hero-stats-trigger" data-trigger="0"></div>
-    <div class="hero-stats-trigger" data-trigger="1"></div>
-    <div class="hero-stats-trigger" data-trigger="2"></div>
-    <div class="hero-stats-sticky">
-      <div class="hero-stats-grid">
-        <div class="hero-stat" data-stat-index="0">
-          <span class="hero-stat-num">Problem.</span>
-          <span class="hero-stat-desc">Your customers forget your product and service exists, and local ad channels are expensive.</span>
-        </div>
-        <div class="hero-stat" data-stat-index="1">
-          <span class="hero-stat-num">Solution.</span>
-          <span class="hero-stat-desc">Your brand on screens around town, right where people already go.</span>
-        </div>
-        <div class="hero-stat" data-stat-index="2">
-          <span class="hero-stat-num">Result.</span>
-          <span class="hero-stat-desc">You get more customers. Your business grows.</span>
-        </div>
+<!-- ============ PROBLEM / SOLUTION / RESULT ============ -->
+<section class="rs-psr" aria-label="Problem, solution, result">
+  <ol class="rs-psr-panels" role="list">
+
+    <li class="rs-psr-panel rs-psr-panel--problem">
+      <span class="rs-psr-figure-wrap" aria-hidden="true"><span class="rs-psr-figure">01</span></span>
+      <div class="rs-psr-inner reveal">
+        <span class="rs-psr-beat" aria-hidden="true">
+          <span class="rs-psr-beat-seg is-on"></span><span class="rs-psr-beat-seg"></span><span class="rs-psr-beat-seg"></span>
+        </span>
+        <h2 class="rs-psr-label">Problem.</h2>
+        <p class="rs-psr-copy">Your customers forget your product and service exists, and local ad channels are expensive.</p>
       </div>
-    </div>
-  </div>
-</section>
+      <span class="rs-psr-node" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+      </span>
+    </li>
 
-<!-- ============ LOGO COLLAGE ============ -->
-<section class="logo-collage-section" aria-labelledby="logos-h">
-  <div class="container">
-    <div class="section-head center reveal">
-      <span class="eyebrow">On Our Network</span>
-      <h2 id="logos-h">Some of the brands<br class="logos-h-br-desktop"> already on Reach Screens.</h2>
-    </div>
-    <div class="logo-collage reveal">
-      <div class="logo-tile"><img src="assets/logos/lloydminster-honda.webp?v=66" alt="Lloydminster Honda" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/fountain-tire.webp?v=66" alt="Fountain Tire" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/supplement-king.svg?v=66" alt="Supplement King" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/astec-safety.webp?v=66" alt="Astec Safety" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/aveiro-sleep.webp?v=66" alt="Aveiro Sleep" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/wilson-registries.webp?v=66" alt="Wilson Registries" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/harris-electric.svg?v=66" alt="Harris Electric" loading="lazy"></div>
-      <div class="logo-tile invert"><img src="assets/logos/in2golf.webp?v=66" alt="IN2GOLF" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/viking-strength.webp?v=66" alt="Viking Strength" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/marc-d-up.webp?v=66" alt="Marc'd Up Tattoos" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/imagine-laser.webp?v=66" alt="Imagine Laserworks" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/truck-zone.webp?v=66" alt="Truck Zone" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/cheers-live.webp?v=66" alt="Cheers Live Lounge" loading="lazy"></div>
-      <div class="logo-tile boost-lg"><img src="assets/logos/border-city-dental.svg?v=66" alt="Border City Dental" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/sunrise-pharmacy.webp?v=66" alt="Sunrise Pharmacy" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/hi-quality-auto.webp?v=66" alt="Lloyd Hi-Quality Auto" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/diamond-auto.webp?v=66" alt="Diamond Auto" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/sage-and-soul.webp?v=66" alt="Sage and Soul" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/neighbours-pub.webp?v=66" alt="Neighbours Pub and Kitchen" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/the-sticks.webp?v=66" alt="The Sticks" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/world-class-training.webp?v=66" alt="World Class Training" loading="lazy"></div>
-      <div class="logo-tile"><img src="assets/logos/mr-sparkles.webp?v=66" alt="Mr. Sparkles Car Wash" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/katchai-cafe.webp?v=66" alt="Katchai Cafe" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/prg.webp?v=66" alt="Pothole Repair Guys" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/superior-water.webp?v=66" alt="Superior Water" loading="lazy"></div>
-      <div class="logo-tile boost"><img src="assets/logos/summit-vision.webp?v=66" alt="Summit Vision Training" loading="lazy"></div>
-      <div class="logo-tile text cursive">Curls by Felicity</div>
-      <div class="logo-tile"><img src="assets/logos/cuts-by-jord.webp?v=66" alt="Cuts by Jord" loading="lazy"></div>
-    </div>
-  </div>
-</section>
+    <li class="rs-psr-panel rs-psr-panel--solution">
+      <span class="rs-psr-figure-wrap" aria-hidden="true"><span class="rs-psr-figure">02</span></span>
+      <div class="rs-psr-inner reveal">
+        <span class="rs-psr-beat" aria-hidden="true">
+          <span class="rs-psr-beat-seg is-on"></span><span class="rs-psr-beat-seg is-on"></span><span class="rs-psr-beat-seg"></span>
+        </span>
+        <h2 class="rs-psr-label">Solution.</h2>
+        <p class="rs-psr-copy">Your brand on screens around town, right where people already go.</p>
+      </div>
+      <span class="rs-psr-node" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+      </span>
+    </li>
 
-<!-- ============ THE STACK ============ -->
-<section class="stack-section" id="stack" aria-labelledby="stack-h">
-  <div class="wavy-decor" aria-hidden="true">
-    <svg viewBox="0 0 1600 220" preserveAspectRatio="none">
-      <path d="M0,150 C220,60 460,30 700,100 C940,170 1140,200 1380,130 C1500,90 1560,80 1600,90" />
-      <path d="M0,110 C200,30 420,10 660,80 C900,150 1120,170 1340,100 C1480,60 1560,50 1600,60" opacity="0.6" />
-    </svg>
-  </div>
-  <div class="container">
-    <div class="section-head center reveal">
-      <span class="eyebrow">What's included</span>
-      <h2 id="stack-h">We are your marketing department.<br><span class="text-mint">The screens are the part you can see.</span></h2>
-      <p>A screen puts your name in someone's head. Three weeks later they look you up. What they find should be current.</p>
-    </div>
+    <li class="rs-psr-panel rs-psr-panel--result">
+      <span class="rs-psr-figure-wrap" aria-hidden="true"><span class="rs-psr-figure">03</span></span>
+      <div class="rs-psr-inner reveal">
+        <span class="rs-psr-beat" aria-hidden="true">
+          <span class="rs-psr-beat-seg is-on"></span><span class="rs-psr-beat-seg is-on"></span><span class="rs-psr-beat-seg is-on"></span>
+        </span>
+        <h2 class="rs-psr-label">Result.</h2>
+        <p class="rs-psr-copy">You get more customers. Your business grows.</p>
+      </div>
+    </li>
 
-    <div class="stack-grid reveal-stagger">
-      <article class="stack-card">
-        <span class="stack-num">01</span>
-        <h3>Screens around town</h3>
-        <p>Your ad on indoor screens, in the venues people already visit.</p>
-      </article>
-      <article class="stack-card">
-        <span class="stack-num">02</span>
-        <h3>Ad creative</h3>
-        <p>We write, design and refresh every ad. You approve it.</p>
-      </article>
-      <article class="stack-card">
-        <span class="stack-num">03</span>
-        <h3>Social and profiles</h3>
-        <p>Posts go out and every listing stays current, without you touching it.</p>
-      </article>
-      <article class="stack-card">
-        <span class="stack-num">04</span>
-        <h3>Your website</h3>
-        <p>We build it, or take over the one you have.</p>
-      </article>
-      <article class="stack-card">
-        <span class="stack-num">05</span>
-        <h3>Google reviews</h3>
-        <p>Counter cards and QR codes that ask your customers for a review.</p>
-      </article>
-    </div>
-
-    <div class="stack-price reveal">
-      <p class="stack-price-line">Everything above, starting at <strong>$499 a month</strong>.</p>
-      <a href="#idea" class="btn btn-primary">Get started
-        <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-      </a>
-    </div>
-  </div>
+  </ol>
 </section>
 
 <!-- ============ PEOPLE PHOTOS (white bg) ============ -->
@@ -536,6 +464,253 @@
 <div id="form-modal-mount"></div>
 <div id="contact-modal-mount"></div>
 
+<!-- ============ LOGO COLLAGE ============ -->
+<section class="logo-collage-section" aria-labelledby="logos-h">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">On Our Network</span>
+      <h2 id="logos-h">Some of the brands<br class="logos-h-br-desktop"> already on Reach Screens.</h2>
+    </div>
+    <div class="logo-marquee" data-logo-marquee>
+      <div class="logo-marquee-track">
+        <div class="logo-tile"><img src="assets/logos/lloydminster-honda.webp?v=66" alt="Lloydminster Honda" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/fountain-tire.webp?v=66" alt="Fountain Tire" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/supplement-king.svg?v=66" alt="Supplement King" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/astec-safety.webp?v=66" alt="Astec Safety" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/aveiro-sleep.webp?v=66" alt="Aveiro Sleep" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/wilson-registries.webp?v=66" alt="Wilson Registries" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/harris-electric.svg?v=66" alt="Harris Electric" loading="lazy"></div>
+        <div class="logo-tile invert"><img src="assets/logos/in2golf.webp?v=66" alt="IN2GOLF" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/viking-strength.webp?v=66" alt="Viking Strength" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/marc-d-up.webp?v=66" alt="Marc'd Up Tattoos" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/imagine-laser.webp?v=66" alt="Imagine Laserworks" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/truck-zone.webp?v=66" alt="Truck Zone" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/cheers-live.webp?v=66" alt="Cheers Live Lounge" loading="lazy"></div>
+        <div class="logo-tile boost-lg"><img src="assets/logos/border-city-dental.svg?v=66" alt="Border City Dental" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/sunrise-pharmacy.webp?v=66" alt="Sunrise Pharmacy" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/hi-quality-auto.webp?v=66" alt="Lloyd Hi-Quality Auto" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/diamond-auto.webp?v=66" alt="Diamond Auto" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/sage-and-soul.webp?v=66" alt="Sage and Soul" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/neighbours-pub.webp?v=66" alt="Neighbours Pub and Kitchen" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/the-sticks.webp?v=66" alt="The Sticks" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/world-class-training.webp?v=66" alt="World Class Training" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/mr-sparkles.webp?v=66" alt="Mr. Sparkles Car Wash" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/katchai-cafe.webp?v=66" alt="Katchai Cafe" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/prg.webp?v=66" alt="Pothole Repair Guys" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/superior-water.webp?v=66" alt="Superior Water" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/summit-vision.webp?v=66" alt="Summit Vision Training" loading="lazy"></div>
+        <div class="logo-tile text cursive">Curls by Felicity</div>
+        <div class="logo-tile"><img src="assets/logos/cuts-by-jord.webp?v=66" alt="Cuts by Jord" loading="lazy"></div>
+      </div>
+      <div class="logo-marquee-track" aria-hidden="true">
+        <div class="logo-tile"><img src="assets/logos/lloydminster-honda.webp?v=66" alt="Lloydminster Honda" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/fountain-tire.webp?v=66" alt="Fountain Tire" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/supplement-king.svg?v=66" alt="Supplement King" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/astec-safety.webp?v=66" alt="Astec Safety" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/aveiro-sleep.webp?v=66" alt="Aveiro Sleep" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/wilson-registries.webp?v=66" alt="Wilson Registries" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/harris-electric.svg?v=66" alt="Harris Electric" loading="lazy"></div>
+        <div class="logo-tile invert"><img src="assets/logos/in2golf.webp?v=66" alt="IN2GOLF" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/viking-strength.webp?v=66" alt="Viking Strength" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/marc-d-up.webp?v=66" alt="Marc'd Up Tattoos" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/imagine-laser.webp?v=66" alt="Imagine Laserworks" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/truck-zone.webp?v=66" alt="Truck Zone" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/cheers-live.webp?v=66" alt="Cheers Live Lounge" loading="lazy"></div>
+        <div class="logo-tile boost-lg"><img src="assets/logos/border-city-dental.svg?v=66" alt="Border City Dental" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/sunrise-pharmacy.webp?v=66" alt="Sunrise Pharmacy" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/hi-quality-auto.webp?v=66" alt="Lloyd Hi-Quality Auto" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/diamond-auto.webp?v=66" alt="Diamond Auto" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/sage-and-soul.webp?v=66" alt="Sage and Soul" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/neighbours-pub.webp?v=66" alt="Neighbours Pub and Kitchen" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/the-sticks.webp?v=66" alt="The Sticks" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/world-class-training.webp?v=66" alt="World Class Training" loading="lazy"></div>
+        <div class="logo-tile"><img src="assets/logos/mr-sparkles.webp?v=66" alt="Mr. Sparkles Car Wash" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/katchai-cafe.webp?v=66" alt="Katchai Cafe" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/prg.webp?v=66" alt="Pothole Repair Guys" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/superior-water.webp?v=66" alt="Superior Water" loading="lazy"></div>
+        <div class="logo-tile boost"><img src="assets/logos/summit-vision.webp?v=66" alt="Summit Vision Training" loading="lazy"></div>
+        <div class="logo-tile text cursive">Curls by Felicity</div>
+        <div class="logo-tile"><img src="assets/logos/cuts-by-jord.webp?v=66" alt="Cuts by Jord" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE PACKAGE (receipt) ============ -->
+<section class="rs-pkg" id="stack" aria-labelledby="rs-pkg-h">
+  <div class="container">
+
+    <div class="section-head center reveal">
+      <span class="eyebrow">What's included</span>
+      <h2 id="rs-pkg-h">We are your marketing department.<br><span class="text-mint">The screens are the part you can see.</span></h2>
+    </div>
+
+    <div class="rs-pkg-sheet reveal">
+
+      <article class="rs-pkg-receipt">
+        <header class="rs-pkg-head">
+          <span class="rs-pkg-head-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 20.5h8M12 17v3.5"/></svg>
+          </span>
+          <span class="rs-pkg-head-text">
+            <span class="rs-pkg-head-title">The Reach Screens package</span>
+            <span class="rs-pkg-head-sub">Four things, one monthly bill</span>
+          </span>
+          <span class="rs-pkg-head-tag">Monthly</span>
+        </header>
+
+        <div class="rs-pkg-body">
+          <h3 class="rs-pkg-group rs-pkg-group--in">
+            <span class="rs-pkg-group-rule" aria-hidden="true"></span>
+            Included every month
+          </h3>
+
+          <ul class="rs-pkg-lines" role="list">
+
+            <li class="rs-pkg-line">
+              <button type="button" class="rs-pkg-toggle" id="rs-pkg-t1" aria-expanded="false" aria-controls="rs-pkg-d1">
+                <span class="rs-pkg-tick" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
+                </span>
+                <span class="rs-pkg-line-main">
+                  <span class="rs-pkg-name">Screens around town</span>
+                  <span class="rs-pkg-sum">Your ad on indoor screens, in the venues people already visit.</span>
+                </span>
+                <span class="rs-pkg-more">
+                  <span class="rs-pkg-more-text">Details</span>
+                  <span class="rs-pkg-chev" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </span>
+              </button>
+              <div class="rs-pkg-detail" id="rs-pkg-d1">
+                <p>Cafes, pubs, barber shops, gyms and waiting rooms across town. Your ad runs in rotation on the screens people look at while they wait, eat and shop. We place the screens, run the players and handle the scheduling.</p>
+              </div>
+            </li>
+
+            <li class="rs-pkg-line">
+              <button type="button" class="rs-pkg-toggle" id="rs-pkg-t2" aria-expanded="false" aria-controls="rs-pkg-d2">
+                <span class="rs-pkg-tick" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
+                </span>
+                <span class="rs-pkg-line-main">
+                  <span class="rs-pkg-name">Ad creative</span>
+                  <span class="rs-pkg-sum">We write, design and refresh every ad. You just approve it.</span>
+                </span>
+                <span class="rs-pkg-more">
+                  <span class="rs-pkg-more-text">Details</span>
+                  <span class="rs-pkg-chev" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </span>
+              </button>
+              <div class="rs-pkg-detail" id="rs-pkg-d2">
+                <p>Our team writes the words and builds the artwork, then swaps it out as your offers and seasons change. Nothing goes on a screen until you say yes. No design software, no agency brief, no extra invoice.</p>
+              </div>
+            </li>
+
+            <li class="rs-pkg-line">
+              <button type="button" class="rs-pkg-toggle" id="rs-pkg-t3" aria-expanded="false" aria-controls="rs-pkg-d3">
+                <span class="rs-pkg-tick" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
+                </span>
+                <span class="rs-pkg-line-main">
+                  <span class="rs-pkg-name">Profile management</span>
+                  <span class="rs-pkg-sum">Every one of your online profiles, managed for you.</span>
+                </span>
+                <span class="rs-pkg-more">
+                  <span class="rs-pkg-more-text">Details</span>
+                  <span class="rs-pkg-chev" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </span>
+              </button>
+              <ul class="rs-pkg-subs" role="list">
+                <li>Facebook</li>
+                <li>Instagram content</li>
+                <li>Google profiles</li>
+                <li>Full profile setup</li>
+              </ul>
+              <div class="rs-pkg-detail" id="rs-pkg-d3">
+                <p>A screen puts your name in someone's head. Weeks later they look you up, so what they find has to be current. We post to Facebook and Instagram, keep your Google profile accurate and complete, and build out any profile you do not have yet. You never log in to a thing.</p>
+              </div>
+            </li>
+
+            <li class="rs-pkg-line">
+              <button type="button" class="rs-pkg-toggle" id="rs-pkg-t4" aria-expanded="false" aria-controls="rs-pkg-d4">
+                <span class="rs-pkg-tick" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
+                </span>
+                <span class="rs-pkg-line-main">
+                  <span class="rs-pkg-name">Google reviews</span>
+                  <span class="rs-pkg-sum">Counter cards and QR codes that ask your customers for a review.</span>
+                </span>
+                <span class="rs-pkg-more">
+                  <span class="rs-pkg-more-text">Details</span>
+                  <span class="rs-pkg-chev" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </span>
+              </button>
+              <div class="rs-pkg-detail" id="rs-pkg-d4">
+                <p>We print the counter cards and the QR codes, you put them where people pay. Every customer gets the same invitation to leave an honest review, so your rating grows on volume instead of luck.</p>
+              </div>
+            </li>
+
+          </ul>
+
+          <div class="rs-pkg-perf" aria-hidden="true"></div>
+
+          <div class="rs-pkg-total">
+            <span class="rs-pkg-total-label">Everything above</span>
+            <span class="rs-pkg-leader" aria-hidden="true"></span>
+            <span class="rs-pkg-total-amount">
+              <span class="rs-pkg-total-pre">starting at</span>
+              <span class="rs-pkg-price">$499</span>
+              <span class="rs-pkg-per">a month</span>
+            </span>
+          </div>
+
+          <a href="#idea" class="btn btn-primary rs-pkg-cta">Get started
+            <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <div class="rs-pkg-addon">
+        <h3 class="rs-pkg-group rs-pkg-group--out">
+          <span class="rs-pkg-group-rule" aria-hidden="true"></span>
+          Not included in the package
+        </h3>
+        <div class="rs-pkg-addon-card">
+          <button type="button" class="rs-pkg-toggle rs-pkg-toggle--out" id="rs-pkg-t5" aria-expanded="false" aria-controls="rs-pkg-d5">
+            <span class="rs-pkg-tick rs-pkg-tick--out" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+            <span class="rs-pkg-line-main">
+              <span class="rs-pkg-name">
+                Websites
+                <span class="rs-pkg-flag">Add-on</span>
+              </span>
+              <span class="rs-pkg-sum">Built on request when you need one. Quoted separately, not part of the $499.</span>
+            </span>
+            <span class="rs-pkg-more">
+              <span class="rs-pkg-more-text">Details</span>
+              <span class="rs-pkg-chev" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9.5 12 15.5 18 9.5"/></svg>
+              </span>
+            </span>
+          </button>
+          <div class="rs-pkg-detail" id="rs-pkg-d5">
+            <p>Plenty of clients already have a site they are happy with, so a website is not bundled into the monthly price. If you need one, or the one you have is out of date, we build it and quote it on its own.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ============ INLINE FORM (also lives in the modal on CTA clicks) ============ -->
 <section class="form-section" id="idea" aria-labelledby="form-h-inline">
   <div class="wavy-decor" aria-hidden="true">
@@ -698,15 +873,16 @@
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script defer src="assets/rs-attribution.js?v=68"></script>
 <script defer src="main.js?v=68"></script>
+<script defer src="assets/rs-package.js?v=1"></script>
 <script defer src="assets/rs-defer.js?v=1"></script>
 <script defer src="assets/rs-analytics.js?v=80"></script>
 
 
-<!-- Google Analytics 4 — real Measurement ID lives in assets/analytics.js -->
+<!-- Google Analytics 4. Real Measurement ID lives in assets/analytics.js -->
 <!-- Hotjar (no-op until HOTJAR_SITE_ID is set in assets/hotjar.js): uncomment to activate.
 <script defer src="assets/hotjar.js?v=66"></script>
 -->
-<!-- Microsoft Clarity (heatmaps + recordings) — project id set in assets/clarity.js -->
+<!-- Microsoft Clarity (heatmaps + recordings). Project id set in assets/clarity.js -->
 <script defer src="assets/analytics.js?v=79"></script>
 <script defer src="assets/clarity.js?v=79"></script>
 
