@@ -8,7 +8,7 @@
     "phoneHref": "+15876062556",
     "email": "info@reachscreens.ca",
     "formEndpoint": "https://forms-api.reachscreens.ca/submit",
-    "assetVersion": "84"
+    "assetVersion": "86"
   },
   "cities": [
     {

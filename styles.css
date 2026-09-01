@@ -196,7 +196,7 @@
 .rs-psr-figure{
   position:absolute;
   right:.05em;
-  bottom:-.24em;
+  bottom:0;
   font-family:Manrope,Inter,system-ui,sans-serif;
   font-weight:800;
   font-size:clamp(9rem,17vw,15rem);
@@ -289,7 +289,7 @@
   .rs-psr-inner{max-width:38ch}
   .rs-psr-figure{
     font-size:clamp(7.5rem,32vw,11rem);
-    bottom:-.22em;
+    bottom:0;
     right:.05em;
   }
   .rs-psr-node{
@@ -716,3 +716,21 @@
 .rs-pkg{padding-top:var(--space-5)}
 .rs-pkg .section-head{margin-bottom:var(--space-3)}
 .rs-pkg .section-head h2{font-size:clamp(1.5rem,2.9vw,2.3rem);max-width:34ch;margin-inline:auto}
+
+/* The logo bar moved above the reviews, which put two near-identical pale bands
+   (#fff photos, #FAFAFA logos) back to back. Putting the bar on navy restores the
+   alternation AND joins it to the review carousel below, so authority and empathy
+   read as one proof block instead of two shuffled ones. */
+.logo-collage-section{background:var(--rs-navy);color:var(--rs-text)}
+.logo-collage-section .section-head h2{color:var(--rs-text)!important;text-shadow:none}
+.logo-collage-section .section-head p{color:var(--rs-text-mid)}
+.logo-collage-section .eyebrow{color:var(--rs-mint)}
+.logo-collage-section .logo-tile{opacity:1;border-color:rgba(255,255,255,.10)}
+/* The bar now flows straight into the review section, so it loses its bottom gap
+   and the reviews lose their top one. One block, two kinds of proof. */
+.logo-collage-section{padding-bottom:var(--space-3)}
+.social-proof{padding-top:var(--space-4)}
+/* Wording on these two is fixed by the client. Only the type size changes, so they
+   sit in the same scale as every other heading on the page instead of towering. */
+.screens-photos-section .section-head h2{font-size:clamp(1.7rem,3.4vw,2.7rem);max-width:22ch;margin-inline:auto}
+.social-proof .section-head h2{font-size:clamp(1.7rem,3.4vw,2.7rem);max-width:22ch;margin-inline:auto}
