@@ -116,16 +116,32 @@ function mapBlock(c) {
   </div>
 </section>${areaCfg}
 <script>
+/* MapLibre is 206 KB of JS and it was costing 2.6 s of main-thread blocking on
+   a phone, because a 300px rootMargin on a 640px-tall viewport already reaches
+   the map section at scroll position zero. So it loaded on every page load for
+   every visitor, including the ones who never scroll that far.
+   Nothing is fetched until the reader actually moves, or deep-links to #city-map. */
 (function(){
-  var el=document.getElementById('map');if(!el)return;var done=false;
+  var el=document.getElementById('map');if(!el)return;
+  var done=false,armed=false;
   function go(){if(done)return;done=true;
   var css=document.createElement('link');css.rel='stylesheet';css.href='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';document.head.appendChild(css);
   var gl=document.createElement('script');gl.src='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js';document.head.appendChild(gl);
   gl.onload=function(){
 ${loader}
   };}
-  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go();io.disconnect();}});},{rootMargin:'300px'});io.observe(el);}
-  else{addEventListener('load',go);}
+  function arm(){
+    if(armed)return;armed=true;
+    if(!('IntersectionObserver' in window)){go();return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go();io.disconnect();}});},{rootMargin:'400px'});
+    io.observe(el);
+  }
+  // Someone who followed a link straight to the map wants the map, not a wait.
+  if(location.hash==='#city-map'){arm();return;}
+  ['scroll','wheel','touchstart','pointerdown','keydown'].forEach(function(ev){
+    addEventListener(ev,arm,{once:true,passive:true});
+  });
+  addEventListener('hashchange',function(){if(location.hash==='#city-map'){arm();go();}});
 })();
 </script>`;
 }

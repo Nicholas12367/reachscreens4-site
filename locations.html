@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cities — Reach Screens</title>
+  <!-- locations.html became cities.html on 2026-08-28. nginx.conf carries a 301
+       for it, but the deployed container reports a different nginx build than the
+       Dockerfile pins, so the repo's config is NOT provably the one running (see
+       c852bf0). A deleted file would then 404 and an indexed URL would lose its
+       authority outright. This file cannot 404. If the 301 IS live it wins and
+       this is never served; if it is not, the canonical still hands the ranking
+       to cities.html and the reader still lands in the right place. -->
+  <link rel="canonical" href="https://reachscreens.ca/cities.html">
+  <meta http-equiv="refresh" content="0; url=/cities.html">
+  <meta name="robots" content="noindex, follow">
+  <script>location.replace('/cities.html' + location.hash);</script>
+</head>
+<body>
+  <p>This page moved. <a href="/cities.html">Reach Screens cities</a>.</p>
+</body>
+</html>

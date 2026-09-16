@@ -70,6 +70,11 @@
       var node = document.createElement('div');
       node.className = 'rs-area-disc';
       new maplibregl.Marker({ element: node, anchor: 'center' }).setLngLat([p.lng, p.lat]).addTo(map);
+      // MapLibre stamps aria-label="Map marker" on every marker element. On a
+      // bare div that is an invalid-ARIA failure, and the disc is decoration
+      // anyway · the community it marks is announced by its own label chip.
+      node.removeAttribute('aria-label');
+      node.setAttribute('aria-hidden', 'true');
       return { place: p, node: node };
     });
 
@@ -97,6 +102,9 @@
       node.className = 'rs-area-pin';
       node.textContent = p.name;
       new maplibregl.Marker({ element: node, anchor: 'center' }).setLngLat([p.lng, p.lat]).addTo(map);
+      // Its own text is the label. MapLibre's generic "Map marker" would
+      // override it and read every community as the same thing.
+      node.removeAttribute('aria-label');
     });
   }
 

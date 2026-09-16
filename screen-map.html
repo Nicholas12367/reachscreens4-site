@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=90">
+  <link rel="stylesheet" href="styles.css?v=91">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -181,7 +181,7 @@
 
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script defer src="assets/screen-locations.js?v=90"></script>
+<script defer src="assets/screen-locations.js?v=91"></script>
 <script defer src="main.js?v=68"></script>
 
 <!-- Lazy-load MapLibre + map.js only when the map nears the viewport. On mobile the
@@ -205,24 +205,35 @@
       document.body.appendChild(s);
     });
   }
-  if (!('IntersectionObserver' in window)) { window.addEventListener('load', loadMap); return; }
-  var io = new IntersectionObserver(function(entries){
-    if (entries.some(function(e){ return e.isIntersecting; })) { io.disconnect(); loadMap(); }
-  }, { rootMargin: '600px 0px' });
-  io.observe(mapEl);
+  // 🔴 A 600px rootMargin on a 640px-tall phone viewport is not lazy at all ·
+  // it already reaches the map at scroll position zero, so MapLibre loaded on
+  // every mobile page load anyway. Measured: 5,580 ms of main-thread blocking
+  // and a performance score of 31. Nothing loads now until the reader moves.
+  var armed = false;
+  function arm(){
+    if (armed) return; armed = true;
+    if (!('IntersectionObserver' in window)) { loadMap(); return; }
+    var io = new IntersectionObserver(function(entries){
+      if (entries.some(function(e){ return e.isIntersecting; })) { io.disconnect(); loadMap(); }
+    }, { rootMargin: '600px 0px' });
+    io.observe(mapEl);
+  }
+  ['scroll','wheel','touchstart','pointerdown','keydown'].forEach(function(ev){
+    window.addEventListener(ev, arm, { once: true, passive: true });
+  });
 })();
 </script>
 
 <!-- Analytics -->
 <script defer src="assets/rs-defer.js?v=1"></script>
-<script defer src="assets/rs-analytics.js?v=90"></script>
+<script defer src="assets/rs-analytics.js?v=91"></script>
 <!-- Google Analytics 4. Real Measurement ID lives in assets/analytics.js -->
-<script defer src="assets/analytics.js?v=90"></script>
+<script defer src="assets/analytics.js?v=91"></script>
 <!-- Hotjar (no-op until HOTJAR_SITE_ID is set in assets/hotjar.js): uncomment to activate.
 <script defer src="assets/hotjar.js?v=66"></script>
 -->
 <!-- Microsoft Clarity (heatmaps + recordings). Project id set in assets/clarity.js -->
-<script defer src="assets/clarity.js?v=90"></script>
+<script defer src="assets/clarity.js?v=91"></script>
 
 <!-- Form modal + Contact modal mounts (built by main.js on load) -->
 <div id="form-modal-mount"></div>

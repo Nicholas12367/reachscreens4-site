@@ -580,3 +580,11 @@ a.map-city:hover{border-color:var(--rs-primary);background:rgba(0,147,217,.08)}
 /* The cities grid sat above the enquiry form with both sections' padding
    stacked, so two cards floated in ~250px of empty navy. */
 .markets-section--tight + .markets-section{padding-top:var(--space-4)}
+
+/* The venue list is empty in the HTML and filled by main.js, so the map block
+   below it was shoved down on first paint · CLS 0.252 on the screen map, the
+   only layout shift left on the site. The wrap is already capped at 760px and
+   there are 33 venues, so it is always full · pinning the floor to the same
+   number reserves the space and the shift cannot happen. */
+.locations-list-wrap{min-height:760px}
+@media (max-width:900px){.locations-list-wrap{min-height:min(760px,68vh)}}
