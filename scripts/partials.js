@@ -63,9 +63,11 @@ function nav(active) {
 }
 
 function footer(site, cities) {
-  const coverage = cities.map((c) => c.status === 'live'
-    ? `          <li><a href="${c.slug}.html">${esc(c.name)}</a></li>`
-    : `          <li><a href="${c.slug}.html" style="color:var(--rs-mint);">${esc(c.name)} &middot; coming soon</a></li>`
+  // Every city is listed the same way. This used to mint-tint and append
+  // "coming soon" to any market without screens installed, so the footer
+  // announced on every single page of the site which market was not open.
+  const coverage = cities.map((c) =>
+    `          <li><a href="${c.slug}.html">${esc(c.name)}</a></li>`
   ).join('\n');
   return `
 <!-- ============ FOOTER ============ -->
@@ -74,7 +76,7 @@ function footer(site, cities) {
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="assets/logo-white.webp" alt="Reach Screens" width="200" height="67">
-        <p>Indoor digital advertising across Lloydminster. We put your ad where attention already lives.</p>
+        <p>Indoor digital advertising for local businesses. We put your ad where attention already lives.</p>
       </div>
       <div class="footer-col">
         <h2 class="footer-col-h">Site</h2>
@@ -90,7 +92,7 @@ function footer(site, cities) {
         <ul>
           <li><a href="mailto:${site.email}">${site.email}</a></li>
           <li><a href="tel:${site.phoneHref}">${site.phoneDisplay}</a></li>
-          <li><span style="color:var(--rs-text-mid);">Lloydminster, AB</span></li>
+          <li><span style="color:var(--rs-text-mid);">Head office: Lloydminster, AB</span></li>
         </ul>
       </div>
       <div class="footer-col">

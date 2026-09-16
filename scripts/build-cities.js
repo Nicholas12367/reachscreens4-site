@@ -9,6 +9,19 @@
    the site stays plain static nginx.
 
    NEVER hand-edit a generated page. This overwrites them.
+
+   🔴 THERE IS NO live/coming-soon FORK IN HERE ANY MORE.
+   It used to render a "Coming soon" pill, a pre-book form and a
+   "first pick of locations when we go live" list for any market
+   without screens installed. That told every venue owner who
+   checked the site that they would be the first one in, which is
+   the one thing that stops them signing. Every city now renders
+   from the same template. The ONLY thing that varies is what we
+   can honestly show for it, and that is driven by data, not by a
+   status flag: `facts` renders only if it has entries, and
+   `map.mode` is "pins" for a city whose screens are really in and
+   "area" for one where they are not. Never add a pin or a count
+   for a city that does not have them.
 ================================================================ */
 const fs = require('fs');
 const path = require('path');
@@ -26,14 +39,12 @@ function write(file, html) {
   written.push(file);
 }
 
-const isLive = (c) => c.status === 'live';
-const statusLabel = (c) => (isLive(c) ? 'Live now' : 'Coming soon');
-const statusClass = (c) => (isLive(c) ? 'live' : 'soon');
+const arrow = '<svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>';
 
 /* ---------- LocalBusiness schema, per city ----------------------
    areaServed is the honest way to describe a city we serve without
    claiming a street address we do not have there. The one real
-   postal address stays on the Lloydminster page only. */
+   postal address goes only on the city carrying hasAddress. */
 function jsonLd(c) {
   const base = {
     '@context': 'https://schema.org',
@@ -52,7 +63,7 @@ function jsonLd(c) {
       ...(c.alsoServes || []).map((n) => ({ '@type': 'AdministrativeArea', name: n, containedInPlace: { '@type': 'AdministrativeArea', name: c.province } }))],
     geo: { '@type': 'GeoCoordinates', latitude: c.lat, longitude: c.lng },
   };
-  if (isLive(c)) {
+  if (c.hasAddress) {
     base.address = {
       '@type': 'PostalAddress',
       streetAddress: '5018 50 Ave',
@@ -65,96 +76,78 @@ function jsonLd(c) {
   return base;
 }
 
+/* ---------- the map block, on EVERY city page -------------------
+   Same section, same height, same furniture, either way. A market
+   with its screens in gets the real pins and a link to the full
+   searchable map. A market without them gets its coverage area.
+   Neither page has a hole where the other has a map. */
+function mapBlock(c) {
+  const pins = (c.map || {}).mode === 'pins';
+  const sub = pins
+    ? `Every Reach Screens location in ${esc(c.name)}. Click any pin for the venue and its address.`
+    : `Your ad runs across ${[c.name, ...(c.alsoServes || [])].map(esc).join(', ')}. We confirm the exact venues with you when you book, and you approve the list before anything goes up.`;
+
+  const loader = pins
+    ? `  var s=document.createElement('script');s.src='assets/screen-locations.js?v=${site.assetVersion}';document.head.appendChild(s);
+  s.onload=function(){var m=document.createElement('script');m.src='map.js?v=66';document.head.appendChild(m);};`
+    : `  var m=document.createElement('script');m.src='assets/rs-area-map.js?v=${site.assetVersion}';document.head.appendChild(m);
+  m.onload=function(){window.rsAreaMapInit&&window.rsAreaMapInit();};`;
+
+  const areaCfg = pins ? '' : `
+<script>
+  window.rsAreaMap = { places: ${JSON.stringify((c.coverage || []).filter((p) => p.lat && p.lng))} };
+</script>`;
+
+  return `
+<!-- ============ MAP ============ -->
+<section class="city-map-section" id="city-map" aria-labelledby="city-map-h">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">${pins ? 'Screen map' : 'Coverage'}</span>
+      <h2 id="city-map-h">Where your ad plays in ${esc(c.name)}.</h2>
+      <p>${sub}</p>
+    </div>
+    <div class="map-block city-map-block">
+      <div id="map" class="map-canvas" role="region" aria-label="Map of Reach Screens coverage in ${esc(c.name)}"></div>
+    </div>${pins ? `
+    <div class="city-map-actions">
+      <a href="screen-map.html" class="btn btn-outline">Open the full screen map ${arrow}</a>
+    </div>` : ''}
+  </div>
+</section>${areaCfg}
+<script>
+(function(){
+  var el=document.getElementById('map');if(!el)return;var done=false;
+  function go(){if(done)return;done=true;
+  var css=document.createElement('link');css.rel='stylesheet';css.href='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';document.head.appendChild(css);
+  var gl=document.createElement('script');gl.src='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js';document.head.appendChild(gl);
+  gl.onload=function(){
+${loader}
+  };}
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go();io.disconnect();}});},{rootMargin:'300px'});io.observe(el);}
+  else{addEventListener('load',go);}
+})();
+</script>`;
+}
+
 /* ---------- one city page -------------------------------------- */
 function cityPage(c) {
   const other = cities.filter((x) => x.slug !== c.slug);
   const venueList = c.venueTypes.map((v) => `        <li>${esc(v)}</li>`).join('\n');
 
-  const facts = isLive(c)
+  const facts = (c.facts && c.facts.length)
     ? `      <div class="city-facts">
-        <div class="city-fact"><span class="city-fact-num">${c.screens}</span><span class="city-fact-label">screens</span></div>
-        <div class="city-fact"><span class="city-fact-num">${c.venues}</span><span class="city-fact-label">venues</span></div>
-        <div class="city-fact"><span class="city-fact-num">${c.province.includes('&') ? '2' : '1'}</span><span class="city-fact-label">${c.province.includes('&') ? 'provinces' : 'province'}</span></div>
+${c.facts.map((f) => `        <div class="city-fact"><span class="city-fact-num">${esc(f.num)}</span><span class="city-fact-label">${esc(f.label)}</span></div>`).join('\n')}
       </div>`
-    : `      <div class="city-facts">
-        <div class="city-fact"><span class="city-fact-num">Soon</span><span class="city-fact-label">venues signing now</span></div>
-        <div class="city-fact"><span class="city-fact-num">Limited</span><span class="city-fact-label">launch slots</span></div>
-        <div class="city-fact"><span class="city-fact-num">Founding</span><span class="city-fact-label">rate held</span></div>
-      </div>`;
+    : '';
 
-  const cta = isLive(c)
-    ? `      <div class="city-actions">
-        <a href="#idea" class="btn btn-primary">Advertise in ${esc(c.name)}
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-        <a href="screen-map.html" class="btn btn-outline">See every screen</a>
-      </div>`
-    : `      <div class="city-actions">
-        <a href="#prebook" class="btn btn-primary">Pre-book your slot
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-      </div>`;
-
-  const formBlock = isLive(c)
-    ? `
-<!-- ============ ENQUIRY ============ -->
-<section class="markets-section" id="idea" aria-labelledby="city-form-h">
-  <div class="container">
-    <div class="prebook" id="prebook">
-      <div class="prebook-copy">
-        <h2 id="city-form-h" class="prebook-h">Get your ad on screen in ${esc(c.name)}.</h2>
-        <p class="prebook-sub">Tell us what you want to promote. We design the ad for you and it goes up on the network.</p>
-      </div>
-      <div class="prebook-form-wrap">
-${P.form(site, { id: 'city-form', source: `reachscreens.ca / ${c.slug}`, pkg: `${c.name} enquiry`, phonePlaceholder: '(587) 555-0123', messageLabel: `What would you like to advertise in ${c.name}?`, submitLabel: 'Advertise Now' })}
-      </div>
-    </div>
-  </div>
-</section>`
-    : `
-<!-- ============ PRE-BOOK ============ -->
-<section class="markets-section" id="idea" aria-labelledby="city-form-h">
-  <div class="container">
-    <div class="prebook" id="prebook">
-      <div class="prebook-copy">
-        <h2 id="city-form-h" class="prebook-h">Pre-book your slot.</h2>
-        <p class="prebook-sub">Get on the waiting list. Only a limited number of spots.</p>
-        <ul class="prebook-points">
-          <li><span class="prebook-tick" aria-hidden="true">&#10003;</span> First pick of locations when we go live</li>
-          <li><span class="prebook-tick" aria-hidden="true">&#10003;</span> Founding rate, held for you</li>
-          <li><span class="prebook-tick" aria-hidden="true">&#10003;</span> No payment now, no commitment</li>
-        </ul>
-      </div>
-      <div class="prebook-form-wrap">
-${P.form(site, { id: 'city-form', source: `reachscreens.ca / ${c.slug} pre-book`, pkg: `${c.name} pre-book`, phonePlaceholder: '(587) 555-0123', messageLabel: `What would you like to advertise in ${c.name}?`, submitLabel: 'Pre-book my slot' })}
-      </div>
-    </div>
-  </div>
-</section>`;
-
-  const otherCities = other.length ? `
-<!-- ============ OTHER CITIES ============ -->
-<section class="markets-section markets-section--tight" aria-labelledby="other-h">
-  <div class="container">
-    <div class="section-head center">
-      <h2 id="other-h">Other cities</h2>
-    </div>
-    <div class="markets-grid">
-${other.map((o) => `      <article class="market-card is-${statusClass(o)}">
-        <span class="market-status market-status--${statusClass(o)}"><span class="market-dot"></span>${statusLabel(o)}</span>
-        <h3 class="market-name">${esc(o.name)}</h3>
-        <p class="market-region">${esc(o.province)}${isLive(o) ? ` &nbsp;&middot;&nbsp; ${o.screens} screens in ${o.venues} venues` : ''}</p>
-        <a href="${o.slug}.html" class="market-link${isLive(o) ? '' : ' market-link--accent'}">${isLive(o) ? `See ${esc(o.name)}` : `Pre-book ${esc(o.name)}`}
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-      </article>`).join('\n')}
-    </div>
-  </div>
-</section>` : '';
+  const coverage = (c.coverage && c.coverage.length)
+    ? `      <p class="city-coverage">${c.coverage.map((p) => esc(p.name)).join(' <span aria-hidden="true">&middot;</span> ')}</p>`
+    : '';
 
   return P.head(site, {
     title: c.metaTitle, description: c.metaDescription, path: `${c.slug}.html`,
-    ogTitle: `${c.name}: ${isLive(c) ? 'indoor screen advertising' : 'coming soon'}`,
+    ogTitle: `${c.name}: indoor screen advertising`,
     ogDescription: c.metaDescription, jsonLd: jsonLd(c),
   })
   + P.nav('cities')
@@ -163,76 +156,85 @@ ${other.map((o) => `      <article class="market-card is-${statusClass(o)}">
 <!-- ============ CITY HEADER ============ -->
 <header class="city-header">
   <div class="container">
-    <span class="market-status market-status--${statusClass(c)}"><span class="market-dot"></span>${statusLabel(c)}</span>
     <h1>${c.headline}</h1>
     <p class="city-intro">${esc(c.intro)}</p>
+${coverage}
 ${facts}
-${cta}
+      <div class="city-actions">
+        <a href="#idea" class="btn btn-primary">Advertise in ${esc(c.name)} ${arrow}</a>
+        <a href="#city-map" class="btn btn-outline">See where the screens are</a>
+      </div>
   </div>
 </header>
+${mapBlock(c)}
 
 <!-- ============ VENUE TYPES ============ -->
 <section class="city-venues" aria-labelledby="venues-h">
   <div class="container">
     <div class="section-head center">
-      <h2 id="venues-h">Where your ad ${isLive(c) ? 'plays' : 'will play'} in ${esc(c.name)}.</h2>
+      <h2 id="venues-h">The kinds of places your ad runs.</h2>
     </div>
     <ul class="city-venue-list">
 ${venueList}
     </ul>
   </div>
 </section>
-${formBlock}
-${otherCities}
+
+<!-- ============ ENQUIRY ============ -->
+<section class="markets-section" id="idea" aria-labelledby="city-form-h">
+  <div class="container">
+    <div class="prebook" id="prebook">
+      <div class="prebook-copy">
+        <h2 id="city-form-h" class="prebook-h">Get your ad on screen in ${esc(c.name)}.</h2>
+        <p class="prebook-sub">Tell us what you want to promote. We design the ad for you, you approve it, and it goes up on the network.</p>
+      </div>
+      <div class="prebook-form-wrap">
+${P.form(site, { id: 'city-form', source: `reachscreens.ca / ${c.slug}`, pkg: `${c.name} enquiry`, phonePlaceholder: '(587) 555-0123', messageLabel: `What would you like to advertise in ${c.name}?`, submitLabel: 'Advertise Now' })}
+      </div>
+    </div>
+  </div>
+</section>
+${other.length ? `
+<!-- ============ OTHER CITIES ============ -->
+<section class="markets-section markets-section--tight" aria-labelledby="other-h">
+  <div class="container">
+    <div class="section-head center">
+      <h2 id="other-h">Other cities</h2>
+    </div>
+    <div class="markets-grid">
+${other.map((o) => marketCard(o, 'h3')).join('\n')}
+    </div>
+  </div>
+</section>` : ''}
 `
   + P.footer(site, cities)
   + P.scripts(site);
 }
 
+/* ---------- one card, used by both the index and "other cities" -
+   No status pill, no accent variant, no "pre-book" verb. Two cities
+   that look different on this grid are two cities the reader ranks. */
+function marketCard(c, tag) {
+  const region = [esc(c.province), ...(c.alsoServes || []).map(esc)].join(' &nbsp;&middot;&nbsp; ');
+  return `      <article class="market-card">
+        <${tag} class="market-name">${esc(c.name)}</${tag}>
+        <p class="market-region">${region}</p>
+        <a href="${c.slug}.html" class="market-link">Advertise in ${esc(c.name)} ${arrow}</a>
+      </article>`;
+}
+
 /* ---------- the cities index ----------------------------------- */
 function citiesIndex() {
-  const cards = cities.map((c) => `      <article class="market-card is-${statusClass(c)}">
-        <span class="market-status market-status--${statusClass(c)}"><span class="market-dot"></span>${statusLabel(c)}</span>
-        <h2 class="market-name">${esc(c.name)}</h2>
-        <p class="market-region">${esc(c.province)}${isLive(c) ? ` &nbsp;&middot;&nbsp; ${c.screens} screens in ${c.venues} venues` : ''}</p>
-        <a href="${c.slug}.html" class="market-link${isLive(c) ? '' : ' market-link--accent'}">${isLive(c) ? `See ${esc(c.name)}` : `Pre-book ${esc(c.name)}`}
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-      </article>`).join('\n');
-
-  const soon = cities.filter((c) => !isLive(c));
-  const first = soon[0];
-
-  const prebook = first ? `
-<!-- ============ PRE-BOOK ============ -->
-<section class="markets-section" aria-labelledby="prebook-h">
-  <div class="container">
-    <div class="section-head center">
-      <h2 id="prebook-h">${first.headline}</h2>
-    </div>
-    <div class="prebook" id="prebook">
-      <div class="prebook-copy">
-        <h3 class="prebook-h">Pre-book your slot.</h3>
-        <p class="prebook-sub">Get on the waiting list. Only a limited number of spots.</p>
-      </div>
-      <div class="prebook-form-wrap">
-${P.form(site, { id: 'prebook-form', source: `reachscreens.ca / ${first.slug} pre-book`, pkg: `${first.name} pre-book`, phonePlaceholder: '(587) 555-0123', messageLabel: 'What would you like to advertise?', submitLabel: 'Pre-book my slot' })}
-      </div>
-    </div>
-  </div>
-</section>` : '';
-
-  const liveNames = cities.filter(isLive).map((c) => c.name).join(', ');
-  const soonNames = soon.map((c) => c.name).join(', ');
+  const names = cities.map((c) => c.name).join(', ');
 
   return P.head(site, {
     // Computed, not literal. A hand-written title here goes stale the moment a city is added to
     // cities.json, which is the one file that is supposed to be the single source of truth.
-    title: `Cities: Where Reach Screens Operates | ${liveNames}${soonNames ? `, ${soonNames} Coming Soon` : ''}`,
-    description: `Reach Screens is live in ${liveNames}${soonNames ? `, with ${soonNames} coming soon` : ''}. See every city, or pre-book your advertising slot before we open.`,
+    title: `Cities: Where Reach Screens Operates | ${names}`,
+    description: `Reach Screens runs indoor digital screen advertising in ${names}. Pick your city and tell us what you want to advertise.`,
     path: 'cities.html',
     ogTitle: 'Cities: Where Reach Screens Operates',
-    ogDescription: `Live in ${liveNames}.${soonNames ? ` ${soonNames} coming soon. Pre-book your slot.` : ''}`,
+    ogDescription: `Indoor screen advertising in ${names}.`,
   })
   + P.nav('cities')
   + `
@@ -243,7 +245,7 @@ ${P.form(site, { id: 'prebook-form', source: `reachscreens.ca / ${first.slug} pr
     <span class="eyebrow">Coverage</span>
     <h1>Cities.</h1>
     <p class="hero-sub" style="margin-top:1rem; max-width:60ch;">
-      Where Reach Screens is live today, and where we open next.
+      Pick your city and tell us what you want to advertise.
     </p>
   </div>
 </header>
@@ -253,11 +255,25 @@ ${P.form(site, { id: 'prebook-form', source: `reachscreens.ca / ${first.slug} pr
   <div class="container">
     <h2 id="cities-h" class="sr-only">Every Reach Screens city</h2>
     <div class="markets-grid">
-${cards}
+${cities.map((c) => marketCard(c, 'h2')).join('\n')}
     </div>
   </div>
 </section>
-${prebook}
+
+<!-- ============ ENQUIRY ============ -->
+<section class="markets-section" id="idea" aria-labelledby="cities-form-h">
+  <div class="container">
+    <div class="prebook" id="prebook">
+      <div class="prebook-copy">
+        <h2 id="cities-form-h" class="prebook-h">Ask about getting your ad live.</h2>
+        <p class="prebook-sub">Tell us your city and what you want to promote. We design the ad for you, you approve it, and it goes up on the network.</p>
+      </div>
+      <div class="prebook-form-wrap">
+${P.form(site, { id: 'cities-form', source: 'reachscreens.ca / cities', pkg: 'Cities enquiry', phonePlaceholder: '(587) 555-0123', messageLabel: 'Which city, and what would you like to advertise?', submitLabel: 'Advertise Now' })}
+      </div>
+    </div>
+  </div>
+</section>
 `
   + P.footer(site, cities)
   + P.scripts(site);
@@ -285,7 +301,7 @@ ${urls.map((u) => `  <url>
     <priority>${u.pri}</priority>${u.img ? `
     <image:image>
       <image:loc>${site.origin}/assets/website-header.webp</image:loc>
-      <image:title>Reach Screens, Lloydminster's local digital advertising network</image:title>
+      <image:title>Reach Screens, local digital advertising network</image:title>
     </image:image>` : ''}
   </url>`).join('\n')}
 </urlset>
@@ -300,10 +316,7 @@ ${urls.map((u) => `  <url>
    truth is not the same as enforcing it. */
 const STATIC_PAGES = ['index.html', 'screen-map.html'];
 function syncStaticFooters() {
-  const items = cities.map((c) => c.status === 'live'
-    ? `          <li><a href="${c.slug}.html">${esc(c.name)}</a></li>`
-    : `          <li><a href="${c.slug}.html" style="color:var(--rs-mint);">${esc(c.name)} &middot; coming soon</a></li>`
-  ).join('\n');
+  const items = cities.map((c) => `          <li><a href="${c.slug}.html">${esc(c.name)}</a></li>`).join('\n');
   const re = /(<h([23]) class="footer-col-h">Cities<\/h\2>\s*\n\s*<ul>\n)([\s\S]*?)(\n\s*<\/ul>)/;
   STATIC_PAGES.forEach((f) => {
     const file = path.join(ROOT, f);
@@ -314,9 +327,30 @@ function syncStaticFooters() {
   });
 }
 
+/* ---------- the guard --------------------------------------------
+   The whole point of this rewrite is that no page tells a venue owner
+   the market is not open yet. A stray phrase reintroduced by hand is
+   invisible in review and obvious to a prospect, so the build refuses
+   rather than trusting anyone to remember. */
+const BANNED = [/coming soon/i, /pre-?book/i, /\blive now\b/i, /waiting list/i, /when we go live/i, /founding rate/i];
+function assertNoStatusLanguage() {
+  const files = [...cities.map((c) => `${c.slug}.html`), 'cities.html'];
+  const hits = [];
+  files.forEach((f) => {
+    const html = fs.readFileSync(path.join(ROOT, f), 'utf8');
+    BANNED.forEach((re) => {
+      // `id="prebook"` is the long-standing scroll anchor the CTAs point at, not copy.
+      const m = html.replace(/id="prebook"|class="prebook[a-z-]*"|prebook-form/g, '').match(re);
+      if (m) hits.push(`${f}: "${m[0]}"`);
+    });
+  });
+  if (hits.length) throw new Error('Status language is back on a city page:\n  ' + hits.join('\n  '));
+}
+
 // ---------- run -------------------------------------------------
 cities.forEach((c) => write(`${c.slug}.html`, cityPage(c)));
 syncStaticFooters();
 write('cities.html', citiesIndex());
 write('sitemap.xml', sitemap());
+assertNoStatusLanguage();
 console.log('built:', written.join(', '));

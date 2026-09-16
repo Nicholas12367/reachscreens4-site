@@ -16,7 +16,7 @@
   <meta property="og:image" content="https://reachscreens.ca/assets/website-header.webp">
 
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=86">
+  <link rel="stylesheet" href="styles.css?v=90">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -89,28 +89,57 @@
 <!-- ============ CITY HEADER ============ -->
 <header class="city-header">
   <div class="container">
-    <span class="market-status market-status--live"><span class="market-dot"></span>Live now</span>
     <h1>Indoor screen advertising in <span class="text-mint">Lloydminster</span>.</h1>
     <p class="city-intro">35 screens across 33 venues on both the Alberta and Saskatchewan sides. Cafes, pubs, salons, clinics, gyms and auto shops, in front of the people who already walk past your competitors every day.</p>
+      <p class="city-coverage">Lloydminster, Alberta <span aria-hidden="true">&middot;</span> Lloydminster, Saskatchewan</p>
       <div class="city-facts">
         <div class="city-fact"><span class="city-fact-num">35</span><span class="city-fact-label">screens</span></div>
         <div class="city-fact"><span class="city-fact-num">33</span><span class="city-fact-label">venues</span></div>
         <div class="city-fact"><span class="city-fact-num">2</span><span class="city-fact-label">provinces</span></div>
       </div>
       <div class="city-actions">
-        <a href="#idea" class="btn btn-primary">Advertise in Lloydminster
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-        <a href="screen-map.html" class="btn btn-outline">See every screen</a>
+        <a href="#idea" class="btn btn-primary">Advertise in Lloydminster <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg></a>
+        <a href="#city-map" class="btn btn-outline">See where the screens are</a>
       </div>
   </div>
 </header>
+
+<!-- ============ MAP ============ -->
+<section class="city-map-section" id="city-map" aria-labelledby="city-map-h">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Screen map</span>
+      <h2 id="city-map-h">Where your ad plays in Lloydminster.</h2>
+      <p>Every Reach Screens location in Lloydminster. Click any pin for the venue and its address.</p>
+    </div>
+    <div class="map-block city-map-block">
+      <div id="map" class="map-canvas" role="region" aria-label="Map of Reach Screens coverage in Lloydminster"></div>
+    </div>
+    <div class="city-map-actions">
+      <a href="screen-map.html" class="btn btn-outline">Open the full screen map <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg></a>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var el=document.getElementById('map');if(!el)return;var done=false;
+  function go(){if(done)return;done=true;
+  var css=document.createElement('link');css.rel='stylesheet';css.href='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';document.head.appendChild(css);
+  var gl=document.createElement('script');gl.src='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js';document.head.appendChild(gl);
+  gl.onload=function(){
+  var s=document.createElement('script');s.src='assets/screen-locations.js?v=90';document.head.appendChild(s);
+  s.onload=function(){var m=document.createElement('script');m.src='map.js?v=66';document.head.appendChild(m);};
+  };}
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go();io.disconnect();}});},{rootMargin:'300px'});io.observe(el);}
+  else{addEventListener('load',go);}
+})();
+</script>
 
 <!-- ============ VENUE TYPES ============ -->
 <section class="city-venues" aria-labelledby="venues-h">
   <div class="container">
     <div class="section-head center">
-      <h2 id="venues-h">Where your ad plays in Lloydminster.</h2>
+      <h2 id="venues-h">The kinds of places your ad runs.</h2>
     </div>
     <ul class="city-venue-list">
         <li>Cafes and restaurants</li>
@@ -129,7 +158,7 @@
     <div class="prebook" id="prebook">
       <div class="prebook-copy">
         <h2 id="city-form-h" class="prebook-h">Get your ad on screen in Lloydminster.</h2>
-        <p class="prebook-sub">Tell us what you want to promote. We design the ad for you and it goes up on the network.</p>
+        <p class="prebook-sub">Tell us what you want to promote. We design the ad for you, you approve it, and it goes up on the network.</p>
       </div>
       <div class="prebook-form-wrap">
         <div class="form-card">
@@ -188,13 +217,10 @@
       <h2 id="other-h">Other cities</h2>
     </div>
     <div class="markets-grid">
-      <article class="market-card is-soon">
-        <span class="market-status market-status--soon"><span class="market-dot"></span>Coming soon</span>
+      <article class="market-card">
         <h3 class="market-name">Sherwood Park</h3>
-        <p class="market-region">Alberta</p>
-        <a href="sherwood-park.html" class="market-link market-link--accent">Pre-book Sherwood Park
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
+        <p class="market-region">Alberta &nbsp;&middot;&nbsp; Strathcona County &nbsp;&middot;&nbsp; Fort Saskatchewan</p>
+        <a href="sherwood-park.html" class="market-link">Advertise in Sherwood Park <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg></a>
       </article>
     </div>
   </div>
@@ -206,7 +232,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="assets/logo-white.webp" alt="Reach Screens" width="200" height="67">
-        <p>Indoor digital advertising across Lloydminster. We put your ad where attention already lives.</p>
+        <p>Indoor digital advertising for local businesses. We put your ad where attention already lives.</p>
       </div>
       <div class="footer-col">
         <h2 class="footer-col-h">Site</h2>
@@ -222,14 +248,14 @@
         <ul>
           <li><a href="mailto:info@reachscreens.ca">info@reachscreens.ca</a></li>
           <li><a href="tel:+15876062556">(587) 606-2556</a></li>
-          <li><span style="color:var(--rs-text-mid);">Lloydminster, AB</span></li>
+          <li><span style="color:var(--rs-text-mid);">Head office: Lloydminster, AB</span></li>
         </ul>
       </div>
       <div class="footer-col">
         <h2 class="footer-col-h">Cities</h2>
         <ul>
           <li><a href="lloydminster.html">Lloydminster</a></li>
-          <li><a href="sherwood-park.html" style="color:var(--rs-mint);">Sherwood Park &middot; coming soon</a></li>
+          <li><a href="sherwood-park.html">Sherwood Park</a></li>
         </ul>
       </div>
     </div>
@@ -260,9 +286,9 @@
 <script defer src="main.js?v=68"></script>
 <script defer src="assets/rs-attribution.js?v=68"></script>
 <script defer src="assets/rs-defer.js?v=1"></script>
-<script defer src="assets/rs-analytics.js?v=86"></script>
-<script defer src="assets/analytics.js?v=86"></script>
-<script defer src="assets/clarity.js?v=86"></script>
+<script defer src="assets/rs-analytics.js?v=90"></script>
+<script defer src="assets/analytics.js?v=90"></script>
+<script defer src="assets/clarity.js?v=90"></script>
 
 <!-- Form modal + Contact modal mounts (built by main.js on load) -->
 <div id="form-modal-mount"></div>

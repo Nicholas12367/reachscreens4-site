@@ -22,7 +22,7 @@
   <link rel="preload" as="image" href="assets/website-header-md.webp" media="(min-width: 901px) and (max-width: 1280px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/website-header.webp" media="(min-width: 1281px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=86">
+  <link rel="stylesheet" href="styles.css?v=90">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -542,172 +542,54 @@
 
     <div class="section-head center reveal">
       <span class="eyebrow">What's included</span>
-      <h2 id="rs-pkg-h">We are your marketing department.<br><span class="text-mint">The screens are the part you can see.</span></h2>
+      <h2 id="rs-pkg-h">Be the business people already know about.<br><span class="text-mint">We run the whole thing for you.</span></h2>
+      <p>Four things, one monthly bill. The screens put you in front of people. The rest makes sure that when they look you up later, they like what they find.</p>
     </div>
 
-    <div class="rs-pkg-sheet reveal">
+    <ul class="rs-pkg-grid reveal" role="list">
 
-      <article class="rs-pkg-receipt">
-        <header class="rs-pkg-head">
-          <span class="rs-pkg-head-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 20.5h8M12 17v3.5"/></svg>
-          </span>
-          <span class="rs-pkg-head-text">
-            <span class="rs-pkg-head-title">The Reach Screens package</span>
-            <span class="rs-pkg-head-sub">Four things, one monthly bill</span>
-          </span>
-          <span class="rs-pkg-head-tag">Monthly</span>
-        </header>
+      <li class="rs-pkg-card">
+        <span class="rs-pkg-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 20.5h8M12 17v3.5"/></svg>
+        </span>
+        <h3>Screens around town</h3>
+        <p>Your ad runs in rotation on indoor screens in the cafes, pubs, barber shops, gyms and waiting rooms people already visit. We place the screens, run the players and handle the scheduling.</p>
+      </li>
 
-        <div class="rs-pkg-body">
-          <h3 class="rs-pkg-group rs-pkg-group--in">
-            <span class="rs-pkg-group-rule" aria-hidden="true"></span>
-            Included every month
-          </h3>
+      <li class="rs-pkg-card">
+        <span class="rs-pkg-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.5l4 4L8 20H4v-4z"/><path d="M14 6l4 4"/></svg>
+        </span>
+        <h3>Ad creative</h3>
+        <p>We write the words and build the artwork, then swap it out as your offers and seasons change. Nothing goes on a screen until you say yes. No design software, no agency brief, no extra invoice.</p>
+      </li>
 
-          <ul class="rs-pkg-lines" role="list">
+      <li class="rs-pkg-card">
+        <span class="rs-pkg-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.4 2.9 3.8 6.2 3.8 9.5S14.4 18.6 12 21.5c-2.4-2.9-3.8-6.2-3.8-9.5S9.6 5.4 12 2.5z"/></svg>
+        </span>
+        <h3>Profile management</h3>
+        <p>Facebook, Instagram and your Google profile, posted to and kept accurate for you. We build out any profile you do not have yet. You never log in to a thing.</p>
+      </li>
 
-            <li class="rs-pkg-line">
-              <button type="button" class="rs-pkg-toggle" id="rs-pkg-t1" aria-expanded="false" aria-controls="rs-pkg-d1">
-                <span class="rs-pkg-tick" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
-                </span>
-                <span class="rs-pkg-line-main">
-                  <span class="rs-pkg-name">Screens around town</span>
-                  <span class="rs-pkg-sum">Your ad on indoor screens, in the venues people already visit.</span>
-                </span>
-                <span class="rs-pkg-more">
-                  <span class="rs-pkg-more-text">Details</span>
-                  <span class="rs-pkg-chev" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9.5 12 15.5 18 9.5"/></svg>
-                  </span>
-                </span>
-              </button>
-              <div class="rs-pkg-detail" id="rs-pkg-d1">
-                <p>Cafes, pubs, barber shops, gyms and waiting rooms across town. Your ad runs in rotation on the screens people look at while they wait, eat and shop. We place the screens, run the players and handle the scheduling.</p>
-              </div>
-            </li>
+      <li class="rs-pkg-card">
+        <span class="rs-pkg-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l2.7 5.6 6.1.85-4.45 4.3 1.06 6.05L12 17.15 6.59 20l1.06-6.05L3.2 9.65l6.1-.85z"/></svg>
+        </span>
+        <h3>Google reviews</h3>
+        <p>We print the counter cards and QR codes, you put them where people pay. Every customer gets the same invitation to leave an honest review, so your rating grows on volume instead of luck.</p>
+      </li>
 
-            <li class="rs-pkg-line">
-              <button type="button" class="rs-pkg-toggle" id="rs-pkg-t2" aria-expanded="false" aria-controls="rs-pkg-d2">
-                <span class="rs-pkg-tick" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
-                </span>
-                <span class="rs-pkg-line-main">
-                  <span class="rs-pkg-name">Ad creative</span>
-                  <span class="rs-pkg-sum">We write, design and refresh every ad. You just approve it.</span>
-                </span>
-                <span class="rs-pkg-more">
-                  <span class="rs-pkg-more-text">Details</span>
-                  <span class="rs-pkg-chev" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9.5 12 15.5 18 9.5"/></svg>
-                  </span>
-                </span>
-              </button>
-              <div class="rs-pkg-detail" id="rs-pkg-d2">
-                <p>Our team writes the words and builds the artwork, then swaps it out as your offers and seasons change. Nothing goes on a screen until you say yes. No design software, no agency brief, no extra invoice.</p>
-              </div>
-            </li>
+    </ul>
 
-            <li class="rs-pkg-line">
-              <button type="button" class="rs-pkg-toggle" id="rs-pkg-t3" aria-expanded="false" aria-controls="rs-pkg-d3">
-                <span class="rs-pkg-tick" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
-                </span>
-                <span class="rs-pkg-line-main">
-                  <span class="rs-pkg-name">Profile management</span>
-                  <span class="rs-pkg-sum">Every one of your online profiles, managed for you.</span>
-                </span>
-                <span class="rs-pkg-more">
-                  <span class="rs-pkg-more-text">Details</span>
-                  <span class="rs-pkg-chev" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9.5 12 15.5 18 9.5"/></svg>
-                  </span>
-                </span>
-              </button>
-              <ul class="rs-pkg-subs" role="list">
-                <li>Facebook</li>
-                <li>Instagram content</li>
-                <li>Google profiles</li>
-                <li>Full profile setup</li>
-              </ul>
-              <div class="rs-pkg-detail" id="rs-pkg-d3">
-                <p>A screen puts your name in someone's head. Weeks later they look you up, so what they find has to be current. We post to Facebook and Instagram, keep your Google profile accurate and complete, and build out any profile you do not have yet. You never log in to a thing.</p>
-              </div>
-            </li>
+    <p class="rs-pkg-note reveal"><strong>Websites are not included.</strong> Plenty of clients already have a site they are happy with. If you need one, or yours is out of date, we build it and quote it on its own.</p>
 
-            <li class="rs-pkg-line">
-              <button type="button" class="rs-pkg-toggle" id="rs-pkg-t4" aria-expanded="false" aria-controls="rs-pkg-d4">
-                <span class="rs-pkg-tick" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
-                </span>
-                <span class="rs-pkg-line-main">
-                  <span class="rs-pkg-name">Google reviews</span>
-                  <span class="rs-pkg-sum">Counter cards and QR codes that ask your customers for a review.</span>
-                </span>
-                <span class="rs-pkg-more">
-                  <span class="rs-pkg-more-text">Details</span>
-                  <span class="rs-pkg-chev" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9.5 12 15.5 18 9.5"/></svg>
-                  </span>
-                </span>
-              </button>
-              <div class="rs-pkg-detail" id="rs-pkg-d4">
-                <p>We print the counter cards and the QR codes, you put them where people pay. Every customer gets the same invitation to leave an honest review, so your rating grows on volume instead of luck.</p>
-              </div>
-            </li>
-
-          </ul>
-
-          <div class="rs-pkg-perf" aria-hidden="true"></div>
-
-          <div class="rs-pkg-total">
-            <span class="rs-pkg-total-label">Everything above</span>
-            <span class="rs-pkg-leader" aria-hidden="true"></span>
-            <span class="rs-pkg-total-amount">
-              <span class="rs-pkg-total-pre">starting at</span>
-              <span class="rs-pkg-price">$499</span>
-              <span class="rs-pkg-per">a month</span>
-            </span>
-          </div>
-
-          <a href="#idea" class="btn btn-primary rs-pkg-cta">Get started
-            <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <div class="rs-pkg-addon">
-        <h3 class="rs-pkg-group rs-pkg-group--out">
-          <span class="rs-pkg-group-rule" aria-hidden="true"></span>
-          Not included in the package
-        </h3>
-        <div class="rs-pkg-addon-card">
-          <button type="button" class="rs-pkg-toggle rs-pkg-toggle--out" id="rs-pkg-t5" aria-expanded="false" aria-controls="rs-pkg-d5">
-            <span class="rs-pkg-tick rs-pkg-tick--out" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-            </span>
-            <span class="rs-pkg-line-main">
-              <span class="rs-pkg-name">
-                Websites
-                <span class="rs-pkg-flag">Add-on</span>
-              </span>
-              <span class="rs-pkg-sum">Built on request when you need one. Quoted separately, not part of the $499.</span>
-            </span>
-            <span class="rs-pkg-more">
-              <span class="rs-pkg-more-text">Details</span>
-              <span class="rs-pkg-chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9.5 12 15.5 18 9.5"/></svg>
-              </span>
-            </span>
-          </button>
-          <div class="rs-pkg-detail" id="rs-pkg-d5">
-            <p>Plenty of clients already have a site they are happy with, so a website is not bundled into the monthly price. If you need one, or the one you have is out of date, we build it and quote it on its own.</p>
-          </div>
-        </div>
-      </div>
-
+    <div class="rs-pkg-foot reveal">
+      <a href="#idea" class="btn btn-primary">Get started
+        <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+      </a>
     </div>
+
   </div>
 </section>
 
@@ -842,7 +724,7 @@
         <h3 class="footer-col-h">Cities</h3>
         <ul>
           <li><a href="lloydminster.html">Lloydminster</a></li>
-          <li><a href="sherwood-park.html" style="color:var(--rs-mint);">Sherwood Park &middot; coming soon</a></li>
+          <li><a href="sherwood-park.html">Sherwood Park</a></li>
         </ul>
       </div>
     </div>
@@ -873,9 +755,8 @@
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script defer src="assets/rs-attribution.js?v=68"></script>
 <script defer src="main.js?v=68"></script>
-<script defer src="assets/rs-package.js?v=1"></script>
 <script defer src="assets/rs-defer.js?v=1"></script>
-<script defer src="assets/rs-analytics.js?v=80"></script>
+<script defer src="assets/rs-analytics.js?v=90"></script>
 
 
 <!-- Google Analytics 4. Real Measurement ID lives in assets/analytics.js -->
@@ -883,8 +764,8 @@
 <script defer src="assets/hotjar.js?v=66"></script>
 -->
 <!-- Microsoft Clarity (heatmaps + recordings). Project id set in assets/clarity.js -->
-<script defer src="assets/analytics.js?v=79"></script>
-<script defer src="assets/clarity.js?v=79"></script>
+<script defer src="assets/analytics.js?v=90"></script>
+<script defer src="assets/clarity.js?v=90"></script>
 
 <!-- Floating tap-to-call button -->
 <a href="tel:+15876062556" class="floating-call" aria-label="Call Reach Screens">

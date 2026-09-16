@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Digital Screen Advertising in Sherwood Park, AB, Coming Soon | Reach Screens</title>
-  <meta name="description" content="Reach Screens is opening in Sherwood Park, Strathcona County and Fort Saskatchewan. Pre-book your slot and take first pick of the screens at the founding rate.">
+  <title>Digital Screen Advertising in Sherwood Park, AB | Reach Screens</title>
+  <meta name="description" content="Indoor digital screen advertising across Sherwood Park, Strathcona County and Fort Saskatchewan. Tell us what you want to promote and we design the ad and get it on screen.">
   <link rel="canonical" href="https://reachscreens.ca/sherwood-park.html">
   <meta name="theme-color" content="#051018">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <meta property="og:title" content="Sherwood Park: coming soon">
-  <meta property="og:description" content="Reach Screens is opening in Sherwood Park, Strathcona County and Fort Saskatchewan. Pre-book your slot and take first pick of the screens at the founding rate.">
+  <meta property="og:title" content="Sherwood Park: indoor screen advertising">
+  <meta property="og:description" content="Indoor digital screen advertising across Sherwood Park, Strathcona County and Fort Saskatchewan. Tell us what you want to promote and we design the ad and get it on screen.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://reachscreens.ca/sherwood-park.html">
   <meta property="og:image" content="https://reachscreens.ca/assets/website-header.webp">
 
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=86">
+  <link rel="stylesheet" href="styles.css?v=90">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -31,7 +31,7 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Reach Screens Sherwood Park",
-    "description": "Reach Screens is opening in Sherwood Park, Strathcona County and Fort Saskatchewan. Pre-book your slot and take first pick of the screens at the founding rate.",
+    "description": "Indoor digital screen advertising across Sherwood Park, Strathcona County and Fort Saskatchewan. Tell us what you want to promote and we design the ad and get it on screen.",
     "url": "https://reachscreens.ca/sherwood-park.html",
     "telephone": "+1-587-606-2556",
     "email": "info@reachscreens.ca",
@@ -97,27 +97,53 @@
 <!-- ============ CITY HEADER ============ -->
 <header class="city-header">
   <div class="container">
-    <span class="market-status market-status--soon"><span class="market-dot"></span>Coming soon</span>
-    <h1><span class="text-mint">Sherwood Park</span> coming soon.</h1>
-    <p class="city-intro">We are signing venues across Sherwood Park, Strathcona County and Fort Saskatchewan now. A market only holds a limited number of advertisers, and the ones who get in first get first pick of the screens.</p>
-      <div class="city-facts">
-        <div class="city-fact"><span class="city-fact-num">Soon</span><span class="city-fact-label">venues signing now</span></div>
-        <div class="city-fact"><span class="city-fact-num">Limited</span><span class="city-fact-label">launch slots</span></div>
-        <div class="city-fact"><span class="city-fact-num">Founding</span><span class="city-fact-label">rate held</span></div>
-      </div>
+    <h1>Indoor screen advertising in <span class="text-mint">Sherwood Park</span>.</h1>
+    <p class="city-intro">We put local businesses in front of Sherwood Park, Strathcona County and Fort Saskatchewan, on indoor screens in the places people already spend their time. Tell us what you want to promote and we design the ad and get it on screen.</p>
+      <p class="city-coverage">Sherwood Park <span aria-hidden="true">&middot;</span> Strathcona County <span aria-hidden="true">&middot;</span> Fort Saskatchewan</p>
+
       <div class="city-actions">
-        <a href="#prebook" class="btn btn-primary">Pre-book your slot
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
+        <a href="#idea" class="btn btn-primary">Advertise in Sherwood Park <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg></a>
+        <a href="#city-map" class="btn btn-outline">See where the screens are</a>
       </div>
   </div>
 </header>
+
+<!-- ============ MAP ============ -->
+<section class="city-map-section" id="city-map" aria-labelledby="city-map-h">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Coverage</span>
+      <h2 id="city-map-h">Where your ad plays in Sherwood Park.</h2>
+      <p>Your ad runs across Sherwood Park, Strathcona County, Fort Saskatchewan. We confirm the exact venues with you when you book, and you approve the list before anything goes up.</p>
+    </div>
+    <div class="map-block city-map-block">
+      <div id="map" class="map-canvas" role="region" aria-label="Map of Reach Screens coverage in Sherwood Park"></div>
+    </div>
+  </div>
+</section>
+<script>
+  window.rsAreaMap = { places: [{"name":"Sherwood Park","lat":53.5414,"lng":-113.2958,"radiusKm":6},{"name":"Strathcona County","lat":53.625,"lng":-113.07},{"name":"Fort Saskatchewan","lat":53.7128,"lng":-113.2149,"radiusKm":4.5}] };
+</script>
+<script>
+(function(){
+  var el=document.getElementById('map');if(!el)return;var done=false;
+  function go(){if(done)return;done=true;
+  var css=document.createElement('link');css.rel='stylesheet';css.href='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';document.head.appendChild(css);
+  var gl=document.createElement('script');gl.src='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js';document.head.appendChild(gl);
+  gl.onload=function(){
+  var m=document.createElement('script');m.src='assets/rs-area-map.js?v=90';document.head.appendChild(m);
+  m.onload=function(){window.rsAreaMapInit&&window.rsAreaMapInit();};
+  };}
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go();io.disconnect();}});},{rootMargin:'300px'});io.observe(el);}
+  else{addEventListener('load',go);}
+})();
+</script>
 
 <!-- ============ VENUE TYPES ============ -->
 <section class="city-venues" aria-labelledby="venues-h">
   <div class="container">
     <div class="section-head center">
-      <h2 id="venues-h">Where your ad will play in Sherwood Park.</h2>
+      <h2 id="venues-h">The kinds of places your ad runs.</h2>
     </div>
     <ul class="city-venue-list">
         <li>Cafes and restaurants</li>
@@ -130,25 +156,20 @@
   </div>
 </section>
 
-<!-- ============ PRE-BOOK ============ -->
+<!-- ============ ENQUIRY ============ -->
 <section class="markets-section" id="idea" aria-labelledby="city-form-h">
   <div class="container">
     <div class="prebook" id="prebook">
       <div class="prebook-copy">
-        <h2 id="city-form-h" class="prebook-h">Pre-book your slot.</h2>
-        <p class="prebook-sub">Get on the waiting list. Only a limited number of spots.</p>
-        <ul class="prebook-points">
-          <li><span class="prebook-tick" aria-hidden="true">&#10003;</span> First pick of locations when we go live</li>
-          <li><span class="prebook-tick" aria-hidden="true">&#10003;</span> Founding rate, held for you</li>
-          <li><span class="prebook-tick" aria-hidden="true">&#10003;</span> No payment now, no commitment</li>
-        </ul>
+        <h2 id="city-form-h" class="prebook-h">Get your ad on screen in Sherwood Park.</h2>
+        <p class="prebook-sub">Tell us what you want to promote. We design the ad for you, you approve it, and it goes up on the network.</p>
       </div>
       <div class="prebook-form-wrap">
         <div class="form-card">
           <form id="city-form" class="idea-form-instance"
                 data-endpoint="https://forms-api.reachscreens.ca/submit"
-                data-form-source="reachscreens.ca / sherwood-park pre-book"
-                data-form-package="Sherwood Park pre-book">
+                data-form-source="reachscreens.ca / sherwood-park"
+                data-form-package="Sherwood Park enquiry">
             <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
             <div class="form-row two">
               <div class="form-field">
@@ -182,7 +203,7 @@
                 <textarea id="city-form-message" name="message" required placeholder="Tell us a bit about your business and what you'd like to promote."></textarea>
               </div>
             </div>
-            <button type="submit" class="form-submit">Pre-book my slot
+            <button type="submit" class="form-submit">Advertise Now
               <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
             </button>
             <div class="form-feedback" data-form-feedback></div>
@@ -200,13 +221,10 @@
       <h2 id="other-h">Other cities</h2>
     </div>
     <div class="markets-grid">
-      <article class="market-card is-live">
-        <span class="market-status market-status--live"><span class="market-dot"></span>Live now</span>
+      <article class="market-card">
         <h3 class="market-name">Lloydminster</h3>
-        <p class="market-region">Alberta &amp; Saskatchewan &nbsp;&middot;&nbsp; 35 screens in 33 venues</p>
-        <a href="lloydminster.html" class="market-link">See Lloydminster
-          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
+        <p class="market-region">Alberta &amp; Saskatchewan</p>
+        <a href="lloydminster.html" class="market-link">Advertise in Lloydminster <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg></a>
       </article>
     </div>
   </div>
@@ -218,7 +236,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="assets/logo-white.webp" alt="Reach Screens" width="200" height="67">
-        <p>Indoor digital advertising across Lloydminster. We put your ad where attention already lives.</p>
+        <p>Indoor digital advertising for local businesses. We put your ad where attention already lives.</p>
       </div>
       <div class="footer-col">
         <h2 class="footer-col-h">Site</h2>
@@ -234,14 +252,14 @@
         <ul>
           <li><a href="mailto:info@reachscreens.ca">info@reachscreens.ca</a></li>
           <li><a href="tel:+15876062556">(587) 606-2556</a></li>
-          <li><span style="color:var(--rs-text-mid);">Lloydminster, AB</span></li>
+          <li><span style="color:var(--rs-text-mid);">Head office: Lloydminster, AB</span></li>
         </ul>
       </div>
       <div class="footer-col">
         <h2 class="footer-col-h">Cities</h2>
         <ul>
           <li><a href="lloydminster.html">Lloydminster</a></li>
-          <li><a href="sherwood-park.html" style="color:var(--rs-mint);">Sherwood Park &middot; coming soon</a></li>
+          <li><a href="sherwood-park.html">Sherwood Park</a></li>
         </ul>
       </div>
     </div>
@@ -272,9 +290,9 @@
 <script defer src="main.js?v=68"></script>
 <script defer src="assets/rs-attribution.js?v=68"></script>
 <script defer src="assets/rs-defer.js?v=1"></script>
-<script defer src="assets/rs-analytics.js?v=86"></script>
-<script defer src="assets/analytics.js?v=86"></script>
-<script defer src="assets/clarity.js?v=86"></script>
+<script defer src="assets/rs-analytics.js?v=90"></script>
+<script defer src="assets/analytics.js?v=90"></script>
+<script defer src="assets/clarity.js?v=90"></script>
 
 <!-- Form modal + Contact modal mounts (built by main.js on load) -->
 <div id="form-modal-mount"></div>

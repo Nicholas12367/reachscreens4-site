@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Screen Map: Every Digital Ad Screen in Lloydminster | Reach Screens</title>
-  <meta name="description" content="Map and searchable list of all 35 Reach Screens digital ad screens across Lloydminster, Alberta and Saskatchewan sides. Cafes, pubs, salons, clinics, gyms and auto shops.">
+  <title>Screen Map: Every Reach Screens Digital Ad Screen | Reach Screens</title>
+  <meta name="description" content="Map and searchable list of every Reach Screens digital ad screen, venue by venue. Cafes, pubs, salons, clinics, gyms and auto shops.">
   <link rel="canonical" href="https://reachscreens.ca/screen-map.html">
   <meta name="theme-color" content="#051018">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <meta property="og:title" content="Screen Map: Every Digital Ad Screen in Lloydminster">
-  <meta property="og:description" content="Every Reach Screens digital ad screen across Lloydminster, AB and SK, mapped.">
+  <meta property="og:title" content="Screen Map: Every Reach Screens Digital Ad Screen">
+  <meta property="og:description" content="Every Reach Screens digital ad screen, mapped venue by venue.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://reachscreens.ca/screen-map.html">
   <meta property="og:image" content="https://reachscreens.ca/assets/website-header.webp">
@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=86">
+  <link rel="stylesheet" href="styles.css?v=90">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -54,10 +54,17 @@
 <header class="locations-page-header">
   <div class="container">
     <span class="eyebrow">The Network</span>
-    <h1>Every Screen<br>In <span style="color:var(--rs-mint);">Lloydminster</span>.</h1>
+    <h1>The <span style="color:var(--rs-mint);">screen map</span>.</h1>
     <p class="hero-sub" style="margin-top:1rem; max-width:60ch;">
-      Locations across Alberta and Saskatchewan. Click any pin or list item to see the address and a map view.
+      Click any pin or list item to see the venue, its address and a map view.
     </p>
+    <!-- The map page used to be titled "Every Screen In Lloydminster", which made
+         the whole network look like one town. City chips instead: the city being
+         mapped is marked current, the others link to their own coverage map. -->
+    <nav class="map-cities" aria-label="Cities">
+      <span class="map-city is-current" aria-current="true">Lloydminster</span>
+      <a class="map-city" href="sherwood-park.html#city-map">Sherwood Park</a>
+    </nav>
   </div>
 </header>
 
@@ -92,7 +99,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="assets/logo-white.webp" alt="Reach Screens" width="200" height="67">
-        <p>Indoor digital advertising across Lloydminster. We put your ad where attention already lives.</p>
+        <p>Indoor digital advertising for local businesses. We put your ad where attention already lives.</p>
       </div>
       <div class="footer-col">
         <h2 class="footer-col-h">Site</h2>
@@ -108,14 +115,14 @@
         <ul>
           <li><a href="mailto:info@reachscreens.ca">info@reachscreens.ca</a></li>
           <li><a href="tel:+15876062556">(587) 606-2556</a></li>
-          <li><span style="color:var(--rs-text-mid);">Lloydminster, AB</span></li>
+          <li><span style="color:var(--rs-text-mid);">Head office: Lloydminster, AB</span></li>
         </ul>
       </div>
       <div class="footer-col">
         <h2 class="footer-col-h">Cities</h2>
         <ul>
           <li><a href="lloydminster.html">Lloydminster</a></li>
-          <li><a href="sherwood-park.html" style="color:var(--rs-mint);">Sherwood Park &middot; coming soon</a></li>
+          <li><a href="sherwood-park.html">Sherwood Park</a></li>
         </ul>
       </div>
     </div>
@@ -174,7 +181,7 @@
 
 <!-- ============ SCRIPTS ============ -->
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script defer src="assets/screen-locations.js?v=66"></script>
+<script defer src="assets/screen-locations.js?v=90"></script>
 <script defer src="main.js?v=68"></script>
 
 <!-- Lazy-load MapLibre + map.js only when the map nears the viewport. On mobile the
@@ -208,14 +215,14 @@
 
 <!-- Analytics -->
 <script defer src="assets/rs-defer.js?v=1"></script>
-<script defer src="assets/rs-analytics.js?v=79"></script>
+<script defer src="assets/rs-analytics.js?v=90"></script>
 <!-- Google Analytics 4. Real Measurement ID lives in assets/analytics.js -->
-<script defer src="assets/analytics.js?v=79"></script>
+<script defer src="assets/analytics.js?v=90"></script>
 <!-- Hotjar (no-op until HOTJAR_SITE_ID is set in assets/hotjar.js): uncomment to activate.
 <script defer src="assets/hotjar.js?v=66"></script>
 -->
 <!-- Microsoft Clarity (heatmaps + recordings). Project id set in assets/clarity.js -->
-<script defer src="assets/clarity.js?v=79"></script>
+<script defer src="assets/clarity.js?v=90"></script>
 
 <!-- Form modal + Contact modal mounts (built by main.js on load) -->
 <div id="form-modal-mount"></div>

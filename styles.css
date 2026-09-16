@@ -34,17 +34,17 @@
 .markets-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
 .market-card{display:flex;flex-direction:column;padding:1.75rem;border-radius:var(--radius-card);background:rgba(255,255,255,.04);border:1px solid var(--rs-line);transition:transform .3s var(--ease-std),border-color .3s var(--ease-std),background .3s var(--ease-std)}
 .market-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
-.market-card.is-soon{background:linear-gradient(160deg,rgba(79,209,197,.12),rgba(255,255,255,.03));border-color:var(--rs-mint-soft)}
-.market-card.is-soon:hover{border-color:var(--rs-mint)}
-.market-status{display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;padding:.35rem .75rem;border-radius:var(--radius-pill);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
-.market-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
-.market-status--live{color:#7FE6DC;background:rgba(79,209,197,.14)}
-.market-status--soon{color:#FFC94A;background:rgba(255,201,74,.14)}
+
+
+
+
+
+
 .market-name{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:300;margin-top:1.1rem;letter-spacing:-.02em}
 .market-region{color:var(--rs-text-mid);font-size:.9rem;margin-top:.25rem;margin-bottom:1.5rem}
 .market-link{margin-top:auto;display:inline-flex;align-items:center;gap:.45rem;font-weight:600;font-size:.95rem;color:var(--rs-text);border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:.2rem;align-self:flex-start;transition:color .25s var(--ease-std),border-color .25s var(--ease-std),gap .25s var(--ease-std)}
 .market-link:hover{gap:.75rem;color:var(--rs-mint);border-color:var(--rs-mint)}
-.market-link--accent{color:var(--rs-mint);border-color:var(--rs-mint-soft)}
+
 
 /* ============ EDMONTON COMING SOON ============ */
 .markets-section{position:relative;padding:var(--space-7) 0;background:var(--rs-navy);color:var(--rs-text)}
@@ -83,9 +83,9 @@
 .city-venue-list li::before{content:'';position:absolute;left:1.1rem;top:50%;transform:translateY(-50%);width:9px;height:9px;border-radius:50%;background:var(--rs-mint)}
 
 .markets-section--tight{padding:var(--space-6) 0}
-.prebook-points{list-style:none;margin:1.5rem 0 0;padding:0;display:flex;flex-direction:column;gap:.7rem}
-.prebook-points li{display:flex;align-items:flex-start;gap:.6rem;color:var(--rs-text);font-size:.98rem}
-.prebook-tick{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex:none;border-radius:50%;background:var(--rs-mint-soft);color:var(--rs-mint);font-size:.7rem;font-weight:700;margin-top:.15rem}
+
+
+
 
 /* ============ THE STACK (value stack on the home page) ============ */
 
@@ -308,429 +308,275 @@
 
 
 /* ==========================================================================
-   B. THE PACKAGE  ·  receipt / invoice
-   Namespaced .rs-pkg-*  ·  replaces .stack-*
+   B. THE PACKAGE
+   Namespaced .rs-pkg-*
+
+   History, because two of these were real complaints:
+
+   v1 was a receipt · a coloured header bar, a tick and a chevron and a
+   "Details" press on every line, a punched perforation with notch discs, a
+   dotted leader, and the price as the loudest thing on the page. Four items
+   each hidden behind a click, so the thing the section exists to show was the
+   thing you could not see.
+
+   v2 removed all of that and went too far the other way: navy cards on a navy
+   section, separated only by a 1px rule, sitting between two other navy
+   sections. Nicholas: "very basic and bland and hardly even noticeable." It
+   was clean and it was invisible.
+
+   v3 is this. The four stay open and there is still no price. What changed is
+   weight: the section darkens so it reads as its own band, and the four sit on
+   ONE piece of white paper with a mint edge, lifted off the navy. Same object
+   language as the enquiry form, which is the only other white card on the
+   page, so the two things we want pressed look like a pair.
    ========================================================================== */
 
 .rs-pkg{
   position:relative;
-  background:var(--rs-navy);
+  /* The band above and below are both navy. A flat navy section between them
+     has no edges, which is most of why this disappeared. */
+  background:linear-gradient(180deg,#0B2C55 0%,var(--rs-navy-3) 45%,var(--rs-navy) 100%);
   color:var(--rs-text);
-  padding:var(--space-7) 0;
+  padding:var(--space-7) 0 var(--space-6);
   overflow:hidden;
 }
-.rs-pkg .section-head{max-width:56ch}
+.rs-pkg::before{
+  /* one hairline to cut it away from the reviews above */
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(79,209,197,.5),transparent);
+}
+.rs-pkg .section-head{max-width:58ch;margin-bottom:var(--space-4)}
+.rs-pkg .section-head .eyebrow{
+  display:inline-block;
+  padding:.4rem .9rem;
+  border-radius:var(--radius-pill);
+  background:rgba(79,209,197,.12);
+  border:1px solid var(--rs-mint-soft);
+  color:var(--rs-mint);
+  margin-bottom:var(--space-3);
+}
 .rs-pkg .section-head h2{
-  font-size:clamp(1.6rem,3.1vw,2.5rem);
-  line-height:1.16;
-  max-width:24ch;
+  font-size:clamp(1.9rem,4vw,3.1rem);
+  line-height:1.1;
+  /* 24ch broke the second line as "We run the whole thing / for you." and left
+     an orphan. Wide enough for each sentence to hold one line. */
+  max-width:30ch;
   margin-inline:auto;
 }
+/* The mint line is the subordinate clause, so it takes the smaller size. At the
+   same size as the claim it wrapped to "We run the whole thing / for you." and
+   left an orphan, and two equal-weight lines fought each other anyway. */
+.rs-pkg .section-head h2 .text-mint{
+  display:inline-block;
+  margin-top:.4em;
+  font-size:.7em;
+  color:var(--rs-mint)!important;
+  text-shadow:none;
+}
+/* .section-head .eyebrow is #fff !important sitewide; the chip needs the mint */
+.rs-pkg .section-head .eyebrow{color:var(--rs-mint)!important;text-shadow:none}
 .rs-pkg .section-head p{
   color:var(--rs-text-mid);
-  max-width:52ch;
+  max-width:56ch;
   margin:1.25rem auto 0;
   font-size:var(--fs-lead);
-}
-
-.rs-pkg-sheet{
-  max-width:760px;
-  margin:var(--space-5) auto 0;
-}
-
-/* ---- the paper ---- */
-.rs-pkg-receipt{
-  position:relative;
-  background:var(--rs-light);
-  color:var(--rs-text-dark);
-  border-radius:var(--radius-card);
-  box-shadow:0 30px 70px -22px rgba(0,0,0,.55),0 3px 10px rgba(0,0,0,.2);
-}
-
-.rs-pkg-head{
-  display:flex;
-  align-items:center;
-  gap:.9rem;
-  padding:1.1rem clamp(1.15rem,3vw,1.9rem);
-  background:var(--rs-navy-3);
-  color:var(--rs-text);
-  border-radius:var(--radius-card) var(--radius-card) 0 0;
-}
-.rs-pkg-head-mark{
-  flex:0 0 auto;
-  width:38px;
-  height:38px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:10px;
-  background:var(--rs-mint-soft);
-  color:var(--rs-mint);
-}
-.rs-pkg-head-mark svg{width:21px;height:21px}
-.rs-pkg-head-text{display:flex;flex-direction:column;gap:.15rem;min-width:0}
-.rs-pkg-head-title{
-  font-family:Manrope,Inter,system-ui,sans-serif;
-  font-weight:800;
-  font-size:1.02rem;
-  letter-spacing:-.01em;
-  line-height:1.2;
-}
-.rs-pkg-head-sub{
-  font-size:.82rem;
-  color:var(--rs-text-mid);
-  line-height:1.3;
-}
-.rs-pkg-head-tag{
-  margin-left:auto;
-  flex:0 0 auto;
-  padding:.34rem .7rem;
-  border-radius:var(--radius-pill);
-  border:1px solid var(--rs-mint-soft);
-  background:rgba(79,209,197,.12);
-  color:var(--rs-mint-2);
-  font-size:.68rem;
-  font-weight:700;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  white-space:nowrap;
-}
-
-.rs-pkg-body{padding:clamp(1.1rem,3vw,1.75rem) clamp(1rem,3vw,1.9rem) clamp(1.4rem,3.4vw,2rem)}
-
-.rs-pkg-group{
-  display:flex;
-  align-items:center;
-  gap:.7rem;
-  font-family:Inter,system-ui,sans-serif;
-  font-size:.7rem;
-  font-weight:700;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  line-height:1;
-  margin:0 0 .5rem;
-}
-.rs-pkg-group-rule{
-  flex:0 0 auto;
-  width:18px;
-  height:3px;
-  border-radius:var(--radius-pill);
-}
-.rs-pkg-group--in{color:#0E3766}
-.rs-pkg-group--in .rs-pkg-group-rule{background:var(--rs-mint)}
-.rs-pkg-group--out{color:var(--rs-text);margin:0 0 .7rem}
-.rs-pkg-group--out .rs-pkg-group-rule{background:var(--rs-red)}
-
-/* ---- line items ---- */
-.rs-pkg-lines{list-style:none;margin:0;padding:0}
-.rs-pkg-line{border-bottom:1px dashed rgba(16,61,116,.20)}
-.rs-pkg-line:last-child{border-bottom:0}
-
-.rs-pkg-toggle{
-  display:grid;
-  grid-template-columns:auto minmax(0,1fr) auto;
-  align-items:start;
-  gap:.85rem;
-  width:100%;
-  text-align:left;
-  padding:.95rem .55rem;
-  border-radius:10px;
-  color:inherit;
-  transition:background .22s var(--ease-std);
-}
-.rs-pkg-toggle:hover{background:rgba(16,61,116,.05)}
-.rs-pkg-toggle:focus-visible{
-  outline:3px solid var(--rs-primary);
-  outline-offset:2px;
-}
-
-.rs-pkg-tick{
-  flex:0 0 auto;
-  width:24px;
-  height:24px;
-  margin-top:.1rem;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  background:rgba(79,209,197,.24);
-  color:#0a656c;
-}
-.rs-pkg-tick svg{width:13px;height:13px}
-
-.rs-pkg-line-main{display:flex;flex-direction:column;gap:.2rem;min-width:0}
-.rs-pkg-name{
-  font-family:Manrope,Inter,system-ui,sans-serif;
-  font-weight:800;
-  font-size:1.06rem;
-  letter-spacing:-.012em;
-  line-height:1.25;
-  color:var(--rs-navy);
-}
-.rs-pkg-sum{
-  font-size:.93rem;
-  line-height:1.5;
-  color:#4b5563;
-}
-
-.rs-pkg-more{
-  flex:0 0 auto;
-  display:flex;
-  align-items:center;
-  gap:.5rem;
-  margin-top:.02rem;
-}
-.rs-pkg-more-text{
-  font-size:.78rem;
-  font-weight:600;
-  letter-spacing:.01em;
-  color:#4b5563;
-  white-space:nowrap;
-}
-.rs-pkg-toggle--out .rs-pkg-more-text{color:var(--rs-text-mid)}
-
-.rs-pkg-chev{
-  flex:0 0 auto;
-  width:28px;
-  height:28px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  border:1px solid rgba(16,61,116,.22);
-  color:var(--rs-navy);
-  transition:transform .28s var(--ease-std),background .22s var(--ease-std),border-color .22s var(--ease-std);
-}
-.rs-pkg-chev svg{width:15px;height:15px}
-.rs-pkg-toggle:hover .rs-pkg-chev{background:rgba(16,61,116,.08);border-color:rgba(16,61,116,.4)}
-.rs-pkg-toggle[aria-expanded="true"] .rs-pkg-chev{transform:rotate(180deg)}
-
-/* sub items, always visible */
-.rs-pkg-subs{
-  list-style:none;
-  display:flex;
-  flex-wrap:wrap;
-  gap:.4rem;
-  margin:.3rem 0 .95rem;
-  padding:0 .55rem 0 calc(.55rem + 24px + .85rem);
-}
-.rs-pkg-subs li{
-  display:inline-flex;
-  align-items:center;
-  gap:.4rem;
-  padding:.3rem .65rem;
-  border-radius:var(--radius-pill);
-  background:rgba(16,61,116,.06);
-  border:1px solid rgba(16,61,116,.14);
-  font-size:.8rem;
-  font-weight:600;
-  color:var(--rs-navy);
-  line-height:1.2;
-}
-.rs-pkg-subs li::before{
-  content:'';
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:#0a656c;
-  flex:0 0 auto;
-}
-
-/* disclosure body */
-.rs-pkg-detail{
-  padding:0 .55rem .95rem calc(.55rem + 24px + .85rem);
-}
-.rs-pkg-detail[hidden]{display:none}
-.rs-pkg-detail p{
-  margin:0;
-  font-size:.92rem;
   line-height:1.62;
-  color:#4b5563;
-  border-left:2px solid var(--rs-mint);
-  padding-left:.85rem;
-  max-width:62ch;
-  animation:rs-pkg-open .24s var(--ease-std) both;
 }
 
-@keyframes rs-pkg-open{
-  from{opacity:0;transform:translateY(-5px)}
-  to{opacity:1;transform:none}
+/* ---- the paper ----
+   One panel, not four tiles. The 1px grid gap over a pale background draws the
+   dividing rules, so the four read as one object with four rows in it. */
+.rs-pkg-grid{
+  list-style:none;
+  margin:var(--space-5) auto 0;
+  padding:0;
+  max-width:960px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1px;
+  background:rgba(16,61,116,.14);
+  border-top:4px solid var(--rs-mint);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 44px 90px -40px rgba(0,0,0,.8), 0 10px 26px -14px rgba(0,0,0,.5);
 }
-
-/* ---- perforation, then the price ---- */
-.rs-pkg-perf{
-  position:relative;
-  height:0;
-  margin:1.15rem -.55rem .35rem;
-  border-top:2px dashed rgba(16,61,116,.28);
-}
-.rs-pkg-perf::before,
-.rs-pkg-perf::after{
-  content:'';
-  position:absolute;
-  top:-11px;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  background:var(--rs-navy);
-}
-.rs-pkg-perf::before{left:calc(-1 * clamp(1rem,3vw,1.9rem) - 10px + .55rem)}
-.rs-pkg-perf::after{right:calc(-1 * clamp(1rem,3vw,1.9rem) - 10px + .55rem)}
-
-.rs-pkg-total{
+.rs-pkg-card{
+  background:#fff;
+  color:var(--rs-text-dark);
+  padding:clamp(1.5rem,3vw,2.1rem);
   display:flex;
-  flex-wrap:wrap;
-  align-items:baseline;
-  justify-content:space-between;
-  gap:.5rem 1rem;
-  padding:.9rem .55rem .2rem;
+  flex-direction:column;
+  gap:.75rem;
+  transition:background .25s var(--ease-std);
 }
-.rs-pkg-total-label{
-  font-family:Manrope,Inter,system-ui,sans-serif;
-  font-weight:800;
-  font-size:1.02rem;
+.rs-pkg-card:hover{background:#F7FAFC}
+.rs-pkg-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  flex:none;
+  border-radius:12px;
+  background:rgba(0,147,217,.10);
+  border:1px solid rgba(0,147,217,.22);
+  color:var(--rs-primary);
+}
+.rs-pkg-icon svg{width:22px;height:22px}
+.rs-pkg-card h3{
+  margin:0;
+  font-family:Inter,system-ui,sans-serif;
+  font-size:1.2rem;
+  font-weight:700;
   letter-spacing:-.01em;
   color:var(--rs-navy);
 }
-.rs-pkg-leader{
-  flex:1 1 40px;
-  min-width:24px;
-  align-self:flex-end;
-  margin-bottom:.45rem;
-  border-bottom:2px dotted rgba(16,61,116,.28);
-}
-.rs-pkg-total-amount{
-  display:flex;
-  align-items:baseline;
-  gap:.42rem;
-  flex-wrap:wrap;
-  font-variant-numeric:tabular-nums;
-}
-.rs-pkg-total-pre{font-size:.86rem;color:#4b5563}
-.rs-pkg-price{
-  font-family:Manrope,Inter,system-ui,sans-serif;
-  font-weight:800;
-  font-size:clamp(2rem,4.6vw,2.85rem);
-  line-height:.9;
-  letter-spacing:-.03em;
-  color:var(--rs-navy);
-}
-.rs-pkg-per{font-size:.95rem;font-weight:600;color:#4b5563}
-
-.rs-pkg-cta{
-  display:inline-flex;
-  width:100%;
-  justify-content:center;
-  margin-top:1.15rem;
+.rs-pkg-card p{
+  margin:0;
+  color:#4B5563;
+  font-size:.97rem;
+  line-height:1.62;
 }
 
-/* ---- the add-on, off the receipt ---- */
-.rs-pkg-addon{margin-top:2rem}
-.rs-pkg-addon-card{
-  border:2px dashed rgba(225,29,44,.6);
-  border-radius:var(--radius-card);
-  background:
-    linear-gradient(180deg,rgba(225,29,44,.10) 0,rgba(225,29,44,0) 70%),
-    rgba(255,255,255,.05);
-  padding:.4rem .5rem;
-}
-.rs-pkg-toggle--out{color:var(--rs-text)}
-.rs-pkg-toggle--out:hover{background:rgba(255,255,255,.06)}
-.rs-pkg-toggle--out:focus-visible{outline-color:var(--rs-mint)}
-.rs-pkg-toggle--out .rs-pkg-name{
-  color:var(--rs-text);
-  display:flex;
-  align-items:center;
-  gap:.55rem;
-  flex-wrap:wrap;
-}
-.rs-pkg-toggle--out .rs-pkg-sum{color:var(--rs-text-mid)}
-.rs-pkg-toggle--out .rs-pkg-chev{border-color:rgba(255,255,255,.3);color:var(--rs-text)}
-.rs-pkg-toggle--out:hover .rs-pkg-chev{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.55)}
-
-.rs-pkg-tick--out{
-  background:rgba(225,29,44,.28);
-  color:var(--rs-text);
-}
-.rs-pkg-tick--out svg{width:12px;height:12px}
-
-.rs-pkg-flag{
-  display:inline-block;
-  padding:.22rem .5rem;
-  border-radius:5px;
-  background:var(--rs-red);
-  color:#fff;
-  font-family:Inter,system-ui,sans-serif;
-  font-size:.64rem;
-  font-weight:700;
-  letter-spacing:.13em;
-  text-transform:uppercase;
-  line-height:1.25;
-  white-space:nowrap;
-}
-
-.rs-pkg-addon .rs-pkg-detail p{
+/* The one thing that is not in the package. It was a red "Not included in the
+   package" heading with its own card and its own disclosure toggle, which gave
+   an exclusion more weight than any of the four inclusions. One sentence. */
+.rs-pkg-note{
+  max-width:960px;
+  margin:1.4rem auto 0;
+  padding:1rem 1.25rem;
+  border-radius:12px;
+  border:1px dashed rgba(255,255,255,.24);
+  background:rgba(255,255,255,.04);
   color:var(--rs-text-mid);
-  border-left-color:rgba(225,29,44,.55);
+  font-size:.93rem;
+  line-height:1.62;
 }
+.rs-pkg-note strong{color:var(--rs-text);font-weight:600}
 
-/* ---- Section B responsive ---- */
-@media (max-width:600px){
-  .rs-pkg-head{gap:.7rem;padding:.95rem 1rem}
-  .rs-pkg-head-mark{width:34px;height:34px}
-  .rs-pkg-head-tag{
-    order:3;
-    margin-left:auto;
-    padding:.28rem .55rem;
-    font-size:.62rem;
-    letter-spacing:.1em;
-  }
-  .rs-pkg-toggle{gap:.65rem;padding:.85rem .35rem}
-  .rs-pkg-subs,
-  .rs-pkg-detail{padding-left:calc(.35rem + 24px + .65rem);padding-right:.35rem}
-  .rs-pkg-perf{margin-left:-.35rem;margin-right:-.35rem}
-  .rs-pkg-perf::before{left:calc(-1 * clamp(1rem,3vw,1.9rem) - 10px + .35rem)}
-  .rs-pkg-perf::after{right:calc(-1 * clamp(1rem,3vw,1.9rem) - 10px + .35rem)}
-  .rs-pkg-total{padding-left:.35rem;padding-right:.35rem}
-  .rs-pkg-name{font-size:1rem}
-  .rs-pkg-head-title{font-size:.95rem}
-  .rs-pkg-leader{display:none}
+.rs-pkg-foot{display:flex;justify-content:center;margin-top:var(--space-5)}
+.rs-pkg-foot .btn{font-size:1.02rem;padding:1rem 2.1rem}
+
+@media (max-width:760px){
+  .rs-pkg-grid{grid-template-columns:1fr;max-width:560px}
+  .rs-pkg{padding-top:var(--space-6)}
 }
 
 /* ---- motion ---- */
 @media (prefers-reduced-motion:reduce){
   .rs-psr-inner{opacity:1;transform:none}
-  .rs-pkg-detail p{animation:none}
-  .rs-pkg-toggle,
-  .rs-pkg-chev{transition:none}
 }
-/* --- corrections applied on integration --- */
-/* The navy-3 header bar sat on the navy section at 1.10:1, so the top edge of the
-   receipt dissolved and the card looked like it began lower than it does. */
-.rs-pkg-receipt{outline:1px solid rgba(255,255,255,.16);outline-offset:0}
-/* The perforation discs were flat navy over a card carrying a heavy drop shadow,
-   so they read lighter than the darkened navy around the card edge. */
-.rs-pkg-perf::before,.rs-pkg-perf::after{background:var(--rs-navy-3)}
-/* Section A solved its scroll problem; section B still opened on ~350px of empty
-   navy before the package appeared. */
-.rs-pkg{padding-top:var(--space-5)}
-.rs-pkg .section-head{margin-bottom:var(--space-3)}
-.rs-pkg .section-head h2{font-size:clamp(1.5rem,2.9vw,2.3rem);max-width:34ch;margin-inline:auto}
-
-/* The logo bar moved above the reviews, which put two near-identical pale bands
-   (#fff photos, #FAFAFA logos) back to back. Putting the bar on navy restores the
-   alternation AND joins it to the review carousel below, so authority and empathy
-   read as one proof block instead of two shuffled ones. */
-.logo-collage-section{background:var(--rs-navy);color:var(--rs-text)}
-.logo-collage-section .section-head h2{color:var(--rs-text)!important;text-shadow:none}
-.logo-collage-section .section-head p{color:var(--rs-text-mid)}
-.logo-collage-section .eyebrow{color:var(--rs-mint)}
-.logo-collage-section .logo-tile{opacity:1;border-color:rgba(255,255,255,.10)}
-/* The bar now flows straight into the review section, so it loses its bottom gap
-   and the reviews lose their top one. One block, two kinds of proof. */
-.logo-collage-section{padding-bottom:var(--space-3)}
-.social-proof{padding-top:var(--space-4)}
+/* The logo bar sits between the venue photos and the reviews. Joining it to the
+   reviews on navy made the two read as one melded block with a literal 0px gap.
+   It gets its own light band instead, so the boundary into the navy review
+   section is a hard light-to-dark edge, and a hairline separates it from the
+   white photo section above. */
+.logo-collage-section{background:var(--rs-light);color:var(--rs-text-dark);
+  padding:var(--space-6) 0;border-top:1px solid rgba(0,40,94,.10);border-bottom:1px solid rgba(0,40,94,.10)}
+.logo-collage-section .section-head h2{color:var(--rs-text-dark)!important;text-shadow:none}
+.logo-collage-section .section-head p{color:#4b5563}
+.logo-collage-section .eyebrow{color:var(--rs-primary)}
+.logo-collage-section .logo-tile{opacity:1;border-color:rgba(0,40,94,.10)}
+.social-proof{padding-top:var(--space-7)}
 /* Wording on these two is fixed by the client. Only the type size changes, so they
    sit in the same scale as every other heading on the page instead of towering. */
 .screens-photos-section .section-head h2{font-size:clamp(1.7rem,3.4vw,2.7rem);max-width:22ch;margin-inline:auto}
 .social-proof .section-head h2{font-size:clamp(1.7rem,3.4vw,2.7rem);max-width:22ch;margin-inline:auto}
+
+/* ==========================================================================
+   CITY PAGES  ·  map block + coverage line
+   Every city page carries the same map section. Lloydminster's draws the 33
+   real pins from screen-locations.js; a market whose screens are not in yet
+   draws its coverage area instead. Same section, same height, same furniture,
+   so neither page has a visible hole where the other has a map.
+   ========================================================================== */
+
+.city-coverage{
+  margin-top:1rem;
+  color:var(--rs-mint);
+  font-size:.85rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.city-coverage span{color:var(--rs-text-muted);margin:0 .2rem}
+
+.city-map-section{
+  background:var(--rs-navy-3);
+  color:var(--rs-text);
+  padding:var(--space-6) 0;
+  scroll-margin-top:var(--nav-h);
+}
+.city-map-section .section-head{margin-bottom:var(--space-4)}
+.city-map-section .section-head h2{
+  font-size:clamp(1.5rem,2.9vw,2.3rem);
+  max-width:24ch;
+  margin-inline:auto;
+}
+.city-map-section .section-head p{
+  color:var(--rs-text-mid);
+  max-width:58ch;
+  margin:1rem auto 0;
+  line-height:1.62;
+}
+.city-map-block{max-width:1040px;margin-inline:auto;height:clamp(380px,60vh,560px)}
+/* Narrower than full bleed on purpose. At container width the block was 2.6:1,
+   so fitting a 25 km north-south coverage span forced a 65 km east-west view
+   and Edmonton became the largest thing on a Sherwood Park map. */
+.city-map-actions{display:flex;justify-content:center;margin-top:var(--space-4)}
+
+/* The coverage map labels its communities instead of dropping pins, because
+   there is no honest pin to drop until the screens are installed. */
+.rs-area-pin{
+  padding:.34rem .7rem;
+  border-radius:var(--radius-pill);
+  background:rgba(16,61,116,.92);
+  border:1px solid var(--rs-mint-soft);
+  color:#fff;
+  font-family:Inter,system-ui,sans-serif;
+  font-size:.74rem;
+  font-weight:600;
+  letter-spacing:.04em;
+  white-space:nowrap;
+  box-shadow:0 6px 18px -8px rgba(0,0,0,.7);
+  pointer-events:none;
+}
+
+/* City chips on the screen map. The page shows one city's pins at a time, so
+   the others need a visible way in rather than being absent from the map page
+   entirely, which is what made the network look like one town. */
+.map-cities{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+.map-city{
+  display:inline-flex;
+  align-items:center;
+  padding:.45rem 1rem;
+  border-radius:var(--radius-pill);
+  border:1px solid rgba(0,40,94,.16);
+  color:var(--rs-text-dark);
+  font-size:.9rem;
+  font-weight:600;
+  transition:border-color .2s var(--ease-std),background .2s var(--ease-std);
+}
+a.map-city:hover{border-color:var(--rs-primary);background:rgba(0,147,217,.08)}
+.map-city.is-current{
+  background:var(--rs-navy);
+  border-color:var(--rs-navy);
+  color:#fff;
+}
+
+/* Coverage discs. DOM, not a map fill layer, because the fill layer painted on
+   some loads and not others. Sized in pixels from the real radius on every
+   zoom, so they stay geographically honest while never failing to appear. */
+.rs-area-disc{
+  border-radius:50%;
+  background:rgba(79,209,197,.32);
+  border:2px solid #4FD1C5;
+  pointer-events:none;
+}
+
+/* The cities grid sat above the enquiry form with both sections' padding
+   stacked, so two cards floated in ~250px of empty navy. */
+.markets-section--tight + .markets-section{padding-top:var(--space-4)}

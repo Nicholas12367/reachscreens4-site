@@ -1,5 +1,6 @@
 {
   "_readme": "The single source of truth for every market. Edit this, run `node scripts/build-cities.js`, commit the generated <slug>.html files and cities.html. Adding a market is one entry here. Never hand-edit a generated page, the build overwrites it.",
+  "_nostatus": "There is deliberately no live/coming-soon flag. A market that announces itself as not-open-yet tells a venue owner they would be the first one in, which is the single thing that stops them signing. Every city is presented the same way. What differs is only what we can honestly show: a city with installed screens shows its pins and its counts, a city without them shows its coverage area and its venue types. Never invent a pin or a count for a city that has none.",
   "site": {
     "brand": "Reach Screens",
     "legalName": "Reach Media Inc.",
@@ -8,23 +9,49 @@
     "phoneHref": "+15876062556",
     "email": "info@reachscreens.ca",
     "formEndpoint": "https://forms-api.reachscreens.ca/submit",
-    "assetVersion": "86"
+    "assetVersion": "90"
   },
   "cities": [
     {
       "slug": "lloydminster",
       "name": "Lloydminster",
-      "status": "live",
       "province": "Alberta & Saskatchewan",
       "regionCode": "AB",
       "postalRegion": "Lloydminster",
+      "alsoServes": [],
+      "hasAddress": true,
       "screens": 35,
       "venues": 33,
       "lat": 53.2783,
       "lng": -110.005,
-      "eyebrow": "Live now",
+      "map": {
+        "mode": "pins",
+        "zoom": 12.2
+      },
       "headline": "Indoor screen advertising in <span class=\"text-mint\">Lloydminster</span>.",
       "intro": "35 screens across 33 venues on both the Alberta and Saskatchewan sides. Cafes, pubs, salons, clinics, gyms and auto shops, in front of the people who already walk past your competitors every day.",
+      "coverage": [
+        {
+          "name": "Lloydminster, Alberta"
+        },
+        {
+          "name": "Lloydminster, Saskatchewan"
+        }
+      ],
+      "facts": [
+        {
+          "num": "35",
+          "label": "screens"
+        },
+        {
+          "num": "33",
+          "label": "venues"
+        },
+        {
+          "num": "2",
+          "label": "provinces"
+        }
+      ],
       "venueTypes": [
         "Cafes and restaurants",
         "Pubs and lounges",
@@ -39,7 +66,6 @@
     {
       "slug": "sherwood-park",
       "name": "Sherwood Park",
-      "status": "coming-soon",
       "province": "Alberta",
       "regionCode": "AB",
       "postalRegion": "Sherwood Park",
@@ -47,13 +73,36 @@
         "Strathcona County",
         "Fort Saskatchewan"
       ],
+      "hasAddress": false,
       "screens": null,
       "venues": null,
       "lat": 53.5414,
       "lng": -113.2958,
-      "eyebrow": "Coming soon",
-      "headline": "<span class=\"text-mint\">Sherwood Park</span> coming soon.",
-      "intro": "We are signing venues across Sherwood Park, Strathcona County and Fort Saskatchewan now. A market only holds a limited number of advertisers, and the ones who get in first get first pick of the screens.",
+      "map": {
+        "mode": "area"
+      },
+      "headline": "Indoor screen advertising in <span class=\"text-mint\">Sherwood Park</span>.",
+      "intro": "We put local businesses in front of Sherwood Park, Strathcona County and Fort Saskatchewan, on indoor screens in the places people already spend their time. Tell us what you want to promote and we design the ad and get it on screen.",
+      "coverage": [
+        {
+          "name": "Sherwood Park",
+          "lat": 53.5414,
+          "lng": -113.2958,
+          "radiusKm": 6
+        },
+        {
+          "name": "Strathcona County",
+          "lat": 53.625,
+          "lng": -113.07
+        },
+        {
+          "name": "Fort Saskatchewan",
+          "lat": 53.7128,
+          "lng": -113.2149,
+          "radiusKm": 4.5
+        }
+      ],
+      "facts": [],
       "venueTypes": [
         "Cafes and restaurants",
         "Pubs and lounges",
@@ -62,8 +111,9 @@
         "Gyms and studios",
         "Auto and service shops"
       ],
-      "metaTitle": "Digital Screen Advertising in Sherwood Park, AB, Coming Soon | Reach Screens",
-      "metaDescription": "Reach Screens is opening in Sherwood Park, Strathcona County and Fort Saskatchewan. Pre-book your slot and take first pick of the screens at the founding rate."
+      "metaTitle": "Digital Screen Advertising in Sherwood Park, AB | Reach Screens",
+      "metaDescription": "Indoor digital screen advertising across Sherwood Park, Strathcona County and Fort Saskatchewan. Tell us what you want to promote and we design the ad and get it on screen."
     }
-  ]
+  ],
+  "_coverage": "coverage[] drives both the line under the city headline and the coverage map. Each entry is a real place with real coordinates. `radiusKm` draws a circle; omit it to place a label only. ONE big circle round the market centre was tried first and at 11 km it swallowed most of Edmonton, which claims a city we do not sell in. Draw the communities, not a radius."
 }
