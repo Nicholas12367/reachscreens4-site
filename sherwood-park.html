@@ -16,7 +16,7 @@
   <meta property="og:image" content="https://reachscreens.ca/assets/website-header.webp">
 
   <link rel="preload" as="image" href="assets/logo-white.webp">
-  <link rel="stylesheet" href="styles.css?v=91">
+  <link rel="stylesheet" href="styles.css?v=92">
   <!-- Font preload sits after the stylesheet on purpose. styles.css is
        render blocking, so it has to win the connection first. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-300-700-latin.woff2" crossorigin>
@@ -137,7 +137,7 @@
   var css=document.createElement('link');css.rel='stylesheet';css.href='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';document.head.appendChild(css);
   var gl=document.createElement('script');gl.src='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js';document.head.appendChild(gl);
   gl.onload=function(){
-  var m=document.createElement('script');m.src='assets/rs-area-map.js?v=91';document.head.appendChild(m);
+  var m=document.createElement('script');m.src='assets/rs-area-map.js?v=92';document.head.appendChild(m);
   m.onload=function(){window.rsAreaMapInit&&window.rsAreaMapInit();};
   };}
   function arm(){
@@ -306,9 +306,9 @@
 <script defer src="main.js?v=68"></script>
 <script defer src="assets/rs-attribution.js?v=68"></script>
 <script defer src="assets/rs-defer.js?v=1"></script>
-<script defer src="assets/rs-analytics.js?v=91"></script>
-<script defer src="assets/analytics.js?v=91"></script>
-<script defer src="assets/clarity.js?v=91"></script>
+<script defer src="assets/rs-analytics.js?v=92"></script>
+<script defer src="assets/analytics.js?v=92"></script>
+<script defer src="assets/clarity.js?v=92"></script>
 
 <!-- Form modal + Contact modal mounts (built by main.js on load) -->
 <div id="form-modal-mount"></div>

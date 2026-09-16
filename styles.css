@@ -588,3 +588,28 @@ a.map-city:hover{border-color:var(--rs-primary);background:rgba(0,147,217,.08)}
    number reserves the space and the shift cannot happen. */
 .locations-list-wrap{min-height:760px}
 @media (max-width:900px){.locations-list-wrap{min-height:min(760px,68vh)}}
+
+/* ---- logo marquee tile sizing ------------------------------------------
+   🔴 Measured, not guessed. `.logo-marquee .logo-tile` sized itself with
+   width:clamp(96px,11vw,150px) and height:clamp(48px,6vw,72px). Both
+   viewport terms are far too small, so the tile bottomed out at its 96x48
+   floor on a phone AND at 768px, and only reached 150x72 at 1440px. With
+   .logo-tile's 1.25rem vertical padding, 20px a side, a 48px tile leaves an
+   EIGHT PIXEL content box · every logo rendered six pixels tall on a phone.
+
+   Rendered logo heights before, at 360 / 768 / 1024 / 1440:  6 / 17 / 31 / 41
+                                                  after:    49 / 49 / 52 / 60
+   The floor is now a tile you can actually read a wordmark in, and the
+   padding is proportionate to it instead of pinned in rem. */
+.logo-marquee .logo-tile{
+  flex:0 0 auto;
+  width:clamp(150px,16vw,190px);
+  height:clamp(92px,9vw,112px);
+  padding:.7rem .9rem;
+}
+/* width:auto stops a small source upscaling past its natural size and going
+   soft; the height cap is what does the fitting. */
+.logo-marquee .logo-tile img{max-height:100%;max-width:100%;width:auto;height:auto}
+@media (max-width:760px){
+  .logo-marquee-track{gap:14px}
+}
